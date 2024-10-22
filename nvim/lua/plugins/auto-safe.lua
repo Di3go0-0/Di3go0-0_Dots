@@ -1,0 +1,1 @@
+--return { "vigoux/auto-safe.nvim" }
