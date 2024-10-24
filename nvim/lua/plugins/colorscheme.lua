@@ -21,11 +21,6 @@ return {
     },
   },
   {
-    "miikanissi/modus-themes.nvim",
-    name = "modus",
-    priority = 1000,
-  },
-  {
     "wuelnerdotexe/vim-enfocado",
     lazy = false,
     priority = 1000,
@@ -65,16 +60,7 @@ return {
       end,
     },
   },
-  { "rose-pine/neovim", name = "rose-pine" },
-  { "nyoom-engineering/oxocarbon.nvim", name = "oxocarbon" },
-  { "rktjmp/lush.nvim", dependencies = { "mcchrish/zenbones.nvim" } },
-  {
-    "scottmckendry/cyberdream.nvim",
-    lazy = false,
-    priority = 1000,
-  },
-  { "NTBBloodbath/doom-one.nvim", name = "doom-one" },
-  { "AhmedAbdulrahman/aylin.vim", name = "aylin" },
+
   {
     "xiyaowong/transparent.nvim",
   },
@@ -141,12 +127,14 @@ return {
     priority = 1000,
   },
   {
-    "LazyVim/LazyVim",
-    opts = {
-      -- change this line to change the color scheme
-      colorscheme = "tokyonight",
-      -- colorscheme = "kanagawa-dragon",
-    },
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = function(_, opts)
+      opts.transparent = true
+      opts.italic_comments = true
+      opts.borderless_telescope = false
+    end,
   },
   {
     "ellisonleao/gruvbox.nvim",
@@ -156,6 +144,17 @@ return {
       style = "dark",
       contrast = "medium",
       transparent = false,
+    },
+  },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      -- change this line to change the color scheme
+      colorscheme = "cyberdream",
+      -- colorscheme = "kanagawa-dragon",
+      opts = {
+        transparent_background = true,
+      },
     },
   },
 }

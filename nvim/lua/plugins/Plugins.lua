@@ -14,5 +14,6 @@ return {
   },
   { "neovim/nvim.net" },
   { "wolandark/vim-live-server" },
+
   -- { "tpope/vim-fugitive" },
 }

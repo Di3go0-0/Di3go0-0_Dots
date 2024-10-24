@@ -1,5 +1,3 @@
--- ~/.config/nvim/lua/plugins/LuaSnip.lua
-
 return {
   -- Plugin para LuaSnip
   {
