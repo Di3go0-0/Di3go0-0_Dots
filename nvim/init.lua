@@ -1,4 +1,4 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
+-- Bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
 vim.opt.cursorline = false -- Desactiva el resaltado de la línea del cursor

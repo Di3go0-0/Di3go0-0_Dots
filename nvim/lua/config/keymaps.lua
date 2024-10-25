@@ -21,8 +21,11 @@ local function set_keymaps()
   safe_del("n", "<leader>wl")
 
   -- Añadir nuevas keymaps
-  keymap.set("n", "<C-j>", "<leader>wh", opts)
-  keymap.set("n", "<C-k>", "<leader>wl", opts)
+  keymap.set("n", "<C-j>", "<C-w>h", opts) --Left
+  keymap.set("n", "<C-k>", "<C-w>l", opts) --Right
+  keymap.set("n", "<C-h>", "<C-w>k", opts) --Up
+  keymap.set("n", "<C-l>", "<C-w>j", opts) --Down
+  -- keymap.set("n", "<C-s>", "", opts)
 end
 
 -- Llamar a la función para establecer las keymaps
