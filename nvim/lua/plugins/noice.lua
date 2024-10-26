@@ -5,7 +5,7 @@ return {
     require("noice").setup({
       lsp = {
         hover = {
-          enabled = false, -- Deshabilitar hover de Noice
+          enabled = true, -- Deshabilitar hover de Noice
         },
       },
       cmdline = {
