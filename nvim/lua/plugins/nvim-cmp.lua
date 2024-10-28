@@ -1,6 +1,17 @@
 return {
   {
     "hrsh7th/nvim-cmp",
+    dependences = {
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-git",
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-copilot",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+      "windwp/nvim-autopairs",
+    },
     opts = function(_, opts)
       local cmp = require("cmp")
       opts.completion = {
@@ -19,6 +30,14 @@ return {
       --   { name = "buffer", priority = 500 },
       --   { name = "path", priority = 250 },
       -- })
+      -- fuentes de autocompletado
+      opts.sources = cmp.config.sources({
+        { name = "copilot", priority = 1000 },
+        { name = "nvim_lsp", priority = 750 }, -- Integración con LSP para sugerencias y auto-importación
+        { name = "buffer", priority = 500 }, -- Para autocompletado en el buffer actual
+        { name = "path", priority = 250 }, -- Autocompletado de rutas
+        { name = "luasnip", priority = 300 }, -- Snippets
+      })
       opts.window = {
         completion = {
           border = {

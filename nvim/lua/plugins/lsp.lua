@@ -25,12 +25,17 @@ vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
   end
   return vim.lsp.util.open_floating_preview(markdown_lines, "markdown", config)
 end
+
+-- Importa las capacidades de autocompletado de `nvim-cmp` en LSP
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 return {
   {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
         vtsls = {
+          capabilities = capabilities,
           settings = {
             typescript = {
               inlayHints = {
@@ -45,6 +50,7 @@ return {
           },
         },
         gopls = {
+          capabilities = capabilities,
           settings = {
             gopls = {
               hints = {
@@ -57,6 +63,14 @@ return {
                 rangeVariableTypes = false,
               },
             },
+          },
+        },
+        cssls = {
+          capabilities = capabilities,
+          settings = {
+            css = { validate = true },
+            less = { validate = true },
+            scss = { validate = true },
           },
         },
       },

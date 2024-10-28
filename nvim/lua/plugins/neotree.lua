@@ -17,6 +17,8 @@ return {
         always_show = {
           ".env",
           ".gitignore",
+          "dist",
+          "venv",
         },
       },
     },
