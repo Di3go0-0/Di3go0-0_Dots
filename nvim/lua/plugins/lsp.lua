@@ -73,6 +73,33 @@ return {
             scss = { validate = true },
           },
         },
+        -- python = {
+        --   capabilities = capabilities,
+        --   settings = {
+        --     python = {
+        --       analysis = {
+        --         errors = { enabled = true },
+        --         info = { enabled = true },
+        --         warnings = { enabled = true },
+        --       },
+        --     },
+        --   },
+        -- },
+        -- markdownlint = {
+        --   capabilities = capabilities,
+        -- },
+      },
+    },
+  },
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "lua-language-server",
+        "html-lsp",
+        "prettier",
+        "stylua",
+        "gopls",
       },
     },
   },
