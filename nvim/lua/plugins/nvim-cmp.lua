@@ -14,30 +14,56 @@ return {
     },
     opts = function(_, opts)
       local cmp = require("cmp")
-      opts.completion = {
-        autocomplete = { cmp.TriggerEvent.TextChanged }, -- Activa autocompletado al escribir
-      }
+
+      -- Variable para rastrear el estado de autocompletado
+      local autocomplete_enabled = true
+
+      -- Función para alternar autocompletado
+      local function toggle_autocomplete(enable)
+        autocomplete_enabled = enable
+        cmp.setup({
+          completion = {
+            autocomplete = enable and { cmp.TriggerEvent.TextChanged } or {}, -- Autocompletar solo si está habilitado
+          },
+        })
+      end
+
+      -- Activamos el autocompletado automático inicialmente
+      toggle_autocomplete(true)
+
+      -- Configuración de mapeos
       opts.mapping = {
         ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
         ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
-        ["<C-e>"] = cmp.mapping.close(),
-        ["<C-Space>"] = cmp.mapping.complete(),
+
+        -- Mapeo para cerrar el menú de autocompletado y desactivar autocompletado automático
+        ["<C-e>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.close()
+            toggle_autocomplete(false) -- Desactiva el autocompletado
+          else
+            fallback()
+          end
+        end),
+
+        -- Mapeo para abrir el menú de autocompletado y reactivar el autocompletado automático
+        ["<C-Space>"] = cmp.mapping(function()
+          cmp.complete()
+          toggle_autocomplete(true) -- Reactiva el autocompletado automático
+        end),
       }
-      -- opts.sources = cmp.config.sources({
-      --   { name = "copilot", priority = 1000 }, -- Prioridad alta para Copilot
-      --   { name = "nvim_lsp", priority = 750 },
-      --   { name = "buffer", priority = 500 },
-      --   { name = "path", priority = 250 },
-      -- })
-      -- fuentes de autocompletado
+
+      -- Fuentes de autocompletado
       opts.sources = cmp.config.sources({
         { name = "copilot", priority = 1000 },
-        { name = "nvim_lsp", priority = 750 }, -- Integración con LSP para sugerencias y auto-importación
-        { name = "buffer", priority = 500 }, -- Para autocompletado en el buffer actual
-        { name = "path", priority = 250 }, -- Autocompletado de rutas
-        { name = "luasnip", priority = 300 }, -- Snippets
+        { name = "nvim_lsp", priority = 750 },
+        { name = "buffer", priority = 500 },
+        { name = "path", priority = 250 },
+        { name = "luasnip", priority = 300 },
       })
+
+      -- Configuración de ventanas de autocompletado y documentación
       opts.window = {
         completion = {
           border = {
@@ -71,3 +97,42 @@ return {
     end,
   },
 }
+-- return {
+--   {
+--     "hrsh7th/nvim-cmp",
+--     opts = function(_, opts)
+--       opts.completion.autocomplete = false
+--       opts.mapping["<CR>"] = nil
+--       opts.window = {
+--         completion = {
+--           border = {
+--             { "󱐋", "WarningMsg" },
+--             { "─", "Comment" },
+--             { "╮", "Comment" },
+--             { "│", "Comment" },
+--             { "╯", "Comment" },
+--             { "─", "Comment" },
+--             { "╰", "Comment" },
+--             { "│", "Comment" },
+--           },
+--           scrollbar = false,
+--           winblend = 0,
+--         },
+--         documentation = {
+--           border = {
+--             { "󰙎", "DiagnosticHint" },
+--             { "─", "Comment" },
+--             { "╮", "Comment" },
+--             { "│", "Comment" },
+--             { "╯", "Comment" },
+--             { "─", "Comment" },
+--             { "╰", "Comment" },
+--             { "│", "Comment" },
+--           },
+--           scrollbar = false,
+--           winblend = 0,
+--         },
+--       }
+--     end,
+--   },
+-- }
