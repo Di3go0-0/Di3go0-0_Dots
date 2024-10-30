@@ -19,7 +19,7 @@ vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
     return
   end
   local markdown_lines = vim.lsp.util.convert_input_to_markdown_lines(result.contents)
-  markdown_lines = vim.split(table.concat(markdown_lines, "\n"), "\n", { trimempty = true })
+  markdown_lines = vim.lsp.util.trim_empty_lines(markdown_lines)
   if vim.tbl_isempty(markdown_lines) then
     return
   end
@@ -28,14 +28,14 @@ end
 
 -- Importa las capacidades de autocompletado de `nvim-cmp` en LSP
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
+-- Configuración de servidores LSP
 return {
   {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
         vtsls = {
-          capabilities = capabilities,
+          -- capabilities = capabilities,
           settings = {
             typescript = {
               inlayHints = {
@@ -50,7 +50,7 @@ return {
           },
         },
         gopls = {
-          capabilities = capabilities,
+          -- capabilities = capabilities,
           settings = {
             gopls = {
               hints = {
@@ -73,33 +73,36 @@ return {
             scss = { validate = true },
           },
         },
-        -- python = {
-        --   capabilities = capabilities,
-        --   settings = {
-        --     python = {
-        --       analysis = {
-        --         errors = { enabled = true },
-        --         info = { enabled = true },
-        --         warnings = { enabled = true },
-        --       },
-        --     },
-        --   },
+        pyright = {
+          capabilities = capabilities,
+          settings = {
+            python = {
+              analysis = {
+                errors = { enabled = true },
+                info = { enabled = true },
+                warnings = { enabled = true },
+              },
+            },
+          },
+        },
+        jsonls = {
+          -- lazy-load schemastore when needed
+          on_new_config = function(new_config)
+            new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+            vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+          end,
+          settings = {
+            json = {
+              format = {
+                enable = true,
+              },
+              validate = { enable = true },
+            },
+          },
+        },
+        -- marksman = {
+        --   capabilities2 = capabilities2,
         -- },
-        -- markdownlint = {
-        --   capabilities = capabilities,
-        -- },
-      },
-    },
-  },
-  {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "lua-language-server",
-        "html-lsp",
-        "prettier",
-        "stylua",
-        "gopls",
       },
     },
   },
