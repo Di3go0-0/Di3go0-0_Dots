@@ -150,7 +150,8 @@ return {
     "LazyVim/LazyVim",
     opts = {
       -- change this line to change the color scheme
-      colorscheme = "cyberdream",
+      colorscheme = "catppuccin-mocha",
+      -- colorscheme = "cyberdream",
       -- colorscheme = "kanagawa-dragon",
       opts = {
         transparent_background = true,
