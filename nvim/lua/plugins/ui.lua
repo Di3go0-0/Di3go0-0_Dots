@@ -26,7 +26,7 @@ return {
     "lukas-reineke/virt-column.nvim",
     opts = {
       char = { "┆" },
-      virtcolumn = "100",
+      virtcolumn = "80",
       highlight = { "NonText" },
     },
   },
