@@ -19,8 +19,8 @@ require("lazy").setup({
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extra modules here
-    { import = "lazyvim.plugins.extras.coding.copilot" },
-    { import = "lazyvim.plugins.extras.coding.copilot-chat" },
+    -- { import = "lazyvim.plugins.extras.coding.copilot" },
+    -- { import = "lazyvim.plugins.extras.coding.copilot-chat" },
     { import = "lazyvim.plugins.extras.dap.core" },
     -- { import = "lazyvim.plugins.extras.editor.aerial" },
     { import = "lazyvim.plugins.extras.editor.harpoon2" },
@@ -50,7 +50,7 @@ require("lazy").setup({
     { "williamboman/mason.nvim" },
     { "williamboman/mason.lspconfig.nvim" },
     { "neovim/nvim-lspconfig" },
-
+    { "github/copilot.vim" },
     -- import/override with your plugins
     { import = "plugins" },
   },
