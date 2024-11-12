@@ -16,24 +16,20 @@ end
 
 local function set_keymaps()
   -- Eliminar keymaps existentes de forma segura
-  safe_del("n", "<C-W>h")
-  safe_del("n", "<C-W>l")
-  safe_del("n", "<C-W>k")
-  safe_del("n", "<C-W>j")
-  safe_del("n", "<C-h>")
-  safe_del("n", "<C-l>")
-  safe_del("n", "<C-s>")
-  safe_del("n", "C-m")
-  --
-  -- Añadir nuevas keymaps
-  keymap.set("n", "<C-j>", "<C-w>h", opts) -- Left
-  keymap.set("n", "<C-i>", "<C-w>k", opts) -- Up
-  keymap.set("n", "<C-k>", "<C-w>j", opts) -- Down
-  keymap.set("n", "<C-l>", "<C-w>l", opts) -- Right
+  -- safe_del("n", "<C-h>")
+  -- safe_del("n", "<C-l>")
+  -- safe_del("n", "<C-s>")
+  -- --
+  -- --  Añadir nuevas keymaps
+  -- keymap.set("n", "<C-h>", "<C-w>h", opts) -- Left
+  -- keymap.set("n", "<C-k>", "<C-w>k", opts) -- Up
+  -- keymap.set("n", "<C-j>", "<C-w>j", opts) -- Down
+  -- keymap.set("n", "<C-l>", "<C-w>l", opts) -- Right
 
-  -- Configurar atajo de teclado para guardar un archivo con ALT + w en modo normal e insert
-  keymap.set("n", "<A-w>", ":w<CR>", opts)
-  keymap.set("i", "<A-w>", "<Esc>:w<CR>a", opts)
+  -- Configurar atajo de teclado para guardar un archivo con Ctrl + k en modo normal e insert
+  keymap.set("n", "<C-s>", ":w<CR>", opts)
+  keymap.set("i", "<C-s>", "<Esc>:w<CR>a", opts)
+  keymap.set("v", "<leader>sc", ":SSSelected<CR>", { desc = "Capture selected code" })
 end
 
 -- Llamar a la función para establecer las keymaps
