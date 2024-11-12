@@ -20,6 +20,8 @@ return {
         "delve",
         "sql-formatter",
         "pyright",
+        "csharpier",
+        "netcoredbg",
       },
     },
   },
