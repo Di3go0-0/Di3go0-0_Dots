@@ -66,11 +66,16 @@ return {
       require("incline").setup({
         highlight = {
           groups = {
-            InclineNormal = { guibg = "none", guifg = "#" },
-            InclineNormalNC = { guibg = "#000000", guifg = "#1b4f72" },
+            -- InclineNormal = { guibg = "none", guifg = "#" },
+            InclineNormal = { guibg = "#730606", guifg = "#" },
+            -- InclineNormalNC = { guibg = "#000000", guifg = "#1b4f72" },
+            InclineNormalNC = { guibg = "#2b0f0f", guifg = "#777777" },
           },
         },
-        window = { margin = { vertical = 0, horizontal = 1 } },
+        window = {
+          margin = { vertical = 0, horizontal = 1 },
+          padding = 2,
+        },
         -- hide = { cursorline = true, only_win = true },
         render = function(props)
           local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")

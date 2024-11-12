@@ -2,13 +2,13 @@
 require("config.lazy")
 
 -- -- Desactiva el resaltado de la línea completa
--- vim.opt.cursorline = true
+vim.opt.cursorline = true
 --
 -- -- Resalta solo el número de la línea actual (ajusta el color según prefieras)
 -- vim.cmd("highlight CursorLineNr guifg=#f0ea14")
 -- -- eliminar cualquierr resaltado de la linea completa
 -- vim.cmd("highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE")
---
+
 -- -- Activa el resaltado de sintaxis
 -- vim.opt.syntax = "on"
 --
@@ -30,10 +30,10 @@ require("config.lazy")
 ----------------------------------------------
 
 -- Ajusta el fondo del contexto de Treesitter con transparencia
-vim.api.nvim_set_hl(0, "TreesitterContext", {
-  bg = "#000000", -- Elige un color de fondo que desees
-  blend = 100, -- Ajusta el nivel de transparencia (0 es opaco, 100 es completamente transparente)
-})
+-- vim.api.nvim_set_hl(0, "TreesitterContext", {
+--   bg = "#000000", -- Elige un color de fondo que desees
+--   blend = 50, -- Ajusta el nivel de transparencia (0 es opaco, 100 es completamente transparente)
+-- })
 
 --
 --

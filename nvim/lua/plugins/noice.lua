@@ -11,6 +11,7 @@ return {
       cmdline = {
         enabled = true, -- Habilitar la funcionalidad del cmdline
         -- No se especifica el view, para que use la configuración por defecto de LazyVim
+        viwe = "cmdline",
       },
     })
   end,
