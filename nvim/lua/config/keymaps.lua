@@ -30,6 +30,8 @@ local function set_keymaps()
   keymap.set("n", "<C-s>", ":w<CR>", opts)
   keymap.set("i", "<C-s>", "<Esc>:w<CR>a", opts)
   keymap.set("v", "<leader>sc", ":SSSelected<CR>", { desc = "Capture selected code" })
+  -- Open oil
+  keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 end
 
 -- Llamar a la función para establecer las keymaps
