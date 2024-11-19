@@ -117,11 +117,6 @@ return {
     priority = 1000,
   },
   {
-    "tiagovla/tokyodark.nvim",
-    lazy = false,
-    priority = 1000,
-  },
-  {
     "dgox16/oldworld.nvim",
     lazy = false,
     priority = 1000,
@@ -145,6 +140,23 @@ return {
       contrast = "medium",
       transparent = false,
     },
+  },
+  {
+    "tiagovla/tokyodark.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      transparent_background = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
+    },
+    -- config = function()
+    --   vim.cmd("colorscheme tokyodark")
+    --   vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+    --   vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+    -- end,
   },
   {
     "LazyVim/LazyVim",

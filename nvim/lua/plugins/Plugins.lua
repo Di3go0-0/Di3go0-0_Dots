@@ -59,4 +59,20 @@ return {
       })
     end,
   },
+  {
+    "piersolenski/telescope-import.nvim",
+    dependencies = "nvim-telescope/telescope.nvim",
+    config = function()
+      require("telescope").load_extension("import")
+    end,
+  },
+  { "rafamadriz/friendly-snippets" },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = {},
+    config = function(_, opts)
+      require("lsp_signature").setup(opts)
+    end,
+  },
 }
