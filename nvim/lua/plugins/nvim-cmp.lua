@@ -61,6 +61,7 @@ return {
         { name = "buffer", priority = 500 },
         { name = "path", priority = 250 },
         { name = "luasnip", priority = 300 },
+        { name = "emmet_nvim" },
       })
 
       -- Configuración de ventanas de autocompletado y documentación
