@@ -42,6 +42,7 @@ return {
       -- ...
     end,
   }, -- Lua
+  -- Plugin to take a screenshot of the code
   {
     -- we neet
     -- sss_code => brew install SergioRibera/homebrew-tap/sss_code
@@ -67,6 +68,7 @@ return {
     end,
   },
   { "rafamadriz/friendly-snippets" },
+  -- Plugin to show the signature of the function
   {
     "ray-x/lsp_signature.nvim",
     event = "VeryLazy",
