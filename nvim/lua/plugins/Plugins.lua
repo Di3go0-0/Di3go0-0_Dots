@@ -1,12 +1,4 @@
 return {
-  -- 'nvim-treesitter/nvim-treesitter',
-  -- 'nvim-treesitter/playground',
-  -- 'nvim-treesitter/nvim-treesitter-textobjects',
-  -- 'nvim-treesitter/nvim-treesitter-refactor',
-  -- 'nvim-treesitter/nvim-treesitter-context',
-  -- 'nvim-treesitter/nvim-treesitter-highlight',
-  -- { "tpope/vim-fugitive" },
-
   { "numToStr/Comment.nvim" },
   {
     "nvim-telescope/telescope.nvim",
@@ -20,10 +12,6 @@ return {
     "mg979/vim-visual-multi",
     -- v,
   },
-  -- {
-  --   "nvim-treesitter/nvim-treesitter",
-  --   opts = { ensure_installed = { "json5" }, indent = { enable = false } },
-  -- },
   {
     "smjonas/inc-rename.nvim",
     cmd = "IncRename",
