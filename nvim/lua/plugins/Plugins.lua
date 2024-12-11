@@ -65,4 +65,15 @@ return {
       require("lsp_signature").setup(opts)
     end,
   },
+  -- Plugin to show the color of the hex code
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup({
+        "*", -- Activa colorizer para todos los archivos
+        css = { rgb_fn = true }, -- Soporte especial para archivos CSS
+        html = { names = false }, -- Desactiva el soporte para nombres de colores en archivos HTML
+      })
+    end,
+  },
 }
