@@ -1,62 +1,156 @@
--- Pull in the wezterm API
 local wezterm = require("wezterm")
 
--- This table will hold the configuration.
-local config = {
-	force_reverse_video_cursor = true,
-	colors = {
-		foreground = "#dcd7ba",
-		background = "#181616",
+local act = wezterm.action
 
-		cursor_bg = "#c8c093",
-		cursor_fg = "#c8c093",
-		cursor_border = "#c8c093",
+local config = wezterm.config_builder()
 
-		selection_fg = "#c8c093",
-		selection_bg = "#2d4f67",
+-- Cambiado 'front_end' a 'OpenGL' (u otro backend gráfico válido)
+config.front_end = "OpenGL"
+config.max_fps = 144
+-- Corregido 'defautl_cursor_style' a 'default_cursor_style'
+config.default_cursor_style = "BlinkingBlock"
+config.animation_fps = 1
+config.cursor_blink_rate = 500
+config.term = "xterm-256color"
 
-		scrollbar_thumb = "#16161d",
-		split = "#16161d",
+config.font = wezterm.font("Iosevka")
+config.cell_width = 0.9
 
-		ansi = { "#090618", "#c34043", "#76946a", "#c0a36e", "#7e9cd8", "#957fb8", "#6a9589", "#c8c093" },
-		brights = { "#727169", "#e82424", "#98bb6c", "#e6c384", "#7fb4ca", "#938aa9", "#7aa89f", "#dcd7ba" },
-		indexed = { [16] = "#ffa066", [17] = "#ff5d62" },
+config.window_background_opacity = 0.9
+config.prefer_egl = true
+config.font_size = 18.0
+
+config.window_padding = {
+	left = 8,
+	right = 8,
+	top = 8,
+	bottom = 8,
+}
+
+config.hide_tab_bar_if_only_one_tab = true
+config.use_fancy_tab_bar = true
+
+wezterm.on("toggle-colorscheme", function(window, pane)
+	local overrides = window:get_config_overrides() or {}
+	if overrides.color_scheme == "Zenburn" then
+		overrides.color_scheme = "Cloud (terminal.sexy)"
+	else
+		overrides.color_scheme = "Zenburn"
+	end
+	window:set_config_overrides(overrides)
+end)
+
+-- keymaps
+config.keys = {
+	{
+		key = "E",
+		mods = "CTRL|SHIFT|ALT",
+		action = wezterm.action.EmitEvent("toggle-colorscheme"),
+	},
+	{
+		key = "h",
+		mods = "CTRL|SHIFT|ALT",
+		action = wezterm.action.SplitPane({
+			direction = "Right",
+			size = { Percent = 50 },
+		}),
+	},
+	{
+		key = "v",
+		mods = "CTRL|SHIFT|ALT",
+		action = wezterm.action.SplitPane({
+			direction = "Down",
+			size = { Percent = 50 },
+		}),
+	},
+	{
+		key = "U",
+		mods = "CTRL|SHIFT",
+		action = act.AdjustPaneSize({ "Left", 5 }),
+	},
+	{
+		key = "I",
+		mods = "CTRL|SHIFT",
+		action = act.AdjustPaneSize({ "Down", 5 }),
+	},
+	{
+		key = "O",
+		mods = "CTRL|SHIFT",
+		action = act.AdjustPaneSize({ "Up", 5 }),
+	},
+	{
+		key = "P",
+		mods = "CTRL|SHIFT",
+		action = act.AdjustPaneSize({ "Right", 5 }),
+	},
+	{ key = "9", mods = "CTRL", action = act.PaneSelect },
+	{ key = "L", mods = "CTRL", action = act.ShowDebugOverlay },
+	{
+		key = "O",
+		mods = "CTRL|ALT",
+		-- toggling opacity
+		action = wezterm.action_callback(function(window, _)
+			local overrides = window:get_config_overrides() or {}
+			if overrides.window_background_opacity == 1.0 then
+				overrides.window_background_opacity = 0.9
+			else
+				overrides.window_background_opacity = 1.0
+			end
+			window:set_config_overrides(overrides)
+		end),
 	},
 }
 
--- In newer versions of wezterm, use the config_builder which will
--- help provide clearer error messages
-if wezterm.config_builder then
-	config = wezterm.config_builder()
-end
+-- For example, changing the color scheme:
+config.color_scheme = "Cloud (terminal.sexy)"
+config.colors = {
+	background = "#0c0b0f", -- dark purple
+	cursor_border = "#bea3c7",
+	cursor_bg = "#bea3c7",
 
--- This is where you actually apply your config choices
-config.window_padding = {
-	top = 0,
-	right = 0,
-	left = 0,
+	tab_bar = {
+		background = "#0c0b0f",
+		active_tab = {
+			bg_color = "#0c0b0f",
+			fg_color = "#bea3c7",
+			intensity = "Normal",
+			underline = "None",
+			italic = false,
+			strikethrough = false,
+		},
+		inactive_tab = {
+			bg_color = "#0c0b0f",
+			fg_color = "#f8f2f5",
+			intensity = "Normal",
+			underline = "None",
+			italic = false,
+			strikethrough = false,
+		},
+
+		new_tab = {
+			bg_color = "#0c0b0f",
+			fg_color = "white",
+		},
+	},
 }
-config.force_reverse_video_cursor = true
-config.colors = {}
-config.colors.foreground = "#dcd7ba"
-config.colors.background = "#181616"
-config.colors.cursor_bg = "#c8c093"
-config.colors.cursor_fg = "#c8c093"
-config.colors.cursor_border = "#c8c093"
-config.colors.selection_fg = "#c8c093"
-config.colors.selection_bg = "#2d4f67"
-config.colors.scrollbar_thumb = "#16161d"
-config.colors.split = "#16161d"
-config.colors.ansi = { "#090618", "#c34043", "#76946a", "#c0a36e", "#7e9cd8", "#957fb8", "#6a9589", "#c8c093" }
-config.colors.brights = { "#727169", "#e82424", "#98bb6c", "#e6c384", "#7fb4ca", "#938aa9", "#7aa89f", "#dcd7ba" }
-config.colors.indexed = { [16] = "#ffa066", [17] = "#ff5d62" }
---  change
-config.window_background_opacity = 0.95
-config.font = wezterm.font("Iosevka Nerd Font Mono", { weight = "Regular" })
-config.prefer_egl = true
-config.font_size = 15.0
+
+config.window_frame = {
+	font = wezterm.font({ family = "Iosevka Custom", weight = "Regular" }),
+	active_titlebar_bg = "#0c0b0f",
+}
+
+-- config.window_decorations = "NONE | RESIZE"
 config.window_decorations = "NONE"
 config.default_prog = { "fish" }
-config.hide_tab_bar_if_only_one_tab = true
+config.window_background_opacity = 1
+config.initial_rows = 80
+
+config.window_background_image = "/home/diego/Imágenes/Wallpapers/DD01.jpg"
+config.window_background_image_hsb = {
+	brightness = 0.02,
+	saturation = 0.6,
+	hue = 1,
+}
+config.text_background_opacity = 1
 
 return config
