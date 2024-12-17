@@ -37,4 +37,4 @@ With this set-up, I can easily manage my development environment and work effici
 - [Wezterm Config](wezterm)
 - [Zellij Config](zellij)
 - [Fish Config](fish)
-- [Starship Config](starship)
+- [Starship Config](starship.toml)
