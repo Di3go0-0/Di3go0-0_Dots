@@ -170,3 +170,9 @@
 ## Custom configurations
 
 - [Nvim Config](nvim)
+- [Wezterm Config](wezterm)
+- [Zellij Config](zellij)
+- [Fish Config](fish)
+- [Starship Config](starship)
+- [Wezterm Config](wezterm)
+- [LazyGit Config](lazygit)
