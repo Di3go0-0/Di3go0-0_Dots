@@ -170,9 +170,67 @@
 ## Custom configurations
 
 - [Nvim Config](nvim)
+- [LazyVim Config](lazyvim)
 - [Wezterm Config](wezterm)
 - [Zellij Config](zellij)
 - [Fish Config](fish)
 - [Starship Config](starship)
-- [Wezterm Config](wezterm)
-- [LazyGit Config](lazygit)
+- [LazyGit Config](l)
+
+### Nvim Configuration
+
+To modify your **Nvim** configuration, move the configuration folder to the path `~/.config/nvim/`.
+
+### Zellij Configuration
+
+To modify your **Zellij** configuration, move the configuration folder to the path `~/.config/zellij/`.
+
+### Fish Configuration
+
+To modify your **Fish** configuration, move the Fish configuration folder to the path `~/.config/fish/`.
+
+### Starship Configuration
+
+To modify your **Starship** configuration, move the `starship.toml` file to the path `~/.config/`.
+
+### LazyGit Configuration
+
+To modify your **LazyGit** configuration, move the configuration folder to the path `~/.config/lazygit/`.
+
+### Wezterm Configuration
+
+To modify your **Wezterm** configuration, move the `.wezterm.lua` file to your home directory `~/`.
+
+> **Important**: You need to install a **Nerd Font** for Wezterm to work with custom fonts. Here's how you can do it:
+
+#### Installing Iosevka Nerd Font
+
+1. First, you need to download **Iosevka Nerd Font**. Go to the official [Nerd Fonts GitHub page](https://github.com/ryanoasis/nerd-fonts) and download the font file for Iosevka.
+2. After downloading the font file, unzip it into a folder. For example, you can unzip it in `~/.local/share/fonts/`.
+3. Copy all the font files from the extracted folder to the font directory in your system (`~/.local/share/fonts/` or `/usr/share/fonts` depending on your system).
+
+#### Configuring Wezterm to Use Iosevka Nerd Font
+
+Once the font is installed, in your Wezterm configuration file (`.wezterm.lua`), use the following line to set the font:
+
+```lua
+config.font = wezterm.font("Iosevka Nerd Font Mono", { weight = "Regular" })
+```
+
+This will set Iosevka as the terminal font for Wezterm.
+
+#### Modifying the Background Image Path
+
+In the Wezterm configuration file (`.wezterm.lua`), you also need to modify the path of the background image. On line 69, change the following line:
+
+```lua
+config.window_background_image = "/home/diego/Imágenes/Wallpapers/DD20.png"
+```
+
+If you want to use the image from the repository, change it to the absolute path of the image in your system. The image is located in the `wezterm/IMG/DD20.png` folder of the repository. For example, if your home directory is `/home/diego`, you should set the following:
+
+```lua
+config.window_background_image = "/home/diego/wezterm/IMG/DD20.png"
+```
+
+---
