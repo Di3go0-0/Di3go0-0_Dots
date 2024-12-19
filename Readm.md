@@ -20,7 +20,7 @@
 ## Prerequisites
 
 > [!NOTE]  
-> It is necessary to use a system based on **Unix** or **WSL**, and have **git** installed.
+> It's necessary to use a system based on **Unix** or **WSL**, and have **git** installed.
 
 - [**Neovim**](https://neovim.io/)
 - [**LazyVim**](/Readme.md)
