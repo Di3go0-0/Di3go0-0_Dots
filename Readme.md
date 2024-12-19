@@ -10,12 +10,18 @@
 [![Starship](https://img.shields.io/badge/Prompt-Starship-red)](https://starship.rs/)
 [![LazyGit](https://img.shields.io/badge/Git-LazyGit-lightgrey)](https://github.com/jesseduffield/lazygit)
 
+---
+
 ## Content
 
 - [Prerequisites](#prerequisites)
 - [Why i use these tools](#why-i-use-these-tools)
 - [Installation](#installation)
 - [Custom configurations](#custom-configurations)
+- [Acknowledgements](#acknowledgements)
+- [Contributing](#contributing)
+
+---
 
 ## Prerequisites
 
@@ -31,6 +37,8 @@
 - [**pj**](https://github.com/oh-my-fish/plugin-pj)
 - [**Homebrew**](https://brew.sh/)
 - [**LazyGit**](https://github.com/jesseduffield/lazygi)
+
+---
 
 ## Why i use these tools
 
@@ -87,6 +95,8 @@
 
 - [**LazyGit**](https://github.com/jesseduffield/lazygit) - Git Interface  
   A fast and intuitive terminal UI for Git that enhances your Git workflow. It provides a clean interface for managing branches, staging changes, committing, and more. LazyGit simplifies common Git operations with keyboard shortcuts and easy navigation, making version control much faster and more efficient.
+
+---
 
 ## Installation
 
@@ -167,6 +177,8 @@
     fisher install patrickf1/fzf.fish
     ```
 
+---
+
 ## Custom configurations
 
 - [Nvim Config](nvim)
@@ -229,10 +241,27 @@ In the Wezterm configuration file (`.wezterm.lua`), you also need to modify the 
 config.window_background_image = "/home/diego/Imágenes/Wallpapers/DD20.png"
 ```
 
-If you want to use the image from the repository, change it to the absolute path of the image in your system. The image is located in the [`wezterm/IMG/DD20.png`](Resources/IMG/DD20.png) folder of the repository. For example, if your home directory is `/home/diego`, you should set the following:
+If you want to use the image from the repository, change it to the absolute path of the image in your system. The image is located in the [`DD20.png`](Resources/IMG/DD20.png) folder of the repository. For example, if your home directory is `/home/diego`, you should set the following:
 
 ```lua
 config.window_background_image = "/home/diego/wezterm/IMG/DD20.png"
 ```
 
 ---
+
+## Acknowledgements
+
+A special thanks to the following people for inspiring and sharing their amazing work:
+
+- [**Gentleman-Programming**](https://github.com/Gentleman-Programming) for their contributions and configurations that significantly improved my setup.
+- [**Nikolov Lazar**](https://github.com/nikolovlazar) for sharing their knowledge and tools, which helped shape this workflow.
+
+Your work has been invaluable in enhancing my personal setup. Thank you for inspiring the community!
+
+---
+
+## Contributing
+
+Contributions are always welcome!
+
+If you have any suggestions, improvements, or fixes, feel free to open an issue or submit a pull request. Let's make this setup even better together 🚀.
