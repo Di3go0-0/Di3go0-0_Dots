@@ -14,11 +14,13 @@
 
 - [Prerequisites](#prerequisites)
 - [Why i use these tools](#why-i-use-these-tools)
+- [Installation](#installation)
+- [Custom configurations](#custom-configurations)
 
 ## Prerequisites
 
 > [!NOTE]  
-> It is necessary to use a system with **Linux** or **macOS**, and have **git** installed.
+> It is necessary to use a system based on **Unix** or **WSL**, and have **git** installed.
 
 - [**Neovim**](https://neovim.io/)
 - [**LazyVim**](/Readme.md)
@@ -79,3 +81,90 @@
   # Define common project paths
   set -gx PROJECT_PATHS ~/Documentos/aplications ~/Documentos/Universidad/
   ```
+
+- [**Homebrew**](https://brew.sh/) - Package Manager  
+  A powerful and user-friendly package manager for macOS and Linux that simplifies the installation, updating, and management of software packages. It automates the process of downloading, configuring, and installing tools you need, saving time and effort.
+
+- [**LazyGit**](https://github.com/jesseduffield/lazygit) - Git Interface  
+  A fast and intuitive terminal UI for Git that enhances your Git workflow. It provides a clean interface for managing branches, staging changes, committing, and more. LazyGit simplifies common Git operations with keyboard shortcuts and easy navigation, making version control much faster and more efficient.
+
+## Installation
+
+> [!IMPORTANT]  
+> To set up this configuration, follow these steps:
+
+1. **Install Homebrew**  
+   Homebrew is a package manager that makes installing and managing software on macOS and Linux easier. First, install Homebrew by running the following command in your terminal:
+
+   - On macOS or Linux, run:
+
+     ```bash
+     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+     ```
+
+   - For additional installation instructions and troubleshooting, check the official [Homebrew installation page](https://brew.sh/).
+
+2. **Install Neovim**  
+   Install Neovim using Homebrew by running:
+
+   ```bash
+   brew install neovim
+   ```
+
+3. **Install WezTerm**  
+   To install WezTerm, run:
+
+   ```bash
+   brew install wezterm
+   ```
+
+4. **Install Zellij**  
+   Zellij can be installed with Homebrew by running:
+
+   ```bash
+   brew install zellij
+   ```
+
+5. **Install Fish**  
+   Fish shell can be installed with:
+
+   ```bash
+   brew install fish
+   ```
+
+6. **Install Starship**  
+   To install Starship prompt, run:
+
+   ```bash
+   brew install starship
+   ```
+
+7. **Install LazyGit**  
+   LazyGit, a simple terminal UI for Git, can be installed via Homebrew with:
+
+   ```bash
+   brew install lazygit
+   ```
+
+8. **Install Fisher**  
+   Before installing PJ, you must first install Fisher, a plugin manager for Fish. You can do this via Homebrew:
+
+   ```bash
+   brew install fisher
+   ```
+
+   For more details on Fisher, you can visit the official [Fisher GitHub page](https://github.com/jorgebucaran/fisher).
+
+9. **Install PJ (plugin-pj)**  
+   After installing Fisher, use it to install the PJ plugin for easy project switching:
+
+   ```bash
+   fisher install oh-my-fish/plugin-pj
+   ```
+
+10. **Install FZF Plugin**  
+    You can also install the FZF plugin for fuzzy searching and navigation:
+
+    ```bash
+    fisher install patrickf1/fzf.fish
+    ```
