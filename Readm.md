@@ -96,11 +96,9 @@
 1. **Install Homebrew**  
    Homebrew is a package manager that makes installing and managing software on macOS and Linux easier. First, install Homebrew by running the following command in your terminal:
 
-   - On macOS or Linux, run:
-
-     ```bash
-     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-     ```
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
 
    - For additional installation instructions and troubleshooting, check the official [Homebrew installation page](https://brew.sh/).
 
@@ -168,3 +166,7 @@
     ```bash
     fisher install patrickf1/fzf.fish
     ```
+
+## Custom configurations
+
+- [Nvim Config](nvim)
