@@ -6,8 +6,8 @@ return {
     -- or                              , branch = '0.1.x',
     dependencies = { "nvim-lua/plenary.nvim" },
   },
+  -- Plugin to provide network functionalities for Neovim
   { "neovim/nvim.net" },
-  { "wolandark/vim-live-server" },
   {
     "mg979/vim-visual-multi",
     -- v,
