@@ -177,25 +177,27 @@
 - [Starship Config](starship)
 - [LazyGit Config](l)
 
+Aquí tienes la sección configurada con el formato que pediste, excepto para Wezterm:
+
 ### Nvim Configuration
 
-To modify your **Nvim** configuration, move the configuration folder to the path `~/.config/nvim/`.
+To modify your **Nvim** [nvim](nvim) configuration, move the configuration folder from the repository to the path `~/.config/nvim/`.
 
 ### Zellij Configuration
 
-To modify your **Zellij** configuration, move the configuration folder to the path `~/.config/zellij/`.
+To modify your **Zellij** [zellij](zellij) configuration, move the configuration folder from the repository to the path `~/.config/zellij/`.
 
 ### Fish Configuration
 
-To modify your **Fish** configuration, move the Fish configuration folder to the path `~/.config/fish/`.
+To modify your **Fish** [fish](fish) configuration, move the configuration folder from the repository to the path `~/.config/fish/`.
 
 ### Starship Configuration
 
-To modify your **Starship** configuration, move the `starship.toml` file to the path `~/.config/`.
+To modify your **Starship** [starship](starship) configuration, move the `starship.toml` file from the repository to the path `~/.config/`.
 
 ### LazyGit Configuration
 
-To modify your **LazyGit** configuration, move the configuration folder to the path `~/.config/lazygit/`.
+To modify your **LazyGit** [LazyGit](lazygit) configuration, move the configuration folder from the repository to the path `~/.config/lazygit/`.
 
 ### Wezterm Configuration
 
