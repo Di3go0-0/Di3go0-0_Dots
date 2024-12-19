@@ -229,7 +229,7 @@ In the Wezterm configuration file (`.wezterm.lua`), you also need to modify the 
 config.window_background_image = "/home/diego/Imágenes/Wallpapers/DD20.png"
 ```
 
-If you want to use the image from the repository, change it to the absolute path of the image in your system. The image is located in the [`wezterm/IMG/DD20.png`](wezterm/IMG/DD20.png) folder of the repository. For example, if your home directory is `/home/diego`, you should set the following:
+If you want to use the image from the repository, change it to the absolute path of the image in your system. The image is located in the [`wezterm/IMG/DD20.png`](Resources/IMG/DD20.png) folder of the repository. For example, if your home directory is `/home/diego`, you should set the following:
 
 ```lua
 config.window_background_image = "/home/diego/wezterm/IMG/DD20.png"
