@@ -1,6 +1,6 @@
 ![504_1x_shots_so](https://github.com/Di3go0-0/Di3go0-0_Dots/blob/main/Resources/Font.png)
 
-# Dots my personal set-up configuration
+# Dots | My personal set-up configuration
 
 ## _The tools I use to enhance my workflow_
 
