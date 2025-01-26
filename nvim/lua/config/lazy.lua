@@ -27,6 +27,7 @@ require("lazy").setup({
 
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+
     -- import any extra modules here
     -- { import = "lazyvim.plugins.extras.coding.copilot" },
     -- { import = "lazyvim.plugins.extras.coding.copilot-chat" },
@@ -53,7 +54,7 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.util.dot" },
     -- { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
     -- { import = "lazyvim.plugins.extras.vscode" },
-
+    { import = "lazyvim.plugins.extras.coding.nvim-cmp" },
     -- Others
     --
     { "rcarriga/nvim-notify" },
