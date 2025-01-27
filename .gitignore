@@ -6,5 +6,5 @@ debug
 foo.*
 *.log
 data
-oldPlugins/
+oldPluginss/
 
