@@ -21,11 +21,6 @@ return {
     },
   },
   {
-    "wuelnerdotexe/vim-enfocado",
-    lazy = false,
-    priority = 1000,
-  },
-  {
     "rebelot/kanagawa.nvim",
     name = "kanagawa",
     priority = 1000,
@@ -64,10 +59,7 @@ return {
   {
     "xiyaowong/transparent.nvim",
   },
-  {
-    "ribru17/bamboo.nvim",
-    lazy = false,
-  },
+
   {
     "preservim/nerdtree",
     lazy = false,
@@ -112,16 +104,6 @@ return {
   },
 
   {
-    "AlexvZyl/nordic.nvim",
-    lazy = false,
-    priority = 1000,
-  },
-  {
-    "dgox16/oldworld.nvim",
-    lazy = false,
-    priority = 1000,
-  },
-  {
     "scottmckendry/cyberdream.nvim",
     lazy = false,
     priority = 1000,
@@ -131,16 +113,7 @@ return {
       opts.borderless_telescope = false
     end,
   },
-  {
-    "ellisonleao/gruvbox.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {
-      style = "dark",
-      contrast = "medium",
-      transparent = false,
-    },
-  },
+
   {
     "tiagovla/tokyodark.nvim",
     lazy = false,
@@ -152,11 +125,6 @@ return {
         floats = "transparent",
       },
     },
-    -- config = function()
-    --   vim.cmd("colorscheme tokyodark")
-    --   vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
-    --   vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
-    -- end,
   },
   {
     "LazyVim/LazyVim",

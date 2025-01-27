@@ -7,11 +7,11 @@ require("config.lazy")
 --   blend = 50, -- Ajusta el nivel de transparencia (0 es opaco, 100 es completamente transparente)
 -- })
 
-vim.lsp.handlers["window/showMessage"] = function(_, result, ctx)
-  -- Aquí podrías filtrar el tipo de mensaje si solo quieres silenciar algunos
-  if result.type == 1 then -- Solo ignorar mensajes de error (tipo 1)
-    return
-  end
-  -- Muestra otros tipos de mensajes
-  vim.lsp.handlers["window/showMessage"](nil, result, ctx)
-end
+-- vim.lsp.handlers["window/showMessage"] = function(_, result, ctx)
+--   -- Aquí podrías filtrar el tipo de mensaje si solo quieres silenciar algunos
+--   if result.type == 1 then -- Solo ignorar mensajes de error (tipo 1)
+--     return
+--   end
+--   -- Muestra otros tipos de mensajes
+--   vim.lsp.handlers["window/showMessage"](nil, result, ctx)
+-- end
