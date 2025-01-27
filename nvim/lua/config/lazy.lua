@@ -14,51 +14,51 @@ end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("lazy").setup({
-  spec = {
-    -- add LazyVim and import its plugins
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    -- import any extra modules here
-    -- { import = "lazyvim.plugins.extras.coding.copilot" },
-    -- { import = "lazyvim.plugins.extras.coding.copilot-chat" },
-    { import = "lazyvim.plugins.extras.dap.core" },
-    { import = "lazyvim.plugins.extras.editor.harpoon2" },
-    { import = "lazyvim.plugins.extras.lang.json" },
-    { import = "lazyvim.plugins.extras.lang.markdown" },
-    { import = "lazyvim.plugins.extras.lang.typescript" },
-    { import = "lazyvim.plugins.extras.linting.eslint" },
-    { import = "lazyvim.plugins.extras.ui.treesitter-context" },
-    { import = "lazyvim.plugins.extras.coding.mini-surround" },
-    { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
-    { import = "lazyvim.plugins.extras.coding.nvim-cmp" },
-    -- Others
-    --
-    -- import/override with your plugins
-    { import = "plugins" },
-  },
-  defaults = {
-    -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
-    -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
-    lazy = false,
-    -- It's recommended to leave version=false for now, since a lot of the plugins that support versioning
-    -- have outdated releases, which may break your Neovim install.
-    version = false, -- Always use the latest git commit
-    -- version = "*", -- Try installing the latest stable version for plugins that support semver
-  },
-  install = { colorscheme = { "tokyonight", "habamax" } }, -- Specify colorschemes to install
-  checker = { enabled = true }, -- Automatically check for plugin updates
-  performance = {
-    rtp = {
-      -- Disable some runtime path plugins to improve performance
-      disabled_plugins = {
-        "gzip",
-        -- "matchit",
-        -- "matchparen",
-        -- "netrwPlugin",
-        "tarPlugin",
-        "tohtml",
-        "tutor",
-        "zipPlugin",
-      },
-    },
-  },
+	spec = {
+		-- add LazyVim and import its plugins
+		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
+		-- import any extra modules here
+		-- { import = "lazyvim.plugins.extras.coding.copilot" },
+		-- { import = "lazyvim.plugins.extras.coding.copilot-chat" },
+		{ import = "lazyvim.plugins.extras.dap.core" },
+		{ import = "lazyvim.plugins.extras.editor.harpoon2" },
+		{ import = "lazyvim.plugins.extras.lang.json" },
+		{ import = "lazyvim.plugins.extras.lang.markdown" },
+		{ import = "lazyvim.plugins.extras.lang.typescript" },
+		{ import = "lazyvim.plugins.extras.linting.eslint" },
+		{ import = "lazyvim.plugins.extras.ui.treesitter-context" },
+		{ import = "lazyvim.plugins.extras.coding.mini-surround" },
+		{ import = "lazyvim.plugins.extras.util.mini-hipatterns" },
+		{ import = "lazyvim.plugins.extras.coding.nvim-cmp" }, -- Intall by :Lazyextras
+		-- Others
+		--
+		-- import/override with your plugins
+		{ import = "plugins" },
+	},
+	defaults = {
+		-- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
+		-- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
+		lazy = false,
+		-- It's recommended to leave version=false for now, since a lot of the plugins that support versioning
+		-- have outdated releases, which may break your Neovim install.
+		version = false, -- Always use the latest git commit
+		-- version = "*", -- Try installing the latest stable version for plugins that support semver
+	},
+	install = { colorscheme = { "tokyonight", "habamax" } }, -- Specify colorschemes to install
+	checker = { enabled = true }, -- Automatically check for plugin updates
+	performance = {
+		rtp = {
+			-- Disable some runtime path plugins to improve performance
+			disabled_plugins = {
+				"gzip",
+				-- "matchit",
+				-- "matchparen",
+				-- "netrwPlugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+			},
+		},
+	},
 })
