@@ -1,106 +1,64 @@
+-- This file contains the configuration for setting up the lazy.nvim plugin manager in Neovim.
+
+-- Define the path to the lazy.nvim plugin
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
+
+-- Check if the lazy.nvim plugin is not already installed
+if not vim.loop.fs_stat(lazypath) then
+  -- Bootstrap lazy.nvim by cloning the repository
+  -- stylua: ignore
+  vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
 end
-vim.opt.rtp:prepend(lazypath)
+
+-- Prepend the lazy.nvim path to the runtime path
+vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("lazy").setup({
   spec = {
-    -- {
-    --   "hrsh7th/nvim-cmp", -- Plugin principal
-    --   "hrsh7th/cmp-nvim-lsp", -- Fuente LSP
-    --   "hrsh7th/cmp-buffer", -- Fuente buffer
-    --   "hrsh7th/cmp-path", -- Fuente para rutas
-    --   "saadparwaiz1/cmp_luasnip", -- Fuente para snippets
-    --   "L3MON4D3/LuaSnip", -- Snippets
-    -- },
-
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-
     -- import any extra modules here
     -- { import = "lazyvim.plugins.extras.coding.copilot" },
     -- { import = "lazyvim.plugins.extras.coding.copilot-chat" },
     { import = "lazyvim.plugins.extras.dap.core" },
-    -- { import = "lazyvim.plugins.extras.editor.aerial" },
     { import = "lazyvim.plugins.extras.editor.harpoon2" },
-    -- { import = "lazyvim.plugins.extras.editor.navic" },
-    { import = "lazyvim.plugins.extras.editor.telescope" },
-    -- { import = "lazyvim.plugins.extras.formatting.prettier" }, -- Autoidentacion de codigo
-
-    -- { import = "lazyvim.plugins.extras.lang.astro" },
-    -- { import = "lazyvim.plugins.extras.lang.docker" },
-    -- { import = "lazyvim.plugins.extras.lang.go" },
     { import = "lazyvim.plugins.extras.lang.json" },
     { import = "lazyvim.plugins.extras.lang.markdown" },
-    -- { import = "lazyvim.plugins.extras.lang.prisma" },
-    -- { import = "lazyvim.plugins.extras.lang.python" },
-    -- { import = "lazyvim.plugins.extras.lang.tailwind" },
     { import = "lazyvim.plugins.extras.lang.typescript" },
-    -- { import = "lazyvim.plugins.extras.lang.yaml" },
     { import = "lazyvim.plugins.extras.linting.eslint" },
-    -- { import = "lazyvim.plugins.extras.test.core" },
     { import = "lazyvim.plugins.extras.ui.treesitter-context" },
-    -- { import = "lazyvim.plugins.extras.util.dot" },
-    -- { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
-    -- { import = "lazyvim.plugins.extras.vscode" },
+    { import = "lazyvim.plugins.extras.coding.mini-surround" },
+    { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
     { import = "lazyvim.plugins.extras.coding.nvim-cmp" },
     -- Others
     --
-    { "rcarriga/nvim-notify" },
-    { "kyazdani42/nvim-web-devicons" },
-    { "williamboman/mason.nvim" },
-    { "williamboman/mason.lspconfig.nvim" },
-    { "neovim/nvim-lspconfig" },
-    { "github/copilot.vim" },
-
     -- import/override with your plugins
     { import = "plugins" },
   },
-  defaults = {},
+  defaults = {
+    -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
+    -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
+    lazy = false,
+    -- It's recommended to leave version=false for now, since a lot of the plugins that support versioning
+    -- have outdated releases, which may break your Neovim install.
+    version = false, -- Always use the latest git commit
+    -- version = "*", -- Try installing the latest stable version for plugins that support semver
+  },
+  install = { colorscheme = { "tokyonight", "habamax" } }, -- Specify colorschemes to install
+  checker = { enabled = true }, -- Automatically check for plugin updates
   performance = {
     rtp = {
-      -- disable some rtp plugins
+      -- Disable some runtime path plugins to improve performance
       disabled_plugins = {
         "gzip",
-        "matchit",
-        "matchparen",
-        "netrwPlugin",
+        -- "matchit",
+        -- "matchparen",
+        -- "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "tutor",
         "zipPlugin",
       },
-    },
-  },
-}, {
-  ui = {
-    -- If you are using a Nerd Font: set icons to an empty table which will use the
-    -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
-    icons = vim.g.have_nerd_font and {} or {
-      cmd = "⌘",
-      config = "🛠",
-      event = "📅",
-      ft = "📂",
-      init = "⚙",
-      keys = "🗝",
-      plugin = "🔌",
-      runtime = "💻",
-      require = "🌙",
-      source = "📄",
-      start = "🚀",
-      task = "📌",
-      lazy = "💤 ",
     },
   },
 })
