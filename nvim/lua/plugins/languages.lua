@@ -1,6 +1,6 @@
 return {
-  -- require("plugins.languajes.OmniSharp"),
-  -- require("plugins.languajes.markdown"),
-  -- require("plugins.languajes.mason"),
-  -- require("plugins.languajes.python"),
+  -- require("plugins.languages.OmniSharp"),
+  -- require("plugins.languages.markdown"),
+  -- require("plugins.languages.mason"),
+  -- require("plugins.languages.python"),
 }
