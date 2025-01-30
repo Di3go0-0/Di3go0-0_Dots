@@ -1,50 +1,42 @@
 return {
-  {
-    "nvimdev/dashboard-nvim",
-    event = "VimEnter",
-    opts = function(_, opts)
-      local logo = [[
+	{
+		"nvimdev/dashboard-nvim",
+		event = "VimEnter",
+		opts = function(_, opts)
+			local logo = [[
    ]]
-      logo = string.rep("\n", 8) .. logo .. "\n\n"
-      opts.header = vim.split(logo, "\n")
-    end,
-  },
+			logo = string.rep("\n", 8) .. logo .. "\n\n"
+			opts.header = vim.split(logo, "\n")
+		end,
+	},
 
-  {
-    "folke/snacks.nvim",
-    opts = {
-      dashboard = {
-        sections = {
-          { section = "header" },
-          { icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
-          { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
-          { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
-          { section = "startup" },
-        },
-        preset = {
-          header = [[
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⠀⠀⣀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠉⠁⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠦⠂⠀⠀⠀⠀⠀⠀⠀⢹⣿⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠴⠚⢳⣦⣄⡀⠀⠀⠀⠀⢸⣿⣤⡿⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠒⠉⠀⠀⠀⠀⠻⣼⠹⣗⢦⣄⣰⣿⣿⣿⣥⣶⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠂⣤⠴⠚⠁⠀⠀⠀⠀⠀⠀⠀⠀⠹⣗⠮⣭⡟⢱⣿⣿⣿⡛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠤⠚⠁⠀⠀⠀⠀⡠⠀⠀⠀⠀⠀⣆⠀⠹⣿⡿⢀⣾⣿⣿⣿⣛⡷⣦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⣏⡁⠀⠀⠀⠀⠀⠀⣼⠁⠀⠀⠘⠁⠀⣿⣄⡴⠋⢀⣼⣿⢤⣬⣿⣿⣿⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠄
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠓⠶⢤⣄⣀⣘⠃⠀⠀⠀⢺⠁⠀⡾⠋⠀⣠⣿⣿⣿⣿⣿⣿⡿⠃⠀⣴⣶⣶⣷⠶⠶⠀⠀⠀⠀⠀⠀⢀⢢⣔⣱⣮⣿
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⠉⢿⣿⣿⣿⣶⣶⠏⠀⢀⣾⣿⣿⣿⣿⣿⣿⣇⢀⣀⣰⣿⣿⡏⠉⠀⠀⠀⠀⠀⠀⢀⠸⣎⣷⣿⣿⣷⣿
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣴⣶⣶⣿⣿⣿⣾⣿⢿⡿⠛⠁⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣿⣿⣿⡟⠛⠛⠁⠀⠀⣀⣴⣣⣿⣿⣿⣿⣿⣿⣿
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⣿⣿⣿⣿⣿⡿⠛⠉⡴⠋⠀⢀⡴⣻⣽⣿⣿⣿⣿⣿⣿⡛⠟⠿⢻⣿⣿⡛⠁⣽⡄⠀⣀⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⣿⣿⣿⣿⣿⡟⠀⠀⠈⠀⢀⡴⢯⣳⣿⡿⠷⣿⣿⣿⣿⣬⣟⣛⠛⡋⢸⣿⣿⣷⣞⣷⣾⣿⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⡟⠀⠀⣀⣀⡴⣏⣼⣿⣿⣿⣦⣤⣸⣿⣿⣿⣿⣿⠮⣍⣉⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⡇⣠⣟⣯⣵⣷⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣾⣿⣿⣿⣿⣿⣿⣿⣿⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡤⣤⡴⣖⡷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⠀⠀⠀⠀⠀⢀⣀⡤⣴⡶⣿⣿⣽⣷⣿⡿⣿⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣠⣤⣤⣤⣼⣿⣻⣿⣿⣿⣿⡿⣿⣟⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣇⠘⢧⡘⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣾⣿⣿⣻⣿⣿⣯⣿⣟⣿⣿⡿⣟⣯⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣳⢚⣇⠈⠱⠄⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣳⢯⣷⢿⣟⣿⣿⣽⣿⢿⣿⣻⣿⣿⣿⢿⣻⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⣿⣿⣿⣭⠾⣆⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⡽⣟⣯⣿⣞⡿⣞⣯⢿⣻⡽⣟⣷⢿⡾⣿⣟⣯⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣦⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+	{
+		"folke/snacks.nvim",
+		opts = {
+			dashboard = {
+				sections = {
+					{ section = "header" },
+					{ icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
+					{ icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+					{ icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+					{ section = "startup" },
+				},
+				preset = {
+					header = [[
+⠀⠀⠀⠀⠀⠀⠀⣰⣾⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣠⣿⣿⣟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣴⣿⡿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⣠⠾⠋⠁⠀⣿⣿⣿⣥⣶⣤⣤⣀⠀⣀⠀⢀⣀⣀⣀⣠⣤⣤⣤⣶⣦⣄⡀
+⠀⠀⠀⢀⣠⣤⣶⣿⣿⣿⣿⠿⠿⠟⠋⢸⣿⣿⣿⣿⣿⣿⠿⠿⠿⣿⣿⣿⣿⠷
+⢴⣶⣿⣿⣿⡿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⣿⣿⣿⠉⠁⠀⠀⠀⢰⣿⣿⣿⠏⠀
+⠀⠉⠙⠋⠀⣰⣿⣿⣿⣿⡿⢿⣿⣷⡄⠀⢸⣿⣿⡇⠀⠀⠀⢀⣾⣿⣿⡿⠀⠀
+⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⡇⠀⠈⠉⠁⠀⢀⣿⣿⣷⣴⣶⣶⣾⣿⣿⣿⠁⠀⠀
+⠀⠀⠀⣰⣿⠿⠃⢸⣿⣿⡇⠀⠀⠀⠀⠀⠈⠻⢿⣿⡿⠿⠟⠿⠛⠛⠁⠀⠀⠀
+⠀⣀⠼⠛⠁⠀⠀⢸⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠈⠁⠀⠀⠀⠀⠀⢸⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠙⠻⠿⠇⠀
 ]],
         -- stylua: ignore
         ---@type snacks.dashboard.Item[]
@@ -59,71 +51,71 @@ return {
           { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
           { icon = " ", key = "q", desc = "Quit", action = ":qa" },
         },
-        },
-      },
-    },
-  },
-  {
-    "lukas-reineke/virt-column.nvim",
-    opts = {
-      char = { "┆" },
-      virtcolumn = "80",
-      highlight = { "NonText" },
-    },
-  },
-  -- See the following link for more information:
-  {
-    "j-hui/fidget.nvim",
-    opts = {
-      notification = {
-        window = {
-          winblend = 0,
-          border = "rounded",
-        },
-      },
-    },
-  },
-  -- File Description
-  {
-    "b0o/incline.nvim",
-    config = function()
-      require("incline").setup({
-        highlight = {
-          groups = {
-            InclineNormal = { guibg = "#392671", guifg = "#" },
-            InclineNormalNC = { guibg = "#10003E", guifg = "#777777" },
-          },
-        },
-        window = {
-          margin = { vertical = 0, horizontal = 1 },
-          padding = 2,
-        },
-        render = function(props)
-          local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
-          if vim.bo[props.buf].modified then
-            filename = "[*]" .. filename
-          end
+				},
+			},
+		},
+	},
+	{
+		"lukas-reineke/virt-column.nvim",
+		opts = {
+			char = { "┆" },
+			virtcolumn = "80",
+			highlight = { "NonText" },
+		},
+	},
+	-- See the following link for more information:
+	{
+		"j-hui/fidget.nvim",
+		opts = {
+			notification = {
+				window = {
+					winblend = 0,
+					border = "rounded",
+				},
+			},
+		},
+	},
+	-- File Description
+	{
+		"b0o/incline.nvim",
+		config = function()
+			require("incline").setup({
+				highlight = {
+					groups = {
+						InclineNormal = { guibg = "#392671", guifg = "#" },
+						InclineNormalNC = { guibg = "#10003E", guifg = "#777777" },
+					},
+				},
+				window = {
+					margin = { vertical = 0, horizontal = 1 },
+					padding = 2,
+				},
+				render = function(props)
+					local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+					if vim.bo[props.buf].modified then
+						filename = "[*]" .. filename
+					end
 
-          local icon, color = require("nvim-web-devicons").get_icon(filename, nil, { default = true })
-          if not icon then
-            icon = ""
-          end
-          return { { icon, guifg = color }, { "   " }, { filename } }
-        end,
-      })
-    end,
-  },
+					local icon, color = require("nvim-web-devicons").get_icon(filename, nil, { default = true })
+					if not icon then
+						icon = ""
+					end
+					return { { icon, guifg = color }, { "   " }, { filename } }
+				end,
+			})
+		end,
+	},
 
-  {
-    "akinsho/bufferline.nvim",
-    opts = {
-      options = {
-        mode = "tabs",
-        show_buffer_close_icons = false,
-        show_close_icon = false,
-      },
-    },
-  },
+	{
+		"akinsho/bufferline.nvim",
+		opts = {
+			options = {
+				mode = "tabs",
+				show_buffer_close_icons = false,
+				show_close_icon = false,
+			},
+		},
+	},
 }
 
 -- Gentleman Programming
@@ -181,3 +173,19 @@ return {
 -- ⠀⠀⠹⣷⡀⠈⢿⣶⣄⡀⢿⣿⣿⣿⢃⡠⠔⠋⠀⢀⣼⠏⠀⠀
 -- ⠀⠀⠀⠈⠻⣦⣀⠙⢿⣿⣿⣿⣿⡏⠁⠀⠀⣀⣴⠟⠁⠀⠀⠀
 -- ⠀⠀⠀⠀⠀⠈⠙⠻⠶⣯⣿⣿⣿⣤⣴⠶⠟⠋⠁⠀⠀⠀⠀⠀
+-- Harmony Japanese
+--
+-- ⠀⠀⠀⠀⠀⠀⠀⣰⣾⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+-- ⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+-- ⠀⠀⠀⠀⠀⣠⣿⣿⣟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+-- ⠀⠀⠀⠀⣴⣿⡿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+-- ⠀⠀⣠⠾⠋⠁⠀⣿⣿⣿⣥⣶⣤⣤⣀⠀⣀⠀⢀⣀⣀⣀⣠⣤⣤⣤⣶⣦⣄⡀
+-- ⠀⠀⠀⢀⣠⣤⣶⣿⣿⣿⣿⠿⠿⠟⠋⢸⣿⣿⣿⣿⣿⣿⠿⠿⠿⣿⣿⣿⣿⠷
+-- ⢴⣶⣿⣿⣿⡿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⣿⣿⣿⠉⠁⠀⠀⠀⢰⣿⣿⣿⠏⠀
+-- ⠀⠉⠙⠋⠀⣰⣿⣿⣿⣿⡿⢿⣿⣷⡄⠀⢸⣿⣿⡇⠀⠀⠀⢀⣾⣿⣿⡿⠀⠀
+-- ⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⡇⠀⠈⠉⠁⠀⢀⣿⣿⣷⣴⣶⣶⣾⣿⣿⣿⠁⠀⠀
+-- ⠀⠀⠀⣰⣿⠿⠃⢸⣿⣿⡇⠀⠀⠀⠀⠀⠈⠻⢿⣿⡿⠿⠟⠿⠛⠛⠁⠀⠀⠀
+-- ⠀⣀⠼⠛⠁⠀⠀⢸⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+-- ⠈⠁⠀⠀⠀⠀⠀⢸⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+-- ⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+-- ⠀⠀⠀⠀⠀⠀⠀⠙⠻⠿⠇⠀⠀⠀⠀

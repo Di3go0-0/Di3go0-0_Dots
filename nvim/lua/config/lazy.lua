@@ -13,6 +13,22 @@ end
 -- Prepend the lazy.nvim path to the runtime path
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
+-- WSL copy paste with win32yank
+-- if vim.fn.has("wsl") == 1 then
+-- 	vim.g.clipboard = {
+-- 		name = "win32yank",
+-- 		copy = {
+-- 			["+"] = "win32yank.exe -i --crlf",
+-- 			["*"] = "win32yank.exe -i --crlf",
+-- 		},
+-- 		paste = {
+-- 			["+"] = "win32yank.exe -o --lf",
+-- 			["*"] = "win32yank.exe -o --lf",
+-- 		},
+-- 		cache_enabled = false,
+-- 	}
+-- end
+
 require("lazy").setup({
 	spec = {
 		-- add LazyVim and import its plugins
@@ -22,11 +38,8 @@ require("lazy").setup({
 		-- { import = "lazyvim.plugins.extras.coding.copilot-chat" },
 		{ import = "lazyvim.plugins.extras.dap.core" },
 		{ import = "lazyvim.plugins.extras.editor.harpoon2" },
-		{ import = "lazyvim.plugins.extras.lang.json" },
-		{ import = "lazyvim.plugins.extras.lang.markdown" },
-		{ import = "lazyvim.plugins.extras.lang.typescript" },
-		{ import = "lazyvim.plugins.extras.linting.eslint" },
-		{ import = "lazyvim.plugins.extras.ui.treesitter-context" },
+		-- { import = "lazyvim.plugins.extras.linting.eslint" },
+		-- { import = "lazyvim.plugins.extras.ui.treesitter-context" },
 		{ import = "lazyvim.plugins.extras.coding.mini-surround" },
 		{ import = "lazyvim.plugins.extras.util.mini-hipatterns" },
 		{ import = "lazyvim.plugins.extras.coding.nvim-cmp" }, -- Intall by :Lazyextras
