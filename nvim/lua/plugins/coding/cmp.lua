@@ -35,18 +35,20 @@ return {
 
 			-- Configuración de mapeos
 			opts.mapping = {
-				["<Tab>"] = cmp.mapping.confirm({ select = true }),
-				["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-				["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-				["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-				["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-				["<Space>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
-						cmp.close()
-					else
-						fallback()
-					end
-				end, { "i", "s" }),
+
+				["<C-n>"] = cmp.mapping.select_next_item(),
+				-- Select the [p]revious item
+				["<C-p>"] = cmp.mapping.select_prev_item(),
+
+				-- Scroll the documentation window [b]ack / [f]orward
+				["<C-b>"] = cmp.mapping.scroll_docs(-4),
+				["<C-f>"] = cmp.mapping.scroll_docs(4),
+
+				-- Accept ([y]es) the completion.
+				--  This will auto-import if your LSP supports it.
+				--  This will expand snippets if the LSP sent a snippet.
+				["<C-y>"] = cmp.mapping.confirm({ select = true }),
+
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 
 				-- Mapeo para cerrar el menú de autocompletado y desactivar autocompletado automático
@@ -58,15 +60,6 @@ return {
 						fallback()
 					end
 				end),
-
-				-- Scroll the documentation window [b]ack / [f]orward
-				["<C-b>"] = cmp.mapping.scroll_docs(-4),
-				["<C-f>"] = cmp.mapping.scroll_docs(4),
-
-				-- Accept ([y]es) the completion.
-				--  This will auto-import if your LSP supports it.
-				--  This will expand snippets if the LSP sent a snippet.
-				["<C-y>"] = cmp.mapping.confirm({ select = true }),
 
 				-- Mapeo para abrir el menú de autocompletado y reactivar el autocompletado automático
 				["<C-Space>"] = cmp.mapping(function()
