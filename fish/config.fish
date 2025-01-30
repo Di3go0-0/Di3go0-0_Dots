@@ -14,9 +14,10 @@ set --export PATH $BUN_INSTALL/bin $PATH
 alias py='python3'
 set -x PATH $HOME/.local/bin $PATH
 
-alias z="pj open"
+alias p="pj open"
+alias c="pj dots"
 
-set -gx PROJECT_PATHS ~/Documentos/aplications ~/Documentos/Universidad/
+set -gx PROJECT_PATHS ~/WorkSpace/Projects/
 set -gx DOTS_PATH ~/.config/
 
 starship init fish | source
@@ -84,4 +85,4 @@ set -g fish_pager_color_prefix $cyan
 set -g fish_pager_color_completion $foreground
 set -g fish_pager_color_description $comment
 #
-# clear
+#
