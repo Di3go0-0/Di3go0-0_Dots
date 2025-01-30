@@ -34,21 +34,7 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        vtsls = {
-          -- capabilities = capabilities,
-          settings = {
-            typescript = {
-              inlayHints = {
-                enumMemberValues = { enabled = false },
-                functionLikeReturnTypes = { enabled = false },
-                parameterNames = { enabled = false },
-                parameterTypes = { enabled = false },
-                propertyDeclarationTypes = { enabled = false },
-                variableTypes = { enabled = false },
-              },
-            },
-          },
-        },
+
         omnisharp = {
           handlers = {
             ["textDocument/definition"] = function(...)
@@ -70,22 +56,6 @@ return {
           organize_imports_on_format = true,
           enable_import_completion = true,
         },
-        gopls = {
-          -- capabilities = capabilities,
-          settings = {
-            gopls = {
-              hints = {
-                assignVariableTypes = false,
-                compositeLiteralFields = false,
-                compositeLiteralTypes = false,
-                constantValues = false,
-                functionTypeParameters = false,
-                parameterNames = false,
-                rangeVariableTypes = false,
-              },
-            },
-          },
-        },
         cssls = {
           capabilities = capabilities,
           settings = {
@@ -94,18 +64,7 @@ return {
             scss = { validate = true },
           },
         },
-        pyright = {
-          capabilities = capabilities,
-          settings = {
-            python = {
-              analysis = {
-                errors = { enabled = true },
-                info = { enabled = true },
-                warnings = { enabled = true },
-              },
-            },
-          },
-        },
+
         jsonls = {
           -- lazy-load schemastore when needed
           on_new_config = function(new_config)
@@ -121,9 +80,6 @@ return {
             },
           },
         },
-        -- marksman = {
-        --   capabilities2 = capabilities2,
-        -- },
       },
     },
   },
