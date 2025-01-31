@@ -23,5 +23,10 @@ vim.keymap.set("n", "<leader>on", "<cmd>ObsidianNew<CR>", { desc = "Create New N
 vim.keymap.set("n", "<leader>os", "<cmd>ObsidianSearch<CR>", { desc = "Search Obsidian" })
 vim.keymap.set("n", "<leader>oq", "<cmd>ObsidianQuickSwitch<CR>", { desc = "Quick Switch" })
 
+-- Take screenshot just of selected lines
+vim.keymap.set("v", "<Leader>s", ":SSSelected")
+-- Take screenshot of file and highlight selected lines
+vim.keymap.set("v", "<Leader>s", ":SSFocused")
+
 -- Llamar a la función para establecer las keymaps
 set_keymaps()
