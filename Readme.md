@@ -102,82 +102,35 @@
 
 ## Installation
 
-> [!IMPORTANT]  
-> To set up this configuration, follow these steps:
+> **Important**
+> Follow these steps to install the setup:
 
-1. **Install Homebrew**  
-   Homebrew is a package manager that makes installing and managing software on macOS and Linux easier. First, install Homebrew by running the following command in your terminal:
+### 1. Install Fish
 
-   ```bash
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   ```
+```bash
+sudo apt install fish
+chsh -s /usr/bin/fish
+```
 
-   - For additional installation instructions and troubleshooting, check the official [Homebrew installation page](https://brew.sh/).
+### 2. Install Homebrew
 
-2. **Install Neovim**  
-   Install Neovim using Homebrew by running:
+```fish
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+echo 'set -gx PATH /home/linuxbrew/.linuxbrew/bin $PATH' >> ~/.config/fish/config.fish
+```
 
-   ```bash
-   brew install neovim
-   ```
+### 3. Install Essential Tools
 
-3. **Install WezTerm**  
-   To install WezTerm, run:
+```fish
+brew install neovim wezterm zellij starship lazygit fisher
+```
 
-   ```bash
-   brew install wezterm
-   ```
+### 4. Install Fish Plugins
 
-4. **Install Zellij**  
-   Zellij can be installed with Homebrew by running:
-
-   ```bash
-   brew install zellij
-   ```
-
-5. **Install Fish**  
-   Fish shell can be installed with:
-
-   ```bash
-   brew install fish
-   ```
-
-6. **Install Starship**  
-   To install Starship prompt, run:
-
-   ```bash
-   brew install starship
-   ```
-
-7. **Install LazyGit**  
-   LazyGit, a simple terminal UI for Git, can be installed via Homebrew with:
-
-   ```bash
-   brew install lazygit
-   ```
-
-8. **Install Fisher**  
-   Before installing PJ, you must first install Fisher, a plugin manager for Fish. You can do this via Homebrew:
-
-   ```bash
-   brew install fisher
-   ```
-
-   For more details on Fisher, you can visit the official [Fisher GitHub page](https://github.com/jorgebucaran/fisher).
-
-9. **Install PJ (plugin-pj)**  
-   After installing Fisher, use it to install the PJ plugin for easy project switching:
-
-   ```bash
-   fisher install oh-my-fish/plugin-pj
-   ```
-
-10. **Install FZF Plugin**  
-    You can also install the FZF plugin for fuzzy searching and navigation:
-
-    ```bash
-    fisher install patrickf1/fzf.fish
-    ```
+```fish
+fisher install oh-my-fish/plugin-pj
+fisher install patrickf1/fzf.fish
+```
 
 ---
 
