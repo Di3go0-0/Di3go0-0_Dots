@@ -9,7 +9,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-git",
 			"hrsh7th/cmp-cmdline",
-			"hrsh7th/cmp-copilot",
+			-- "hrsh7th/cmp-copilot",
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
 			"windwp/nvim-autopairs",
@@ -70,7 +70,7 @@ return {
 
 			-- Fuentes de autocompletado
 			opts.sources = cmp.config.sources({
-				{ name = "copilot", priority = 1000 },
+				-- { name = "copilot", priority = 1000 },
 				{ name = "nvim_lsp", priority = 750 },
 				{ name = "buffer", priority = 500 },
 				{ name = "path", priority = 250 },
@@ -82,7 +82,7 @@ return {
 			opts.formatting = {
 				format = function(entry, vim_item)
 					local icons = {
-						copilot = "",
+						-- copilot = "",
 						nvim_lsp = "",
 						buffer = "﬘",
 						path = "",
