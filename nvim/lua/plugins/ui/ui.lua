@@ -1,18 +1,110 @@
 return {
+
+	---------------------
+	--- Custom Column ---
+	---------------------
+
 	{
-		"nvimdev/dashboard-nvim",
-		event = "VimEnter",
-		opts = function(_, opts)
-			local logo = [[
-   ]]
-			logo = string.rep("\n", 8) .. logo .. "\n\n"
-			opts.header = vim.split(logo, "\n")
+		"lukas-reineke/virt-column.nvim",
+		opts = {
+			char = { "┆" },
+			virtcolumn = "80",
+			highlight = { "NonText" },
+		},
+	},
+
+	---------------------------
+	--- Progresing messages ---
+	---------------------------
+
+	{
+		"j-hui/fidget.nvim",
+		opts = {
+			notification = {
+				window = {
+					winblend = 0,
+					border = "rounded",
+				},
+			},
+		},
+	},
+
+	-------------------------
+	--- Hide Files Buffer ---
+	-------------------------
+
+	{
+		"akinsho/bufferline.nvim",
+		opts = {
+			options = {
+				mode = "tabs",
+				show_buffer_close_icons = false,
+				show_close_icon = false,
+			},
+		},
+	},
+
+	--------------------
+	--- Dialog boxes ---
+	--------------------
+
+	{
+		"stevearc/dressing.nvim",
+		opts = {},
+	},
+
+	--------------------
+	--- Status Line ----
+	--------------------
+
+	{
+		"b0o/incline.nvim",
+		config = function()
+			require("incline").setup({
+				highlight = {
+					groups = {
+						InclineNormal = { guibg = "#392671", guifg = "#ffffff" }, -- Asegurar que no sea transparente
+						InclineNormalNC = { guibg = "#10003E", guifg = "#777777" },
+					},
+				},
+				window = {
+					margin = { vertical = 0, horizontal = 1 },
+					padding = 2,
+				},
+				render = function(props)
+					local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+					if vim.bo[props.buf].modified then
+						filename = "[*]" .. filename
+					end
+
+					local icon, color = require("nvim-web-devicons").get_icon(filename, nil, { default = true })
+					if not icon then
+						icon = ""
+					end
+					return { { icon, guifg = color }, { "   " }, { filename } }
+				end,
+			})
 		end,
 	},
+	-----------------
+	--- dashboard ---
+	-----------------
+
+	-- {
+	-- 	"nvimdev/dashboard-nvim",
+	-- 	event = "VimEnter",
+	-- 	opts = function(_, opts)
+	-- 		local logo = [[
+	--   ]]
+	-- 		logo = string.rep("\n", 8) .. logo .. "\n\n"
+	-- 		opts.header = vim.split(logo, "\n")
+	-- 	end,
+	-- },
 
 	{
 		"folke/snacks.nvim",
 		opts = {
+			imagen = {},
 			dashboard = {
 				sections = {
 					{ section = "header" },
@@ -52,67 +144,6 @@ return {
           { icon = " ", key = "q", desc = "Quit", action = ":qa" },
         },
 				},
-			},
-		},
-	},
-	{
-		"lukas-reineke/virt-column.nvim",
-		opts = {
-			char = { "┆" },
-			virtcolumn = "80",
-			highlight = { "NonText" },
-		},
-	},
-	-- See the following link for more information:
-	{
-		"j-hui/fidget.nvim",
-		opts = {
-			notification = {
-				window = {
-					winblend = 0,
-					border = "rounded",
-				},
-			},
-		},
-	},
-	-- File Description
-	{
-		"b0o/incline.nvim",
-		config = function()
-			require("incline").setup({
-				highlight = {
-					groups = {
-						InclineNormal = { guibg = "#392671", guifg = "#" },
-						InclineNormalNC = { guibg = "#10003E", guifg = "#777777" },
-					},
-				},
-				window = {
-					margin = { vertical = 0, horizontal = 1 },
-					padding = 2,
-				},
-				render = function(props)
-					local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
-					if vim.bo[props.buf].modified then
-						filename = "[*]" .. filename
-					end
-
-					local icon, color = require("nvim-web-devicons").get_icon(filename, nil, { default = true })
-					if not icon then
-						icon = ""
-					end
-					return { { icon, guifg = color }, { "   " }, { filename } }
-				end,
-			})
-		end,
-	},
-
-	{
-		"akinsho/bufferline.nvim",
-		opts = {
-			options = {
-				mode = "tabs",
-				show_buffer_close_icons = false,
-				show_close_icon = false,
 			},
 		},
 	},

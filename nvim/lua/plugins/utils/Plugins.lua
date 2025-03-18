@@ -1,31 +1,67 @@
 return {
 
-	{
-		"zbirenbaum/copilot-cmp", -- Esta es la dependencia necesaria
-		after = "copilot.nvim", -- Asegúrate de que se cargue después de Copilot
-	},
+	-- {
+	-- 	"zbirenbaum/copilot-cmp", -- Esta es la dependencia necesaria
+	-- 	after = "copilot.nvim", -- Asegúrate de que se cargue después de Copilot
+	-- },
+
+	-------------------
+	--- Comentarios ---
+	-------------------
 
 	{ "numToStr/Comment.nvim" },
-	{
-		"nvim-telescope/telescope.nvim",
-		tag = "0.1.8",
-		-- or                              , branch = '0.1.x',
-		dependencies = { "nvim-lua/plenary.nvim" },
-	},
-	-- Plugin to provide network functionalities for Neovim
+
+	-- {
+	-- 	"nvim-telescope/telescope.nvim",
+	-- 	tag = "0.1.8",
+	-- 	-- or                              , branch = '0.1.x',
+	-- 	dependencies = { "nvim-lua/plenary.nvim" },
+	-- },
+
+	----------------------------------------------------------
+	-- Plugin to provide network functionalities for Neovim --
+	----------------------------------------------------------
+
 	{ "neovim/nvim.net" },
+
+	-------------------
+	-- Multi Cursors --
+	-------------------
+
 	{
 		"mg979/vim-visual-multi",
-		-- v,
 	},
+
+	-- {
+	-- 	-- Plugin: vim-multiple-cursors
+	-- 	-- URL: https://github.com/terryma/vim-multiple-cursors
+	-- 	-- Description: A Vim plugin that allows multiple cursors for simultaneous editing.
+	-- 	"terryma/vim-multiple-cursors",
+	-- 	require("plugins.coding.multi-line"),
+	-- },
+
+	------------
+	-- Rename --
+	------------
+
 	{
 		"smjonas/inc-rename.nvim",
 		cmd = "IncRename",
 		config = true,
 	},
+
+	--------------------------
+	-- Personalized notifys --
+	--------------------------
+
 	{
 		"rcarriga/nvim-notify",
 	},
+
+	------------------
+	--- Key shorts ---
+	------------------
+
 	{
 		"andymass/vim-matchup",
 		event = { "BufReadPost" },
@@ -36,7 +72,11 @@ return {
 			-- ...
 		end,
 	}, -- Lua
-	-- Plugin to take a screenshot of the code
+
+	----------------
+	-- Screenshot --
+	----------------
+
 	{
 		-- we neet
 		-- sss_code => brew install SergioRibera/homebrew-tap/sss_code
@@ -54,6 +94,11 @@ return {
 			})
 		end,
 	},
+
+	-------------
+	-- Imports --
+	-------------
+
 	{
 		"piersolenski/telescope-import.nvim",
 		dependencies = "nvim-telescope/telescope.nvim",
@@ -62,7 +107,11 @@ return {
 		end,
 	},
 	-- { "rafamadriz/friendly-snippets" },
-	-- Plugin to show the signature of the function
+
+	--------------------------------
+	-- See Params of the function --
+	--------------------------------
+
 	{
 		"ray-x/lsp_signature.nvim",
 		event = "VeryLazy",
@@ -71,7 +120,11 @@ return {
 			require("lsp_signature").setup(opts)
 		end,
 	},
-	-- Plugin to show the color of the hex code
+
+	----------------------------------------------
+	-- Plugin to show the color of the hex code --
+	----------------------------------------------
+
 	{
 		"norcalli/nvim-colorizer.lua",
 		config = function()
@@ -82,6 +135,10 @@ return {
 			})
 		end,
 	},
+
+	------------------
+	--- Nvim Utils ---
+	------------------
 
 	{
 		"nvim-lua/plenary.nvim",
