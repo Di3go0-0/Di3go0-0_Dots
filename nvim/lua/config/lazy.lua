@@ -34,16 +34,16 @@ require("lazy").setup({
 		-- add LazyVim and import its plugins
 		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
 		-- import any extra modules here
-		-- { import = "lazyvim.plugins.extras.coding.copilot" },
-		-- { import = "lazyvim.plugins.extras.coding.copilot-chat" },
 		{ import = "lazyvim.plugins.extras.dap.core" },
 		{ import = "lazyvim.plugins.extras.editor.harpoon2" },
-		-- { import = "lazyvim.plugins.extras.linting.eslint" },
-		-- { import = "lazyvim.plugins.extras.ui.treesitter-context" },
 		{ import = "lazyvim.plugins.extras.coding.mini-surround" },
 		{ import = "lazyvim.plugins.extras.util.mini-hipatterns" },
-		{ import = "lazyvim.plugins.extras.coding.nvim-cmp" }, -- Intall by :Lazyextras
+		-- { import = "lazyvim.plugins.extras.coding.nvim-cmp" }, -- Intall by :Lazyextras
 		-- Others
+		-- { import = "lazyvim.plugins.extras.coding.copilot" },
+		-- { import = "lazyvim.plugins.extras.coding.copilot-chat" },
+		-- { import = "lazyvim.plugins.extras.linting.eslint" },
+		-- { import = "lazyvim.plugins.extras.ui.treesitter-context" },
 		--
 		-- import/override with your plugins
 		{ import = "plugins" },
@@ -57,7 +57,12 @@ require("lazy").setup({
 		version = false, -- Always use the latest git commit
 		-- version = "*", -- Try installing the latest stable version for plugins that support semver
 	},
-	install = { colorscheme = { "tokyonight", "habamax" } }, -- Specify colorschemes to install
+	install = {
+		colorscheme = {
+			-- "tokyonight",
+			-- "habamax",
+		},
+	}, -- Specify colorschemes to install
 	checker = { enabled = true }, -- Automatically check for plugin updates
 	performance = {
 		rtp = {
