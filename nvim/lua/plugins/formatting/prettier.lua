@@ -1,13 +1,3 @@
-local function file_exists(name)
-	local f = io.open(name, "r")
-	if f ~= nil then
-		io.close(f)
-		return true
-	else
-		return false
-	end
-end
-
 local supported = {
 	"css",
 	"graphql",
@@ -18,11 +8,11 @@ local supported = {
 	"json",
 	"jsonc",
 	"less",
-	-- "markdown",
-	-- "markdown.mdx",
+	"markdown",
+	"markdown.mdx",
 	"scss",
 	-- "typescript",
-	-- "typescriptreact",
+	"typescriptreact",
 	"vue",
 	"yaml",
 }
@@ -41,29 +31,26 @@ return {
 			opts.formatters_by_ft = opts.formatters_by_ft or {}
 			for _, ft in ipairs(supported) do
 				opts.formatters_by_ft[ft] = opts.formatters_by_ft[ft] or {}
-				if file_exists(".prettierrc") or file_exists(".eslintrc.js") then
-					table.insert(opts.formatters_by_ft[ft], "prettier")
-				end
+				table.insert(opts.formatters_by_ft[ft], "prettier")
 				table.insert(opts.formatters_by_ft[ft], "prettierd")
 			end
 
-			opts.format_after_save = function(bufnr)
-				-- Disable formatting if global or buffer-local variable is set
-				if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-					return
-				end
-				-- Check if the filetype supports `prettier`
-				local filetype = vim.bo[bufnr].filetype
-
-				if vim.tbl_contains(supported, filetype) then
-					if file_exists(".prettierrc") or file_exists(".eslintrc.js") then
-						return { formatters = { "prettier" }, timeout_ms = 2000 }
-					end
-				end
-
-				-- Fallback to default LSP formatting
-				return { lsp_format = "fallback" }
-			end
+			opts.format_after_save = false
+			-- opts.format_after_save = function(bufnr)
+			-- 	-- Disable formatting if global or buffer-local variable is set
+			-- 	if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+			-- 		return
+			-- 	end
+			-- 	-- Check if the filetype supports `prettier`
+			-- 	local filetype = vim.bo[bufnr].filetype
+			--
+			-- 	if vim.tbl_contains(supported, filetype) then
+			-- 		return { formatters = { "prettier" }, timeout_ms = 2000 }
+			-- 	end
+			--
+			-- 	-- Fallback to default LSP formatting
+			-- 	return { lsp_format = "fallback" }
+			-- end
 		end,
 	},
 
@@ -74,9 +61,7 @@ return {
 		opts = function(_, opts)
 			local nls = require("null-ls")
 			opts.sources = opts.sources or {}
-			if file_exists(".prettierrc") or file_exists(".eslintrc.js") then
-				table.insert(opts.sources, nls.builtins.formatting.prettier)
-			end
+			table.insert(opts.sources, nls.builtins.formatting.prettier)
 		end,
 	},
 }
