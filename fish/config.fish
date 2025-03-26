@@ -14,13 +14,20 @@ set --export PATH $BUN_INSTALL/bin $PATH
 alias py='python3'
 set -x PATH $HOME/.local/bin $PATH
 
-alias p="pj open"
+alias P="pj open"
 alias c="pj dots"
 
 set -gx PROJECT_PATHS ~/WorkSpace/Projects/
 set -gx DOTS_PATH ~/.config/
 
+# Configuración de Oracle
+set -gx LD_LIBRARY_PATH /opt/oracle/instantclient_23_6/
+set -gx ORACLE_HOME /opt/oracle/instantclient_23_6/
+set -gx PATH /opt/oracle/instantclient_23_6/ $PATH
+
+
 starship init fish | source
+
 
 # zoxide init fish | source
 # atuin init fish | source
@@ -79,10 +86,13 @@ set -g fish_color_operator $green
 set -g fish_color_escape $pink
 set -g fish_color_autosuggestion $comment
 
-# Completion Pager Colors
+#Completion Pager Colors
 set -g fish_pager_color_progress $comment
 set -g fish_pager_color_prefix $cyan
 set -g fish_pager_color_completion $foreground
 set -g fish_pager_color_description $comment
 #
-#
+# clear
+
+
+# alias sqlplus='/opt/oracle/instantclient_23_6/sqlplus.exe'
