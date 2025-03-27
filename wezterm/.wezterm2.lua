@@ -13,12 +13,14 @@ config.animation_fps = 1
 config.cursor_blink_rate = 500
 config.term = "xterm-256color"
 
-config.font = wezterm.font("Iosevka")
+config.font = wezterm.font("Iosevka Nerd Font Mono", { weight = "Regular" })
+
 config.cell_width = 0.9
 
 config.window_background_opacity = 0.9
 config.prefer_egl = true
 config.font_size = 18.0
+config.warn_about_missing_glyphs = false
 
 config.window_padding = {
 	left = 8,
@@ -145,10 +147,10 @@ config.default_prog = { "fish" }
 config.window_background_opacity = 1
 config.initial_rows = 80
 
-config.window_background_image = "/home/diego/Imágenes/Wallpapers/DD01.jpg"
+config.window_background_image = "/home/diego/Imágenes/Wallpapers/DD12.jpg"
 config.window_background_image_hsb = {
-	brightness = 0.02,
-	saturation = 0.6,
+	brightness = 0.08,
+	saturation = 0.8,
 	hue = 1,
 }
 config.text_background_opacity = 1

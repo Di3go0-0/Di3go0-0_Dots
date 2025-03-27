@@ -31,6 +31,8 @@ if wezterm.config_builder then
 end
 
 -- This is where you actually apply your config choices
+config.window_decorations = "NONE"
+config.window_decorations = "RESIZE"
 config.window_padding = {
 	top = 8,
 	right = 8,
@@ -60,15 +62,20 @@ config.window_decorations = "NONE"
 config.default_prog = { "fish" }
 config.hide_tab_bar_if_only_one_tab = true
 
--- config.window_background_image = "/home/diego/Imágenes/Wallpapers/DD19.jpg"
--- config.window_background_image_hsb = {
--- 	brightness = 0.015,
--- 	saturation = 0.8,
--- 	hue = 1,
--- }
+config.enable_wayland = true
+config.front_end = "OpenGL"
+local gpus = wezterm.gui.enumerate_gpus()
+if #gpus > 0 then
+	config.webgpu_preferred_adapter = gpus[1]
+else
+	wezterm.log_infor("No GPU found")
+end
+
 config.window_background_image = "/home/diego/Imágenes/Wallpapers/DD20.png"
 config.window_background_image_hsb = {
 	brightness = 1.0,
 }
+
+config.hide_tab_bar_if_only_one_tab = true
 
 return config
