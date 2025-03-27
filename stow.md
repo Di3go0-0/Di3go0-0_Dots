@@ -18,3 +18,10 @@ stow -t ~/.config/ .config/ --adopt
 ```fish
 stow -t ~/ wezterm/ --adopt
 ```
+
+- To make a symbolic links of .wezterm.lua in Windows
+
+```fish
+  stow -t /mnt/c/Users/user/ wezterm.Windows/ --adopt
+```
+
