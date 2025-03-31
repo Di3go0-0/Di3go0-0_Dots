@@ -1,98 +1,42 @@
-if status is-interactive
-    # Commands to run in interactive sessions can go here
-end
-set -gx PATH /bin /usr/bin /usr/local/sbin /usr/local/bin /usr/sbin /sbin /usr/games /usr/local/games /snap/bin /home/diego/.dotnet/tools $PATH
+set -g fish_greeting
 
-if not set -q ZELLIJ
+# This line is only for hyprland enviroment
+source ~/.config/fish/hyde_config.fish
+
+set -gx PATH /home/linuxbrew/.linuxbrew/bin $PATH
+
+if status is-interactive
+    and not set -q ZELLIJ
+    and not set -q ZELLIJ_SESSION_NAME
     zellij
 end
 
-# bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
-
-alias py='python3'
-set -x PATH $HOME/.local/bin $PATH
-
 alias P="pj open"
-alias c="pj dots"
 
-set -gx PROJECT_PATHS ~/WorkSpace/Projects/
-set -gx DOTS_PATH ~/.config/
+set -gx PROJECT_PATHS ~/WorkSpace/Project/
 
-# Configuración de Oracle
-set -gx LD_LIBRARY_PATH /opt/oracle/instantclient_23_6/
-set -gx ORACLE_HOME /opt/oracle/instantclient_23_6/
-set -gx PATH /opt/oracle/instantclient_23_6/ $PATH
+# List Directory
+alias l='eza -lh  --icons=auto' # long list
+alias ls='eza -1   --icons=auto' # short list
+alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
+alias ld='eza -lhD --icons=auto' # long list dirs
+alias lt='eza --icons=auto --tree' # list folder as tree
+alias vc='code'
 
+# Handy change dir shortcuts
+abbr .. 'cd ..'
+abbr ... 'cd ../..'
+abbr .3 'cd ../../..'
+abbr .4 'cd ../../../..'
+abbr .5 'cd ../../../../..'
+
+# Always mkdir a path (this doesn't inhibit functionality to make a single dir)
+abbr mkdir 'mkdir -p'
+set -gx PATH $HOME/.linuxbrew/bin $PATH
 
 starship init fish | source
 
-
-# zoxide init fish | source
-# atuin init fish | source
-#
-# # set -x PATH $HOME/.cargo/bin $PATH
-# # set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense'
-# # mkdir -p ~/.config/fish/completions
-# # carapace --list | awk '{print $1}' | xargs -I{} touch ~/.config/fish/completions/{}.fish
-# # carapace _carapace | source
-#
-# # set -x LS_COLORS "di=38;5;67:ow=48;5;60:ex=38;5;132:ln=38;5;144:*.tar=38;5;180:*.zip=38;5;180:*.jpg=38;5;175:*.png=38;5;175:*.mp3=38;5;175:*.wav=38;5;175:*.txt=38;5;223:*.sh=38;5;132"
-# # set -g fish_greeting ""
-# #
-# ## alias
-# # alias ls='gls --color=auto'
-# # alias fzfbat='fzf --preview="bat --theme=gruvbox-dark --color=always {}"'
-# # alias fzfnvim='nvim (fzf --preview="bat --theme=gruvbox-dark --color=always {}")'
-#
-# ## everforest
-# #set -l foreground d3c6aa
-# #set -l selection 2d4f67
-# #set -l comment 859289
-# #set -l red e67e80
-# #set -l orange ff9e64
-# #set -l yellow dbbc7f
-# #set -l green a7c080
-# #set -l purple d699b6
-# #set -l cyan 7fbbb3
-# #set -l pink d699b6
-#
-# kanagawa dragon colors
-set -l foreground C5C9C5 # dragonWhite - un blanco suave para texto principal
-set -l selection 2D4F67 # waveBlue2 - azul oscuro para selección
-set -l comment 7A8382 # dragonGray3 - gris para comentarios
-set -l red C4746E # dragonRed - rojo suave
-set -l orange B98D7B # dragonOrange2 - naranja suave
-set -l yellow C4B28A # dragonYellow - amarillo cálido
-set -l green 87A987 # dragonGreen - verde pastel
-set -l purple 957FB8 # oniViolet - púrpura suave
-set -l cyan 8EA4A2 # dragonAqua - verde azulado
-set -l pink D27E99 # sakuraPink - rosa suave
-#
-# Syntax Highlighting Colors
-set -g fish_color_normal $foreground
-set -g fish_color_command $cyan
-set -g fish_color_keyword $pink
-set -g fish_color_quote $yellow
-set -g fish_color_redirection $foreground
-set -g fish_color_end $orange
-set -g fish_color_error $red
-set -g fish_color_param $purple
-set -g fish_color_comment $comment
-set -g fish_color_selection --background=$selection
-set -g fish_color_search_match --background=$selection
-set -g fish_color_operator $green
-set -g fish_color_escape $pink
-set -g fish_color_autosuggestion $comment
-
-#Completion Pager Colors
-set -g fish_pager_color_progress $comment
-set -g fish_pager_color_prefix $cyan
-set -g fish_pager_color_completion $foreground
-set -g fish_pager_color_description $comment
-#
-# clear
-
-
-# alias sqlplus='/opt/oracle/instantclient_23_6/sqlplus.exe'
+## Configuración de Oracle
+set -gx LD_LIBRARY_PATH /opt/oracle/instantclient_23_7/
+set -gx ORACLE_HOME /opt/oracle/instantclient_23_7/
+set -gx PATH /opt/oracle/instantclient_23_7/ $PATH
