@@ -1,4 +1,8 @@
 return {
+	------- For img -------
+	------- Install -------
+	-- yay -S ueberzugpp --
+	-----------------------
 
 	-- {
 	-- 	"zbirenbaum/copilot-cmp", -- Esta es la dependencia necesaria
@@ -85,7 +89,7 @@ return {
 		"SergioRibera/codeshot.nvim",
 		config = function()
 			require("codeshot").setup({
-				theme = "Visual Studio Dark+",
+				theme = "Coldark-Dark",
 				-- copy = "xclip -selection clipboard -target image/png",
 				-- padding_x = 50,
 				-- padding_y = 50,
@@ -132,6 +136,15 @@ return {
 				"*", -- Activa colorizer para todos los archivos
 				css = { rgb_fn = true }, -- Soporte especial para archivos CSS
 				html = { names = false }, -- Desactiva el soporte para nombres de colores en archivos HTML
+				default_options = {
+					RGB = true, -- #RGB hex codes
+					RRGGBB = true, -- #RRGGBB hex codes
+					RRGGBBAA = true, -- #RRGGBBAA hex codes con alpha
+					rgb_fn = true, -- CSS rgb() y rgba()
+					hsl_fn = true, -- CSS hsl() y hsla()
+					css = true, -- Habilita todos los formatos CSS
+					css_fn = true, -- Habilita funciones CSS
+				},
 			})
 		end,
 	},

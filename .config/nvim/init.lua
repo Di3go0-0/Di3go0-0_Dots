@@ -18,3 +18,4 @@ require("config.lazy")
 --
 -- vim.cmd("hi CursorLine guibg=#33cc33 ctermbg=236")
 -- vim.o.cursorline = true
+--
