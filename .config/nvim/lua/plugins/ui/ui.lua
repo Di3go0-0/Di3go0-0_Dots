@@ -104,7 +104,7 @@ return {
 	{
 		"folke/snacks.nvim",
 		opts = {
-			imagen = {},
+			image = { enabled = true },
 			dashboard = {
 				sections = {
 					{ section = "header" },
