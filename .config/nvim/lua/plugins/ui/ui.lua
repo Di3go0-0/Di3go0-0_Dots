@@ -68,10 +68,28 @@ return {
 					},
 				},
 				window = {
-					margin = { vertical = 0, horizontal = 1 },
+					margin = { vertical = 1, horizontal = 1 },
 					padding = 2,
+					---- To show the name down in the page ----
+					-- placement = {
+					-- 	horizontal = "right",
+					-- 	vertical = "bottom",
+					-- },
 				},
 				render = function(props)
+					-- Obtener la posición del cursor solo si es el buffer activo
+					if props.focused then
+						local cursor_line = vim.api.nvim_win_get_cursor(0)[1]
+						local total_lines = vim.api.nvim_buf_line_count(0)
+
+						-- cursor_line == total_lines => ultima linea
+						-- Si el cursor está en la primera no renderizar
+						if cursor_line == 1 then
+							return nil
+						end
+					end
+
+					-- Mostrar el nombre si no está el cursor en la línea "peligrosa"
 					local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
 					if vim.bo[props.buf].modified then
 						filename = "[*]" .. filename
@@ -81,7 +99,12 @@ return {
 					if not icon then
 						icon = ""
 					end
-					return { { icon, guifg = color }, { "   " }, { filename } }
+
+					return {
+						{ icon, guifg = color },
+						{ "   " },
+						{ filename },
+					}
 				end,
 			})
 		end,
