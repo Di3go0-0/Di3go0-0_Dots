@@ -123,6 +123,10 @@ return {
 	-- 		opts.header = vim.split(logo, "\n")
 	-- 	end,
 	-- },
+	------- For img -------
+	------- Install -------
+	-- yay -S ueberzugpp --
+	-----------------------
 
 	{
 		"folke/snacks.nvim",
