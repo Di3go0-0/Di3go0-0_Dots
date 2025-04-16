@@ -1,7 +1,8 @@
 return {
-	require("plugins.languages.OmniSharp"),
-	require("plugins.languages.markdown"),
-	require("plugins.languages.mason"),
-	require("plugins.languages.python"),
-	require("plugins.languages.typescript"),
+	{ import = "plugins.languages.OmniSharp" },
+	{ import = "plugins.languages.markdown" },
+	{ import = "plugins.languages.mason" },
+	{ import = "plugins.languages.odoo" },
+	{ import = "plugins.languages.python" },
+	{ import = "plugins.languages.typescript" },
 }

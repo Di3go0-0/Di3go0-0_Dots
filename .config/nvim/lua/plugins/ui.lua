@@ -1,5 +1,5 @@
 return {
-	require("plugins.ui.colorscheme"),
-	require("plugins.ui.treesitter-context"),
-	require("plugins.ui.ui"),
+	{ import = "plugins.ui.colorscheme" },
+	{ import = "plugins.ui.treesitter-context" },
+	{ import = "plugins.ui.ui" },
 }

@@ -1,9 +1,4 @@
 return {
-	------- For img -------
-	------- Install -------
-	-- yay -S ueberzugpp --
-	-----------------------
-
 	-- {
 	-- 	"zbirenbaum/copilot-cmp", -- Esta es la dependencia necesaria
 	-- 	after = "copilot.nvim", -- Asegúrate de que se cargue después de Copilot
@@ -60,6 +55,21 @@ return {
 
 	{
 		"rcarriga/nvim-notify",
+		enable = true,
+		opts = {
+			top_down = false,
+			timeout = 3000,
+			stages = "slide", -- este sí afecta la dirección
+			render = "default",
+			background_colour = "#000000",
+		},
+		config = function(_, opts)
+			local notify = require("notify")
+			notify.setup(opts)
+
+			-- Forzar notificaciones en la esquina inferior derecha
+			vim.notify = notify
+		end,
 	},
 
 	------------------
