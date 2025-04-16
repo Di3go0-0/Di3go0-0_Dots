@@ -1,13 +1,13 @@
--- This file contains the configuration for setting up the lazy.nvim plugin manager in Neovim.
-
--- Define the path to the lazy.nvim plugin
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-
--- Check if the lazy.nvim plugin is not already installed
 if not vim.loop.fs_stat(lazypath) then
-  -- Bootstrap lazy.nvim by cloning the repository
-  -- stylua: ignore
-  vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable",
+		lazypath,
+	})
 end
 
 -- Prepend the lazy.nvim path to the runtime path
@@ -39,8 +39,6 @@ require("lazy").setup({
 		{ import = "lazyvim.plugins.extras.coding.mini-surround" },
 		{ import = "lazyvim.plugins.extras.util.mini-hipatterns" },
 		{ import = "lazyvim.plugins.extras.coding.nvim-cmp" }, -- Intall by :Lazyextras
-		-- Others
-		--
 		-- import/override with your plugins
 		{ import = "plugins" },
 	},
@@ -54,15 +52,12 @@ require("lazy").setup({
 		-- version = "*", -- Try installing the latest stable version for plugins that support semver
 	},
 	install = { colorscheme = { "tokyonight", "habamax" } }, -- Specify colorschemes to install
-	checker = { enabled = false }, -- Automatically check for plugin updates
+	checker = { enabled = true }, -- Automatically check for plugin updates
 	performance = {
 		rtp = {
 			-- Disable some runtime path plugins to improve performance
 			disabled_plugins = {
 				"gzip",
-				-- "matchit",
-				-- "matchparen",
-				-- "netrwPlugin",
 				"tarPlugin",
 				"tohtml",
 				"tutor",

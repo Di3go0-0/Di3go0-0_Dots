@@ -1,5 +1,5 @@
 return {
-  require("plugins.editor.editor"),
-  require("plugins.editor.neotree"),
-  require("plugins.editor.oil-nvim"),
+	{ import = "plugins.editor.editor" },
+	{ import = "plugins.editor.neotree" },
+	{ import = "plugins.editor.oil-nvim" },
 }

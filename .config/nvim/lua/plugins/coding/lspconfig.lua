@@ -27,8 +27,13 @@ vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
 end
 
 -- Custom handler for signature help to prevent TypeScript server errors
-vim.lsp.handlers["textDocument/signatureHelp"] = function(_, result, ctx, config)
-	-- Guard against errors with a pcall
+vim.lsp.handlers["textDocument/signatureHelp"] = function(err, result, ctx, config)
+	-- Si recibimos un error explícito, simplemente retornamos sin hacer nada
+	if err ~= nil then
+		return
+	end
+
+	-- Guard against errors with a pcall para manejar excepciones internas
 	local status, result_or_err = pcall(function()
 		config = config
 			or {
@@ -60,8 +65,8 @@ vim.lsp.handlers["textDocument/signatureHelp"] = function(_, result, ctx, config
 	end)
 
 	if not status then
-		-- Si hay error, no hacemos nada y evitamos que la excepción se propague
-		-- print("Error en signature help:", result_or_err)
+		-- Si hay error interno, no hacemos nada y evitamos que la excepción se propague
+		-- vim.notify("Error en signature help: " .. tostring(result_or_err), vim.log.levels.DEBUG)
 		return
 	end
 

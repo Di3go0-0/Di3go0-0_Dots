@@ -1,5 +1,4 @@
 return {
-	require("plugins.utils.Plugins"),
-	require("plugins.utils.kulala"),
-	require("plugins.utils.obsidian"),
+	{ import = "plugins.utils.Plugins" },
+	{ import = "plugins.utils.obsidian" },
 }

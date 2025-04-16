@@ -1,3 +1,13 @@
+env {
+    KITTY_ENABLE_GFX "1"
+}
+
+pane_options {
+    true-color true
+    undercurl true
+    kitty-graphics true
+}
+
 
 plugins {
     tab-bar { path "tab-bar"; }

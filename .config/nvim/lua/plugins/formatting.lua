@@ -1,4 +1,4 @@
 return {
-	require("plugins.formatting.conform"),
-	require("plugins.formatting.prettier"),
+	{ import = "plugins.formatting.conform" },
+	{ import = "plugins.formatting.prettier" },
 }
