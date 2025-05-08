@@ -1,18 +1,4 @@
 return {
-	{
-		"williamboman/mason.nvim",
-		opts = {
-			ensure_installed = {
-				-- "lua-language-server",
-				"html-lsp",
-				"prettier",
-				"markdown-toc",
-				-- "eslint-lsp",
-				"prettierd",
-				"sql-formatter",
-				"pyright",
-				"csharpier",
-			},
-		},
-	},
+	{ "mason-org/mason.nvim", version = "1.11.0" },
+	{ "mason-org/mason-lspconfig.nvim", version = "1.32.0" },
 }
