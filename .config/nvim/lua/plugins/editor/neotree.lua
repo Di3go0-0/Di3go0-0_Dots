@@ -5,13 +5,25 @@ return {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
+		{ "DaikyXendo/nvim-material-icon" },
 	},
 	cmd = "Neotree",
 	opts = {
+		source_selector = {
+			winbar = true,
+			content_layout = "center",
+			sources = {
+				{ source = "filesystem", display_name = " File" },
+				{ source = "buffers", display_name = "󰈙 Buff" },
+				{ source = "git_status", display_name = "󰊢 Git" },
+			},
+		},
 		window = {
 			position = "right",
 			mappings = {
 				["Y"] = "none",
+				["H"] = "prev_source",
+				["L"] = "next_source",
 			},
 		},
 		filesystem = {
