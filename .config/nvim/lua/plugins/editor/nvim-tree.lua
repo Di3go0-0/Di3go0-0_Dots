@@ -40,6 +40,25 @@ return {
 				side = "right",
 				preserve_window_proportions = true,
 				width = 40,
+				float = {
+					enable = false,
+					quit_on_focus_loss = true,
+					open_win_config = {
+						relative = "editor",
+						border = "rounded",
+						width = 30,
+						height = 30,
+						row = 1,
+						col = 1,
+					},
+				},
+			},
+			tab = {
+				sync = {
+					open = true,
+					close = true,
+					ignore = {},
+				},
 			},
 			renderer = {
 				full_name = false,

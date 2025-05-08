@@ -7,7 +7,7 @@ local function set_keymaps()
 	-- Open oil
 	keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
-	-- keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Toggle NeoTree" })
+	keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Toggle NeoTree" })
 
 	-- keymap.set("n", "<leader>an", "<cmd>AvanteNewChat<cr>", { desc = "Avante: New Chat" })
 	keymap.set("n", "te", ":tabedit") -- N
