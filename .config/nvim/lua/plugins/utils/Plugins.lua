@@ -53,24 +53,24 @@ return {
 	-- Personalized notifys --
 	--------------------------
 
-	{
-		"rcarriga/nvim-notify",
-		enable = true,
-		opts = {
-			top_down = false,
-			timeout = 3000,
-			stages = "slide", -- este sí afecta la dirección
-			render = "default",
-			background_colour = "#000000",
-		},
-		config = function(_, opts)
-			local notify = require("notify")
-			notify.setup(opts)
-
-			-- Forzar notificaciones en la esquina inferior derecha
-			vim.notify = notify
-		end,
-	},
+	-- {
+	-- 	"rcarriga/nvim-notify",
+	-- 	enable = true,
+	-- 	opts = {
+	-- 		top_down = false,
+	-- 		timeout = 3000,
+	-- 		stages = "slide", -- este sí afecta la dirección
+	-- 		render = "default",
+	-- 		background_colour = "#000000",
+	-- 	},
+	-- 	config = function(_, opts)
+	-- 		local notify = require("notify")
+	-- 		notify.setup(opts)
+	--
+	-- 		-- Forzar notificaciones en la esquina inferior derecha
+	-- 		vim.notify = notify
+	-- 	end,
+	-- },
 
 	------------------
 	--- Key shorts ---
