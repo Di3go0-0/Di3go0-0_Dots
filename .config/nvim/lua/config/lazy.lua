@@ -40,6 +40,7 @@ require("lazy").setup({
 		{ import = "lazyvim.plugins.extras.util.mini-hipatterns" },
 		{ import = "lazyvim.plugins.extras.coding.nvim-cmp" }, -- Intall by :Lazyextras
 		-- import/override with your plugins
+		-- { "LazyVim/LazyVim", import = "lazyvim.plugins", version = false },
 		{ import = "plugins" },
 	},
 	defaults = {
