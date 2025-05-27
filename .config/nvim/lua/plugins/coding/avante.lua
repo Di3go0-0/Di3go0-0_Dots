@@ -39,7 +39,6 @@ return {
 				prev = "[[",
 			},
 			submit = {
-				normal = "<CR>",
 				insert = "<C-s>",
 			},
 			sidebar = {
@@ -55,7 +54,7 @@ return {
 			position = "right", -- the position of the sidebar
 			wrap = true, -- similar to vim.o.wrap
 			width = 30, -- default % based on available width
-			use_absolute_paths = true, -- Usar rutas absolutas para evitar problemas de resolución
+			-- use_absolute_paths = true, -- Usar rutas absolutas para evitar problemas de resolución
 			sidebar_header = {
 				enabled = true, -- true, false to enable/disable the header
 				align = "center", -- left, center, right for title
