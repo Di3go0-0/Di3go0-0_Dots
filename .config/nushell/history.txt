@@ -1,0 +1,63 @@
+ls
+exit
+ls
+exit
+cd
+exit
+zoxide init nushell | save -f ~/.zoxide.nu<\n>
+z
+ls ~/.zoxide.nu<\n>
+exit
+mkdir ~/.cache/carapace<\n>carapace _carapace nushell | save -f ~/.cache/carapace/init.nu<\n>
+ls ~/.cache/carapace/init.nu<\n>
+exit
+sudo pacman -S atuin<\n>
+atuin init nu | save -f ~/.local/share/atuin/init.nu<\n>
+mkdir ~/.local/share/atuin<\n>
+atuin init nu | save -f ~/.local/share/atuin/init.nu<\n>
+ls ~/.local/share/atuin/init.nu<\n>
+exit
+mkdir -p ~/.cache/starship<\n>
+mkdir ~/.cache/starship<\n>z
+mkdir ~/.cache/starshi
+starship init nu | save -f ~/.cache/starship/init.nu<\n>
+source ~/.cache/starship/init.nu<\n>
+# use ~/.config/bash-env.nu<\n>
+exit
+nu
+# ~/.config/bash-env.nu<\n><\n>export-env {<\n>  let-env MY_CUSTOM_VAR = "valor"<\n>  let-env PATH = ($env.PATH | append '/ruta/adicional')<\n>}<\n>
+export-env {<\n>  $env.MY_CUSTOM_VAR = "valor"<\n>  $env.PATH = ($env.PATH | append '/ruta/adicional')<\n>}<\n>
+use ~/.config/bash-env.nu<\n>
+exit
+nu
+hol
+3000
+docker ps -a
+t
+exit
+nu
+exit
+nvim ~/.config/bash-env.nu<\n>
+exit
+nu
+ls
+node -- version
+node --v
+npm -v
+ls
+exit
+las
+ls
+zellij
+ls
+exit
+~/.config/zellij/config.kdl<\n>
+cd ~/.config/zellij/
+ls
+nvim
+nvim config.kdl 
+exit
+nu
+cd ~
+nvim .bashrc 
+nvim ~/.local/bin/env 
