@@ -238,4 +238,4 @@ keybinds clear-defaults=true{
 theme "kanagawa_dragon";
 default_layout "work";
 
-default_shell "nu";
+// default_shell "nu";
