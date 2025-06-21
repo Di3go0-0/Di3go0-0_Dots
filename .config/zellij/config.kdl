@@ -1,3 +1,5 @@
+simplified_ui true
+
 env {
     KITTY_ENABLE_GFX "1"
 }
@@ -54,7 +56,7 @@ keybinds clear-defaults=true{
         // bind "Alt c" { Copy; }
     }
     locked {
-        bind "Alt g" { SwitchToMode "Normal"; }
+        bind "Alt g" { SwitchToMode "locked"; };
     }
     resize {
         bind "Alt n" { SwitchToMode "Normal"; }
@@ -233,8 +235,7 @@ keybinds clear-defaults=true{
 }
 
 
-
-
 theme "kanagawa_dragon";
 default_layout "work";
 
+default_shell "nu";
