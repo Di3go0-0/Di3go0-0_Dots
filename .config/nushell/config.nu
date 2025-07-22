@@ -1008,16 +1008,32 @@ export-env {
   # Configuración de Oracle Instant Client
   $env.LD_LIBRARY_PATH = "/opt/oracle/instantclient_23_7/"
   $env.ORACLE_HOME = "/opt/oracle/instantclient_23_7/"
-  $env.PATH = ($env.PATH | prepend "/opt/oracle/instantclient_23_7/")
+  $env.PATH = ($env.PATH | prepend [
+    "/opt/oracle/instantclient_23_7/"
+    "/home/linuxbrew/.linuxbrew/bin"
+  ])
 }
 
-let ZELLIJ = "zellij"
-let ZELLIJ_ENV_PREFIX = "ZELLIJ"
+# Definición de constantes
+const ZELLIJ = "zellij"
+const ZELLIJ_ENV_PREFIX = "ZELLIJ"
 
-
-def start_zellij [] {
-  if "ZELLIJ" not-in ($env | columns) and "ZELLIJ_SESSION_NAME" not-in ($env | columns) {
-    run-external zellij
-  }
+# Función para verificar si estamos dentro de una sesión de Zellij
+def is-zellij-running [] {
+    not ($env | get -i $ZELLIJ_ENV_PREFIX | is-empty)
 }
-start_zellij
+
+# Función para inicializar Zellij
+def initialize-zellij [] {
+    if (not (is-zellij-running)) and (not (which zellij | is-empty)) {
+        ^zellij
+    }
+}
+
+# Inicializar Zellij si no está corriendo
+if (not (is-zellij-running)) and (not (which zellij | is-empty)) {
+    initialize-zellij
+}
+
+# Inicializar Zellij
+initialize-zellij

@@ -16,3 +16,7 @@
 #
 # You can remove these comments if you want or leave
 # them for future reference.
+
+$env.PATH = ($env.PATH | split row (char esep) | append '/usr/bin' | append '/usr/local/bin')
+
+
