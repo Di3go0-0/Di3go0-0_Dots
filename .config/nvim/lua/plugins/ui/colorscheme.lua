@@ -176,11 +176,13 @@ return {
 		"LazyVim/LazyVim",
 		opts = {
 			-- change this line to change the color scheme
-			colorscheme = "gentleman-kanagawa-blur",
-			-- colorscheme = "catppuccin-mocha",
+			-- colorscheme = "gentleman-kanagawa-blur",
+			colorscheme = "catppuccin-mocha",
 			-- colorscheme = "cyberdream",
 			-- colorscheme = "kanagawa-dragon",
 			-- opts = {
 			-- 	transparent_background = true,
 			-- },
 		},
+	},
+}
