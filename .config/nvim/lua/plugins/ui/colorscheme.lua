@@ -132,7 +132,7 @@ return {
 	-- {
 	-- 	"scottmckendry/cyberdream.nvim",
 	-- 	lazy = false,
-	-- 	-- priority = 1000,
+	-- 	priority = 1000,
 	-- 	opts = function(_, opts)
 	-- 		opts.transparent = true
 	-- 		opts.italic_comments = true
@@ -153,6 +153,21 @@ return {
 		},
 	},
 
+	------------------
+	---- Gntleman ----
+	------------------
+	{
+		"Gentleman-Programming/gentleman-kanagawa-blur",
+		name = "gentleman-kanagawa-blur",
+		priority = 1000,
+	},
+	{
+		"Alan-TheGentleman/oldworld.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
+
 	--------------------------
 	--  Main Configuration  --
 	--------------------------
@@ -161,12 +176,11 @@ return {
 		"LazyVim/LazyVim",
 		opts = {
 			-- change this line to change the color scheme
-			colorscheme = "catppuccin-mocha",
+			colorscheme = "gentleman-kanagawa-blur",
+			-- colorscheme = "catppuccin-mocha",
 			-- colorscheme = "cyberdream",
 			-- colorscheme = "kanagawa-dragon",
-			opts = {
-				transparent_background = true,
-			},
+			-- opts = {
+			-- 	transparent_background = true,
+			-- },
 		},
-	},
-}
