@@ -3,6 +3,8 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		main = "nvim-treesitter.configs", -- Sets main module to use for opts
+		priority = 1000, -- Añadir alta prioridad para cargar primero
+		lazy = false, -- Desactivar lazy loading
 		-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 		opts = {
 			ensure_installed = {
