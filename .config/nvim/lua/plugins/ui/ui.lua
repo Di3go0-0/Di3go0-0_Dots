@@ -96,14 +96,14 @@ return {
 						filename = "[*]" .. filename
 					end
 
-									local has_devicons, devicons = pcall(require, "nvim-web-devicons")
-									local icon, color
-									if has_devicons then
-										icon, color = devicons.get_icon(filename, nil, { default = true })
-									else
-										icon = ""
-										color = nil
-									end
+					local has_devicons, devicons = pcall(require, "nvim-web-devicons")
+					local icon, color
+					if has_devicons then
+						icon, color = devicons.get_icon(filename, nil, { default = true })
+					else
+						icon = ""
+						color = nil
+					end
 					if not icon then
 						icon = ""
 					end
