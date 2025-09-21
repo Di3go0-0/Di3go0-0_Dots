@@ -3,4 +3,5 @@ return {
 	{ import = "plugins.editor.nvim-tree" },
 	{ import = "plugins.editor.neotree" },
 	{ import = "plugins.editor.oil-nvim" },
+	{ import = "plugins.editor.precognition" },
 }
