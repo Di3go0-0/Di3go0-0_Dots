@@ -1,4 +1,23 @@
 return {
-	{ "mason-org/mason.nvim", version = "1.11.0" },
-	{ "mason-org/mason-lspconfig.nvim", version = "1.32.0" },
+	{
+		"mason-org/mason.nvim",
+		opts = {
+			ensure_installed = {
+				"stylua",
+				"shellcheck",
+				"shfmt",
+				"flake8",
+			},
+		},
+	},
+	{
+		"mason-org/mason-lspconfig.nvim",
+		opts = {
+			ensure_installed = {
+				"lua_ls",
+				"bashls",
+				"pyright",
+			},
+		},
+	},
 }
