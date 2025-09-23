@@ -33,16 +33,16 @@ return {
 	--- Hide Files Buffer ---
 	-------------------------
 
-	{
-		"akinsho/bufferline.nvim",
-		opts = {
-			options = {
-				mode = "tabs",
-				show_buffer_close_icons = false,
-				show_close_icon = false,
-			},
-		},
-	},
+	-- {
+	-- 	"akinsho/bufferline.nvim",
+	-- 	opts = {
+	-- 		options = {
+	-- 			mode = "tabs",
+	-- 			show_buffer_close_icons = true,
+	-- 			show_close_icon = true,
+	-- 		},
+	-- 	},
+	-- },
 
 	--------------------
 	--- Dialog boxes ---
