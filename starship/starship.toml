@@ -105,7 +105,7 @@ symbol = " "
 disabled = false
 
 [dotnet]
-symbol = ""
+symbol = " | 󰪮"
 format = '[[ $symbol ($version) ](fg:#9CDCFE)]($style)'
 version_format = "${raw}"
 disabled = false
