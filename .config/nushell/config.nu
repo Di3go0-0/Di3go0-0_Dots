@@ -1020,7 +1020,7 @@ const ZELLIJ_ENV_PREFIX = "ZELLIJ"
 
 # Función para verificar si estamos dentro de una sesión de Zellij
 def is-zellij-running [] {
-    not ($env | get -i $ZELLIJ_ENV_PREFIX | is-empty)
+    not ($env | get -o $ZELLIJ_ENV_PREFIX | is-empty)
 }
 
 # Función para inicializar Zellij
