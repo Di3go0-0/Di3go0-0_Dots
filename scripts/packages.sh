@@ -42,7 +42,8 @@ install_packages() {
     swaync \
     brightnessctl \
     nodejs \
-    npm
+    npm \
+    wl-clipboard
 
   echo -e "${GREEN}Installing packages from AUR via yay...${NC}"
   yay -S --needed --noconfirm \

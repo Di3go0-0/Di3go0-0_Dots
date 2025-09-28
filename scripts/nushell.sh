@@ -23,19 +23,20 @@ fi
 echo "🔧 Generating Nushell integration files..."
 
 # zoxide
-zoxide init nushell --cmd cd | save -f ~/.zoxide.nu
+zoxide init nushell --cmd cd > ~/.zoxide.nu
+
 
 # carapace
 mkdir -p ~/.cache/carapace
-carapace _carapace nushell | save -f ~/.cache/carapace/init.nu
+carapace _carapace nushell > ~/.cache/carapace/init.nu
 
 # atuin
 mkdir -p ~/.local/share/atuin
-atuin init nu | save -f ~/.local/share/atuin/init.nu
+atuin init nu > ~/.local/share/atuin/init.nu
 
 # starship
 mkdir -p ~/.cache/starship
-starship init nu | save -f ~/.cache/starship/init.nu
+starship init nu > ~/.cache/starship/init.nu
 
 echo "✅ Nushell integrations ready: zoxide, carapace, atuin, starship."
 echo "Remember to edit your ~/.config/nushell/config.nu and make sure it contains:"
