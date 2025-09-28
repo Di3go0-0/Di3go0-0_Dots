@@ -276,3 +276,168 @@ git commit -m "hola"
 git config --global user.email "Di3go0-0"
 git config --global user.email "d.rincon@utp.edu.co"
 git config --global user.name "Di3go0-0"
+nvim
+ls
+ls -a
+hyprctl reload<\n>
+hyprctl reload
+nvim
+z Di3go0-0_dots
+cd Di3go0-0_Dots/
+nvim
+hyprctl reload
+nvim
+cd ..
+sudo pacman -S wlogout
+yay -S wlogout<\n>
+nvim
+hyprctl reload
+sudo pacman -S hyprpaper<\n>
+exec-once = hyprpaper wallpaper /ruta/a/tu/wallpaper.jpg fill<\n>
+nvim
+cd di3go0-0_dots/
+sudo pacman -S ttf-iosevka-nerd<\n>
+V
+mkdir -p ~/.local/share/fonts<\n>
+mkdir ~/.local/share/fonts<\n>
+cd ~/.local/share/fonts<\n>wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Iosevka.zip<\n>
+unzip Iosevka.zip<\n>rm Iosevka.zip<\n>
+fc-cache -fv<\n>
+fc-list | grep Iosevka<\n>
+kitty --debug-font-fallback<\n>
+mkdir -p ~/.local/share/fonts<\n>
+mkdir ~/.local/share/fonts
+cp DankMono*.ttf ~/.local/share/fonts/<\n>
+fc-list | grep "DankMono"<\n>
+waybar 
+ls
+nvim
+ls
+nvim
+echo -e "Normal \033[1mBold\033[0m \033[3mItalic\033[0m \033[1;3mBold+Italic\033[0m"<\n>
+sudo pacman -S hyprlock
+yay -S hyprland-walker<\n>
+yay -S hyprland-walker
+hyprctl reload
+nvim
+nvi
+mnvim
+yay -S hyprland-walker
+walker
+yay -S hyprland-walker
+which walker<\n>
+walker<\n>
+hyprctl dispatch exec walker<\n>
+yay -S walker<\n>
+hyprctl dispatch exec walker
+walker 
+nvim
+z Di3go0-0_dots
+# Agregar al inicio de tu config.fish o config.nu<\n>zoxide init nu | save ~/.config/nushell/config.nu<\n>
+zoxide init nu | each { nu source $it }
+nvim
+sudo pacman -Syu
+nvidia-smi
+nvidia-msi
+sudo pacman -Syu
+z Di3go0-0_dots
+zoxide init nushell --cmd cd | save -f ~/.zoxide.nu
+l
+l# Esto añade las funciones de zoxide a Nushell<\n>zoxide init nu | each { nu source $it }<\n>
+zoxide init nushell | save -f ~/.zoxide.nu<\n>
+source ~/.zoxide.nu<\n>
+cd Di3go0-0_Dots/
+z Di3go0-0_dots
+ls
+nvim
+ls
+nvim
+starship
+nvim
+starship
+exit
+nu
+exit
+nu
+exit
+exti
+starship
+exit
+nvim
+sudo pacman -S startship
+sudo yay -S startship
+nvim
+use ~/.cache/starship/init.nu<\n>
+source ~/.cache/starship/init.nu<\n>
+mkdir ~/.cache/starship<\n>
+starship init nu | save -f ~/.cache/starship/init.nu<\n>
+use ~/.cache/starship/init.nu<\n>
+source ~/.zoxide.nu<\n>source ~/.cache/carapace/init.nu<\n>
+starship --version<\n>
+starship prompt<\n>
+eval "$(starship init bash)"<\n>
+eval "$(starship init zsh)"<\n>
+ls
+nvim
+cd ~/.config/
+ls
+nvim
+pkill hyprpaper && hyprpaper &
+nvim
+neofetch
+sudo pacman -S neofetch
+sudo yay -S neofectch
+neofetch
+lspci | grep -E "VGA|3D"<\n>
+sudo pacman -Syu<\n>sudo pacman -S nvidia nvidia-utils nvidia-settings nvidia-prime<\n>
+nvidia-smi<\n>
+nvidia-smi
+lsmod | grep nvidia<\n>
+sudo pacman -S nvidia nvidia-utils nvidia-settings nvidia-prime<\n>
+sudo modprobe nvidia<\n>
+lsmod | grep nvidia<\n>nvidia-smi<\n>
+__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia glxinfo | grep "OpenGL renderer"<\n>
+sudo pacman -S mesa-utils<\n>
+bash -c "__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia glxinfo | grep 'OpenGL renderer'"<\n>
+sudo pacman -S mesa-utils<\n>
+bash -c "__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia glxinfo | grep 'OpenGL renderer'"<\n>
+bash -c "__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia __VK_LAYER_NV_optimus=NVIDIA_only programa"<\n>
+bash -c "__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia __VK_LAYER_NV_optimus=NVIDIA_only nvim"
+nvidia-smi
+xrandr<\n>
+prime-run glxgears<\n>
+nvim
+sudo pacman -Rns nvidia nvidia-utils nvidia-settings<\n>
+sudo pacman -Rns nvidia-dkms<\n>
+sudo pacman -Rns nvidia nvidia-utils nvidia-settings nvidia-prime<\n>
+nvidia
+nvidia-prime
+nvidia-utils
+sudo pacman -S pavucontrol networkmanager alacritty<\n>
+killall waybar && waybar<\n>
+waybar
+killall waybar && waybar
+killall waybar; waybar<\n>
+waybar
+sudo pacman -S wireplumber<\n>
+waybar
+pipewire-pulse 
+sudo pacman -S pipewire pipewire-pulse wireplumber pavucontrol<\n>
+sudo pacman -S mesa xf86-video-nouveau<\n>
+lsmod | grep nouveau<\n>
+nouveau 123456 ...<\n>
+glxinfo | grep "OpenGL renderer"<\n>
+nvidia-msi
+sudo pacman -S mesa xf86-video-nouveau<\n>
+sudo mkinitcpio -P<\n>
+sudo pacman -S nvidia nvidia-utils nvidia-settings<\n>
+which nvidia-msi<\n>nvidia-msi --help<\n>
+nvidia-smi<\n>nvidia-settings<\n>
+sudo pacman -S nvidia nvidia-utils nvidia-settings<\n>
+sudo mkinitcpio -P<\n>
+sudo reboot<\n>
+waybar
+nvidia-smi<\n>nvidia-settings<\n>
+nvidia-smi
+nvim
+z Di3go0-0_dots
