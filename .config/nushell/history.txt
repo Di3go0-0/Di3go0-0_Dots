@@ -215,3 +215,64 @@ zellij
 nvim
 cd ~/.config/nushell/
 cd ..
+nvim
+nvimm
+nvim
+~/.local/share/nvim/lazy/avante.nvim<\n>
+sudo cd ~/.local/share/nvim/lazy/avante.nvim<\n>
+~/.local/share/nvim/lazy/avante.nvim<\n>
+cd ~/.local/share/nvim/lazy/avante.nvim<\n>v
+cd ~/.local/share/nvim/lazy/avante.nvim<\n>
+nvim --headless -c 'AvanteBuild' -c 'qa'<\n>
+ls avante_templates<\n>
+cd ~/.local/share/nvim/lazy/avante.nvim<\n>
+cargo run -- build<\n>
+rm -rf ~/.local/share/nvim/lazy/avante.nvim<\n>
+sudo rm -rf ~/.local/share/nvim/lazy/avante.nvim<\n>
+nvim
+git clone --branch v0.1.0 https://github.com/avante-nvim/avante.nvim ~/.local/share/nvim/lazy/avante.nvim<\n>
+sudo git clone --branch v0.1.0 https://github.com/avante-nvim/avante.nvim ~/.local/share/nvim/lazy/avante.nvim<\n>
+ls ~/.local/share/nvim/lazy/avante.nvim/avante_templates<\n>
+rm -rf ~/.local/share/nvim/lazy/avante.nvim<\n>
+git clone --branch v0.1.0 https://github.com/avante-nvim/avante.nvim ~/.local/share/nvim/lazy/avante.nvim<\n>
+gh repo clone lazy/avante.nvim
+avante
+nvim
+cd ~/.local/share/nvim/lazy/avante.nvim<\n>
+nvim --headless -c 'lua require("avante.build").build()' -c 'qa'<\n>
+rm -rf ~/.local/share/nvim/lazy/avante.nvim<\n>
+nvim
+# Instalar Rust y cargo<\n>sudo pacman -S --needed rustup<\n>rustup default stable<\n>
+sudo pacman -S --needed base-devel cmake git<\n>
+sudo pacman -S --needed lua lua51 lua-lpeg luarocks<\n>
+cd ~/.local/share/nvim/lazy/avante.nvim
+nvim --headless -c 'lua require("avante.build").build()' -c 'qa'
+:lua require("avante.build").build()<\n>
+cd ~/.local/share/nvim/lazy/avante.nvim<\n>git pull<\n>
+:AvanteInstall<\n>
+nvim
+cat ~/.local/share/nvim/lazy/avante.nvim/Makefile | less<\n>
+cd ~/.local/share/nvim/lazy/avante.nvim<\n>
+make BUILD_FROM_SOURCE=true<\n>
+ls ~/.local/share/nvim/lazy/avante.nvim/avante_templates<\n>
+make: cargo: No such file or directory<\n>
+sudo pacman -S --needed rust<\n>
+sudo pacman -S --needed rust
+cd ~/.local/share/nvim/lazy/avante.nvim<\n>make BUILD_FROM_SOURCE=true<\n>
+ls ~/.local/share/nvim/lazy/avante.nvim/avante_templates<\n>
+grep -A5 avante_templates ~/.local/share/nvim/lazy/avante.nvim/Makefile<\n>
+cat ~/.local/share/nvim/lazy/avante.nvim/Makefile | less<\n>
+make BUILD_FROM_SOURCE=true<\n>
+make templates<\n>
+make install<\n>
+cd ~/.local/share/nvim/lazy/avante.nvim<\n>make<\n>
+nvim
+z Di3go0-0_dots
+cd Di3go0-0_Dots/
+ls
+nvim
+git add .
+git commit -m "hola"
+git config --global user.email "Di3go0-0"
+git config --global user.email "d.rincon@utp.edu.co"
+git config --global user.name "Di3go0-0"

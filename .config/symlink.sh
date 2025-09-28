@@ -3,23 +3,24 @@
 # Dotfiles installation script (Linux only)
 # This script creates symbolic links from the dotfiles repo to the appropriate locations
 
-set -e  # Exit on any error
+set -e # Exit on any error
 
 # Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
-NC='\033[0m'  # No Color
+NC='\033[0m' # No Color
 
-# Determine paths
+# Get the directory where the dotfiles are located
+# Assuming the script is in src/scripts/ and dotfiles in src/.config/
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DOTFILES_DIR="$(cd "$SCRIPT_DIR/../.config" && pwd)"
 
 echo -e "${BLUE}🚀 Installing dotfiles for Linux...${NC}"
 echo -e "${BLUE}Dotfiles directory: $DOTFILES_DIR${NC}"
 
-# Backup existing config files/directories
+# Function to create backup
 backup_file() {
   local file="$1"
   if [[ -e "$file" && ! -L "$file" ]]; then
@@ -30,60 +31,54 @@ backup_file() {
   fi
 }
 
-# Create symbolic link
+# Function to create symbolic link
 create_symlink() {
   local src="$1"
   local dest="$2"
-  local name="$3"
+  local desc="$3"
 
-  echo -e "${BLUE}🔗 Installing $name config...${NC}"
+  echo -e "${BLUE}Installing $desc...${NC}"
 
   mkdir -p "$(dirname "$dest")"
   backup_file "$dest"
   rm -rf "$dest"
   ln -sf "$src" "$dest"
-
-  echo -e "${GREEN}  ✓ $name installed${NC}"
+  echo -e "${GREEN}  ✓ $desc installed${NC}"
 }
 
-# Ensure ~/.config exists
+echo -e "${BLUE}📁 Creating ~/.config directory if it doesn't exist...${NC}"
 mkdir -p "$HOME/.config"
 
-# List of config directories to link
-CONFIGS=(
-  fish
-  git
-  hypr
-  kitty
-  lazygit
-  nushell
-  nvim
-  rofi
-  waybar
-  zellij
+# List of directories to install
+declare -A CONFIGS=(
+  ["fish"]="$HOME/.config/fish"
+  ["009 󰉋  git"]="$HOME/.config/git"
+  ["005 󰉋  hypr"]="$HOME/.config/hypr"
+  ["003 󰉋  kitty"]="$HOME/.config/kitty"
+  ["010 󰉋  lazygit"]="$HOME/.config/lazygit"
+  ["012 󰉋  nushell"]="$HOME/.config/nushell"
+  ["006 󰉋  nvim"]="$HOME/.config/nvim"
+  ["008 󰉋  rofi"]="$HOME/.config/rofi"
+  ["004 󰉋  waybar"]="$HOME/.config/waybar"
+  ["002 󰉋  zellij"]="$HOME/.config/zellij"
 )
 
-# Install each config
-for name in "${CONFIGS[@]}"; do
-  src="$DOTFILES_DIR/$name"
-  dest="$HOME/.config/$name"
+# Loop through and install only specified configs
+for dir in "${!CONFIGS[@]}"; do
+  src="$DOTFILES_DIR/$dir"
+  dest="${CONFIGS[$dir]}"
   if [[ -d "$src" ]]; then
-    create_symlink "$src" "$dest" "$name"
-  else
-    echo -e "${RED}  ⚠ Skipping $name: directory not found in $DOTFILES_DIR${NC}"
+    create_symlink "$src" "$dest" "$dir config"
   fi
 done
 
-# Final message
 echo -e "\n${GREEN}🎉 Dotfiles installation completed!${NC}"
 echo -e "\n${BLUE}📋 Next steps:${NC}"
 echo -e "  1. Restart your terminal or run: ${YELLOW}source ~/.config/fish/config.fish${NC}"
-echo -e "  2. Review each app's config and customize as needed."
+echo -e "  2. Configure any application-specific settings as needed"
 
-# Notify if backups were created
 if [[ -d "$HOME/.dotfiles_backup" ]]; then
   echo -e "\n${YELLOW}📦 Backed up files are stored in: ~/.dotfiles_backup${NC}"
 fi
 
 echo -e "\n${GREEN}✨ Happy coding!${NC}"
-
