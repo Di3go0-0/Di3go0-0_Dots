@@ -14,12 +14,13 @@
         "scroll-step": 5,
         "format": "{icon} {volume}%",
         "format-muted": "{icon} {volume}%",
-        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol --class='pavucontrol-float'",
         "format-icons": {
             "default": [
-                "<span color='#7aa2f7'> </span>",
-                "<span color='#7aa2f7'> </span>",
-                "<span color='#7aa2f7'> </span>"
+                "<span color='#7aa2f7'> </span>",
+                "<span color='#7aa2f7'> </span>",
+                "<span color='#7aa2f7'> </span>"
             ]
         }
     },
@@ -46,8 +47,9 @@
     "network": {
         "tooltip": false,
         "format-wifi": "<span color='#9ece6a'> </span> {bandwidthDownBits}",
-        "format-ethernet": "<span color='#9ece6a'>🌐</span> ",
-        "format-disconnected": "<span color='#f7768e'>󰌙 </span> Disconnected",
+        "format-ethernet": "<span color='#9ece6a'>󰈀</span> ",
+        "format-disconnected": "<span color='#f7768e'>󰈂 </span> Disconnected",
+        "on-click": "alacritty -e nmtui",
         "interval": 30
     },
 
