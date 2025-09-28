@@ -1,0 +1,7 @@
+[user]
+	name =  Di3go0-0 
+	email = d.rincon@utp.edu.co 
+[pull]
+	rebase = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/
