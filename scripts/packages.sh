@@ -43,7 +43,8 @@ install_packages() {
     brightnessctl \
     nodejs \
     npm \
-    wl-clipboard
+    wl-clipboard \
+    hyprlock
 
   echo -e "${GREEN}Installing packages from AUR via yay...${NC}"
   yay -S --needed --noconfirm \
@@ -51,7 +52,8 @@ install_packages() {
     github-cli \
     nushell \
     nvm \
-    startship
+    startship \
+    wlogout
 
 }
 

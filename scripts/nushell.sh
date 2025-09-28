@@ -23,20 +23,19 @@ fi
 echo "🔧 Generating Nushell integration files..."
 
 # zoxide
-zoxide init nushell --cmd cd > ~/.zoxide.nu
-
+zoxide init nushell --cmd cd >~/.zoxide.nu
 
 # carapace
 mkdir -p ~/.cache/carapace
-carapace _carapace nushell > ~/.cache/carapace/init.nu
+carapace _carapace nushell >~/.cache/carapace/init.nu
 
 # atuin
 mkdir -p ~/.local/share/atuin
-atuin init nu > ~/.local/share/atuin/init.nu
+atuin init nu >~/.local/share/atuin/init.nu
 
 # starship
 mkdir -p ~/.cache/starship
-starship init nu > ~/.cache/starship/init.nu
+starship init nu >~/.cache/starship/init.nu
 
 echo "✅ Nushell integrations ready: zoxide, carapace, atuin, starship."
 echo "Remember to edit your ~/.config/nushell/config.nu and make sure it contains:"
@@ -54,5 +53,9 @@ if [ -n "$NU_PATH" ]; then
 else
   echo -e "${RED}❌ Nushell not found, cannot change shell.${NC}"
 fi
+
+# Final zoxide configuration with nushell syntax
+echo "🔧 Finalizing zoxide configuration..."
+zoxide init nushell | save -f ~/.zoxide.nu
 
 echo "🎉 Installation and configuration complete!"
