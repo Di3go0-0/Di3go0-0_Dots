@@ -45,7 +45,8 @@ install_packages() {
     npm \
     wl-clipboard \
     hyprlock \
-    jq
+    jq \
+    libnotify
 
   echo -e "${GREEN}Installing packages from AUR via yay...${NC}"
   yay -S --needed --noconfirm \
