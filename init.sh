@@ -16,3 +16,13 @@ fi
 if [ -f "$(dirname "$0")/scripts/nushell.sh" ]; then
   bash "$(dirname "$0")/scripts/nushell.sh"
 fi
+
+# Execute imagen
+if [ -f "$(dirname "$0")/scripts/imagen.sh" ]; then
+  bash "$(dirname "$0")/scripts/imagen.sh"
+fi
+
+# Execute grub
+if [ -f "$(dirname "$0")/scripts/grub.sh" ]; then
+  bash "$(dirname "$0")/scripts/grub.sh"
+fi

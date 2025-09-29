@@ -441,3 +441,68 @@ nvidia-smi<\n>nvidia-settings<\n>
 nvidia-smi
 nvim
 z Di3go0-0_dots
+nvim
+cha
+chmod +x ~/.config/hypr/scripts/hypr-smart-focus.sh<\n>
+nvim
+mkdir Workspace
+cd Workspace/
+ls
+cd Projects
+mkdir Projects
+cd Po
+cd Projects/
+ls
+git clone https://github.com/CrisGO0510/My-Hyprland-Dotfiles/
+ls
+cd my
+cd My-Hyprland-Dotfiles/
+ls
+ls -a
+cd .config/
+ls
+cp -r hypr/ ~/di3go0-0_dots/.config/
+nvim
+cliphist<\n>
+sudo pacman -S --needed git base-devel<\n>git clone https://aur.archlinux.org/yay.git<\n>cd yay<\n>makepkg -si<\n>
+yay -S cliphist<\n>
+cliphist
+cliphist<\n>
+cliphist -l       # listar historial
+usage:<\n>  $ /usr/bin/cliphist <store|list|decode|delete|delete-query|wipe|version><\n>options:<\n>  -config-path (default /home/diego/.config/cliphist/config)<\n>    overwrite config path to use instead of cli flags<\n>  -db-path (default /home/diego/.cache/cliphist/db)<\n>    path to db<\n>  -max-dedupe-search (default 100)<\n>    maximum number of last items to look through when finding duplicates<\n>  -max-items (default 750)<\n>    maximum number of items to store<\n>  -preview-width (default 100)<\n>    maximum number of characters to preview<\n><\n>…/yay ->  master
+cliphist -l       # listar historial
+ls
+nvim
+z Di3go0-0_dots
+nvim
+chmod +x scripts/imagen.sh 
+./scripts/imagen.sh
+cd di3go0-0_dots/scripts/
+./imagen.sh
+sudo pacman -S jq<\n>
+./imagen.sh
+wlogout 
+nvim
+~/.config/wlogout/config<\n>
+cd .config/
+ls
+cd wlogout/
+ls
+nano ~/.config/wlogout/config<\n>
+wlogout --debug<\n>
+wlogout --debug<\n>
+wlogout -l ~/.config/wlogout/layout_1 -C ~/.config/wlogout/theme.css<\n>
+wlogout -l ~/.config/wlogout/layout_1 -C ~/.config/wlogout/theme.css
+nvim
+wlogout -l ~/.config/wlogout/layout_1 -C ~/.config/wlogout/theme.css<\n>
+nvim
+wlogout -l ~/.config/wlogout/layout_2 -C ~/.config/wlogout/theme.css
+z Di3go0-0_dots
+cd scripts/
+chmod +x grub.sh 
+./grub.sh
+nvim
+cd di3go0-0_dots/
+./scripts/grub.sh
+nvim
+cd di3go0-0_dots/
