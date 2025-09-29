@@ -506,3 +506,76 @@ cd di3go0-0_dots/
 ./scripts/grub.sh
 nvim
 cd di3go0-0_dots/
+sudo fdisk -l<\n>
+sudo nano /etc/default/grub<\n>
+sudo grub-mkconfig -o /boot/grub/grub.cfg<\n>
+sudo update-grub<\n>
+sudo grub-mkconfig -o /boot/grub/grub.cfg<\n>
+sudo pacman -S os-prober<\n>
+sudo grub-mkconfig -o /boot/grub/grub.cfg<\n>
+Found Windows Boot Manager on /dev/sda1<\n>
+z Di3go0-0_dots
+nvim
+cd ..
+ls
+nvim
+cd ..
+z Di3go0-0_dots
+git checkout helper 
+cp -r .config/hypr/ ~/.config/
+nvim
+cp -r .config/lazygit/ ~/.config/
+rm ~/.config/lazygit
+cp -r .config/lazygit/ ~/.config/
+hyprctl reload
+rm ~/.config/kitty
+cp -r .config/kitty/ ~/.config/
+rm ~/.config/zellij
+cp -r .config/zellij/ ~/.config/
+nvim
+chmod +x scripts/symlink.sh 
+rm -rf ~/.config/hypr/
+nvim
+cd scripts/
+./symlink.sh
+sudo pacman -S stow
+./symlink.sh
+rm ~/.config/rofi
+rm ~/.config/waybar
+rm ~/.config/git
+rm ~/.config/fish
+./symlink.sh
+hyprctl reload
+hyprctl reload
+cd .config/hypr/
+ls
+cd scripts/
+chmod +x cliphist.sh 
+ls
+chmod +x screenshot.sh 
+hyprctl reload
+nvim
+yay -S cliphist wl-clipboard rofi jq libnotify<\n>
+hyprctl reload
+z Di3go0-0_dots/
+cd Di3go0-0_dots/
+~/.cache/starship/init.nu<\n>
+nvim
+./.config/nushell/
+ls
+./install.sh
+chmod +x install.sh
+nvim
+z Di3go0-0_dots/
+z Di3go0-0_dots/
+zoxide init nushell | save -f ~/.zoxide.nu<\n>
+z Di3go0-0_dots/
+source ~/.cache/starship/init.nu<\n>
+sudo pacman -S starship<\n>
+mkdir ~/.cache/starship<\n>starship init nu | save -f ~/.cache/starship/init.nu<\n>
+z Di3go0-0_dots/
+hyprctl reload
+z Di3go0-0_dots/
+hyprctl reload.
+nvim
+z Di3go0-0_dots/
