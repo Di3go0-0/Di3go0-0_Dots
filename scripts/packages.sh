@@ -44,7 +44,8 @@ install_packages() {
     nodejs \
     npm \
     wl-clipboard \
-    hyprlock
+    hyprlock \
+    jq
 
   echo -e "${GREEN}Installing packages from AUR via yay...${NC}"
   yay -S --needed --noconfirm \
@@ -53,7 +54,8 @@ install_packages() {
     nushell \
     nvm \
     startship \
-    wlogout
+    wlogout \
+    cliphist
 
 }
 
