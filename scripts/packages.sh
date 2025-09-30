@@ -46,7 +46,9 @@ install_packages() {
     wl-clipboard \
     hyprlock \
     jq \
-    libnotify
+    libnotify \
+    swappy \
+    xdg-user-dirs
 
   echo -e "${GREEN}Installing packages from AUR via yay...${NC}"
   yay -S --needed --noconfirm \
@@ -56,7 +58,9 @@ install_packages() {
     nvm \
     startship \
     wlogout \
-    cliphist
+    cliphist \
+    grimblast-git \
+    hyprshade
 
 }
 
