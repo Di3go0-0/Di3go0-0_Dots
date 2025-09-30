@@ -48,7 +48,8 @@ install_packages() {
     jq \
     libnotify \
     swappy \
-    xdg-user-dirs
+    xdg-user-dirs \
+    gettext
 
   echo -e "${GREEN}Installing packages from AUR via yay...${NC}"
   yay -S --needed --noconfirm \
