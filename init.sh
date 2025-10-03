@@ -26,3 +26,8 @@ fi
 if [ -f "$(dirname "$0")/scripts/grub.sh" ]; then
   bash "$(dirname "$0")/scripts/grub.sh"
 fi
+
+# Execute spotify
+if [ -f "$(dirname "$0")/scripts/spotify.sh" ]; then
+  bash "$(dirname "$0")/scripts/spotify.sh"
+fi
