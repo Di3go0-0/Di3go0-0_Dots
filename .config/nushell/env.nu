@@ -19,4 +19,9 @@
 
 $env.PATH = ($env.PATH | split row (char esep) | append '/usr/bin' | append '/usr/local/bin')
 
+export-env {
+    $env.LD_LIBRARY_PATH = "/opt/oracle/instantclient_23_9"
+    $env.ORACLE_HOME = "/opt/oracle/instantclient_23_9"
+    $env.PATH = ($env.PATH | split row (char esep) | prepend "/opt/oracle/instantclient_23_9" | str join (char esep))
+}
 
