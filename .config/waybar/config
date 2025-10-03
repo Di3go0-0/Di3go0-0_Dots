@@ -132,7 +132,7 @@
 
     "custom/power": {
         "format": "<span color='#f7768e'>⏻</span>",
-        "on-click": "wlogout"
+        "on-click": "~/Di3go0-0_dots/.config/hypr/scripts/logoutlaunch.sh"
     },
 
     "custom/updates": {
