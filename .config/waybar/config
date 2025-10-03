@@ -86,6 +86,7 @@
         "tooltip": true,
         "interval": 60,
         "format": "{:%H:%M %p}",
+        "format": "{:%H:%M}",
         "tooltip-format": "{:%Y-%m-%d}"
     },
 
