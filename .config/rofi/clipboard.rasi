@@ -4,7 +4,6 @@ configuration {
     modi:                        "drun";
     show-icons:                  false;
 }
-
 @theme "~/.config/rofi/themes/catppuccin-macchiato.rasi"
 
 // Main //
