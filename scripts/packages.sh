@@ -50,7 +50,8 @@ install_packages() {
     swappy \
     xdg-user-dirs \
     gettext \
-    dbeaver
+    dbeaver \
+    ranger
 
   echo -e "${GREEN}Installing packages from AUR via yay...${NC}"
   yay -S --needed --noconfirm \
