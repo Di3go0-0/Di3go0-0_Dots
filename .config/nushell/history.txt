@@ -579,3 +579,137 @@ z Di3go0-0_dots/
 hyprctl reload.
 nvim
 z Di3go0-0_dots/
+cd .config/
+z Workspace
+ls
+git clone https://github.com/nabakdev/dotfiles/tree/main/.config/wlogout
+git clone https://github.com/nabakdev/dotfiles/
+sudo pacman -S ranger
+kitty -e ranger
+wlogout -p layer-shell
+wofi
+sudo pacman -S wofi
+sudo pacman -R wofi
+waybar
+nvim
+wlogout
+wlogout -b 6 -p layer-shell -L ~/.config/wlogout/layout_1 -s ~/.config/wlogout/style_1.css<\n>
+wlogout -b 4 -p layer-shell -L ~/.config/wlogout/layout_2 -s ~/.config/wlogout/style_2.css<\n>
+wlogout -v<\n>
+wlogout -p layer-shell<\n>
+wlogout -p layer-shell -L ~/.config/wlogout/config -s ~/.config/wlogout/style.css<\n>
+z Workspace
+git clone github.com/xeji01/hyprstellar
+git clone github.com/xeji01/hyprstellar/
+git clone https://github.com/xeji01/hyprstellar/
+wlogout -p layer-shell -L ~/.config/wlogout/layout -s ~/.config/wlogout/style.css<\n>
+nvim
+wlogout --layout ~/.config/wlogout/layout --css ~/.config/wlogout/style.css<\n>
+z Di3go0-0_dots/
+lsasd
+ls
+console.log
+ls
+sudo pacman -Suy
+yay -S spotify
+gpg --keyserver keyserver.ubuntu.com --recv-keys C85668DF69375001<\n>
+yay -S spotify<\n>
+yay -S spicetify-cli<\n>
+spicetify backup apply<\n>
+~/.config/spotify/prefs<\n>
+cd ~/.config/spotify/prefs<\n>
+nano ~/.config/spotify/prefs
+touch ~/.config/spotify/prefs
+mkdir ~/.confgi/spotify
+touch ~/.config/spotify/prefs
+mkdir ~/.config/spotify
+touch ~/.config/spotify/prefs
+spicetify backup apply<\n>
+sudo chmod a+wr -R /opt/spotify<\n>sudo chmod a+wr -R /opt/spotify/Apps<\n>
+spicetify apply<\n>
+nvim
+nvim
+nvim
+cd Di3go0-0_dots/scripts/
+chmod +x spotify.sh 
+killall waybar; waybar<\n>
+killall wayba
+killall waybar
+waybar
+cd Di3go0-0_dots/scripts/
+cd ../.config/hypr/scripts/
+chmod +x waybar-restart.sh 
+vim
+sudo pacman -S btop
+btop
+btop
+cd Di3go0-0_dots/
+cd .config/hypr/scripts/
+./logoutlaunch.sh
+z Workspace/
+ls
+nvim 
+z Di3go0-0_dots/
+nvim 
+z Di3go0-0_dots/
+cd .config/hypr/scripts/
+./hyprlock-random.sh
+z Workspace/
+nvim 
+ls
+gh repo clone scripts
+gh auth login
+gh repo clone scripts
+ls
+cd scripts/
+nvim 
+chmod +x ./install.sh 
+./install.sh
+nvim 
+./install.sh
+./openconnect.sh
+openconnect
+sudo pacman -S openconnect
+nvim
+./openconnect.sh
+./install.sh
+./pc.sh
+remmina
+./install.sh
+nvim 
+./install.sh
+./pc.sh
+nvim
+./openconnect.sh
+./install.sh
+cd scripts/
+./pc.sh
+sudo mkdir -p /opt/oracle
+cd Downloads/
+sudo mv *.zip/ /opt/oracle/
+cd /opt/oracle/
+sudo unzip instantclient-basic-linux.x64-23.9.0.25.07.zip 
+cd /opt/oracle/
+ls
+z Di3go0-0_dots/
+nvim 
+cd ..
+z Projects
+z scripts
+./openconnect.sh
+ls
+z Workspace/scripts
+z Workspace/
+ls
+cd scripts/
+cd  home
+cd /
+z Projects/scripts
+ls
+nvim 
+code ~/.ssh/config # Si tienes VS Code o un editor gráfico<\n># o<\n>micro ~/.ssh/config # Si usas micro (u otro editor de terminal como nano, vim)
+cd ..
+z di
+nvim 
+# Quita el archivo del seguimiento de git pero lo mantiene en local<\n>git rm --cached history.txt<\n><\n># Confirma el cambio<\n>git commit -m "Dejar de trackear history.txt"<\n><\n># Sube el cambio al remoto<\n>git push <\n>
+git rm --cached .config/nushell/history.txt 
