@@ -49,7 +49,8 @@ install_packages() {
     libnotify \
     swappy \
     xdg-user-dirs \
-    gettext
+    gettext \
+    dbeaver
 
   echo -e "${GREEN}Installing packages from AUR via yay...${NC}"
   yay -S --needed --noconfirm \
@@ -61,7 +62,9 @@ install_packages() {
     wlogout \
     cliphist \
     grimblast-git \
-    hyprshade
+    hyprshade \
+    bitwarden \
+    bitwarden-cli
 
 }
 
