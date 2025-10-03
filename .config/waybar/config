@@ -10,20 +10,22 @@
     "modules-right": ["network", "pulseaudio", "battery", "clock", "custom/power"],
 
     "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " {volume}%",
+        "format-bluetooth": "{volume}% {icon}",
         "tooltip": false,
         "scroll-step": 5,
-        "format": "{icon} {volume}%",
-        "format-muted": "{icon} {volume}%",
-        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-        "on-click-right": "pavucontrol --class='pavucontrol-float'",
+        "on-click": "pavucontrol",
         "format-icons": {
-            "default": [
-                "<span color='#7aa2f7'> </span>",
-                "<span color='#7aa2f7'> </span>",
-                "<span color='#7aa2f7'> </span>"
-            ]
-        }
-    },
+          "headphone": "",
+          "hands-free": "",
+          "headset": "",
+          "phone": "",
+          "portable": "",
+          "car": "",
+          "default": ["", ""]
+        },    
+      },
 
     "hyprland/workspaces": {
         "disable-scroll": true,
