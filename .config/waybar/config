@@ -2,7 +2,7 @@
 {
     "layer": "top",
     "width": "90%",
-    "margin-top": 5,
+    "margin-top": 0,
     "margin-bottom": 0,
 
     "modules-left": ["custom/launcher", "cpu", "memory", "disk"],
