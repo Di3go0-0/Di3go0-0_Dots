@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # Ruta base de los dotfiles
-DOTFILES="$HOME/di3go0-0_dots/Resources/wallpapers"
+DOTFILES="/home/diego/Di3go0-0_dots/Resources/wallpapers"
 
 # Wallpaper a usar en todos los monitores
-WALL="$DOTFILES/relaxed_mario.jpg"
+WALL="$DOTFILES/IMG0020.jpg"
 
 # Generar hyprpaper.conf temporal
 cat >/tmp/hyprpaper.conf <<EOF
