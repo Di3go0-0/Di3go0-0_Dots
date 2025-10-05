@@ -1,0 +1,5 @@
+sudo pacman -Syu
+sudo pacman -S nvidia nvidia-utils nvidia-settings nvidia-dkms # (si usas dkms)
+sudo mkinitcpio -P
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+reboot
