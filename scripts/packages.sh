@@ -64,7 +64,8 @@ install_packages() {
     cliphist \
     grimblast-git \
     hyprshade \
-    bitwarden
+    bitwarden \
+    eww
 }
 
 # Main script execution
