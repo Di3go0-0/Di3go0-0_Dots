@@ -1006,8 +1006,8 @@ def fzfnvim [] {
 
 export-env {
   # Configuración de Oracle Instant Client
-  $env.LD_LIBRARY_PATH = "/opt/oracle/instantclient_23_7/"
-  $env.ORACLE_HOME = "/opt/oracle/instantclient_23_7/"
+  $env.LD_LIBRARY_PATH = "/opt/oracle/instantclient_23_9/"
+  $env.ORACLE_HOME = "/opt/oracle/instantclient_23_9/"
   $env.PATH = ($env.PATH | prepend [
     "/opt/oracle/instantclient_23_7/"
     "/home/linuxbrew/.linuxbrew/bin"
