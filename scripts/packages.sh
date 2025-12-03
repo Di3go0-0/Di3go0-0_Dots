@@ -51,7 +51,9 @@ install_packages() {
     xdg-user-dirs \
     gettext \
     dbeaver \
-    ranger
+    ranger \
+    blueman \
+    blueman-manager
 
   echo -e "${GREEN}Installing packages from AUR via yay...${NC}"
   yay -S --needed --noconfirm \

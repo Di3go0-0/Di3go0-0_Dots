@@ -1037,3 +1037,14 @@ if (not (is-zellij-running)) and (not (which zellij | is-empty)) {
 
 # Inicializar Zellij
 initialize-zellij
+
+
+
+# Node.js LTS installed via nvm
+let node_root = ($env.HOME | path join ".nvm/versions/node")
+
+if ($node_root | path exists) {
+    let latest = (ls $node_root | sort-by name | last | get name)
+    $env.PATH = ($env.PATH | prepend ($node_root | path join $latest "bin"))
+}
+
