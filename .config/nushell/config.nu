@@ -1004,15 +1004,6 @@ def fzfnvim [] {
  source ~/.config/bash-env.nu
 
 
-export-env {
-  # Configuración de Oracle Instant Client
-  $env.LD_LIBRARY_PATH = "/opt/oracle/instantclient_23_9/"
-  $env.ORACLE_HOME = "/opt/oracle/instantclient_23_9/"
-  $env.PATH = ($env.PATH | prepend [
-    "/opt/oracle/instantclient_23_7/"
-    "/home/linuxbrew/.linuxbrew/bin"
-  ])
-}
 
 # Definición de constantes
 const ZELLIJ = "zellij"
@@ -1040,11 +1031,6 @@ initialize-zellij
 
 
 
-# Node.js LTS installed via nvm
-let node_root = ($env.HOME | path join ".nvm/versions/node")
-
-if ($node_root | path exists) {
-    let latest = (ls $node_root | sort-by name | last | get name)
-    $env.PATH = ($env.PATH | prepend ($node_root | path join $latest "bin"))
-}
+alias ls = ^ls --color=auto
+alias grep = ^grep --color=auto
 
