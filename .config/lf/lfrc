@@ -23,6 +23,9 @@ map D delete
 
 map ? ${{ glow -p ~/.config/lf/maps.md }}
 
+# ATENTO: Se cambió ^. por <c-.> para una mejor compatibilidad
+map zh set hidden! 
+
 
 # --- Funciones ---
 cmd drag_files ${{
@@ -96,7 +99,7 @@ cmd open ${{
         audio/*)
             setsid -f kitty mpv "$f" >/dev/null 2>&1
             ;;
-          
+            
         application/zip|application/x-tar|application/gzip|application/x-bzip2|application/x-7z-compressed|application/vnd.rar|application/x-rar)
             lf -remote "send $id extract_handler"
             ;;
