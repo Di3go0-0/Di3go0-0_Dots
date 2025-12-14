@@ -1,6 +1,6 @@
 * {
     background-image: none;
-    font-size: ${fntSize}px;
+    font-family: "CaskaydiaCove Nerd Font Mono";
 }
 
 @import "$HOME/.config/wlogout/theme.css";
