@@ -139,9 +139,9 @@
 
     "network": {
         "tooltip": true,
-        "tooltip-format": "{bandwidthUpBits} ↑ {bandwidthDownBits} ↓",
-        "format-wifi": "<span color='#9ece6a'> </span> {bandwidthDownBits}",
-        "format-ethernet": "<span color='#9ece6a'>󰈀</span> ",
+        "tooltip-format": "{ipaddr}/{cidr} ",
+        "format-wifi": "<span color='#9ece6a'>󰖩 </span> {essid}",
+        "format-ethernet": "<span color='#9ece6a'>󰈁</span> {ifname}",
         "format-disconnected": "<span color='#f7768e'>󰈂 </span> Disconnected",
         "on-click": "nm-connection-editor",
         "interval": 30
