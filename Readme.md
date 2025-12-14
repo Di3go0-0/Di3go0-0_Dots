@@ -220,3 +220,9 @@ Your work has been invaluable in enhancing my personal setup. Thank you for insp
 Contributions are always welcome!
 
 If you have any suggestions, improvements, or fixes, feel free to open an issue or submit a pull request. Let's make this setup even better together 🚀.
+
+## Nerd Font for Hyprland
+
+I use **CaskaydiaCove Nerd Font Mono** for my Hyprland setup.
+
+**Download link:** [CascadiaCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/CascadiaCode.zip)
