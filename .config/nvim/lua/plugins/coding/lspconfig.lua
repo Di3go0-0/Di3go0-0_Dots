@@ -76,11 +76,56 @@ end
 -- Importa las capacidades de autocompletado de `nvim-cmp` en LSP
 -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- Configuración de servidores LSP
+-- return {
+-- 	{
+-- 		"neovim/nvim-lspconfig",
+-- 		opts = {
+-- 			servers = {
+-- 				cssls = {
+-- 					capabilities = capabilities,
+-- 					settings = {
+-- 						css = { validate = true },
+-- 						less = { validate = true },
+-- 						scss = { validate = true },
+-- 					},
+-- 				},
+-- 				jsonls = {
+-- 					-- lazy-load schemastore when needed
+-- 					on_new_config = function(new_config)
+-- 						new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+-- 						vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+-- 					end,
+-- 					settings = {
+-- 						json = {
+-- 							format = {
+-- 								enable = true,
+-- 							},
+-- 							validate = { enable = true },
+-- 						},
+-- 					},
+-- 				},
+-- 			},
+-- 		},
+-- 	},
+-- } -- vim: ts=2 sts=2 sw=2 et
+local capabilities = require("cmp_nvim_lsp").default_capabilities() -- Asegúrate de que esta línea esté descomentada y definida.
+
 return {
 	{
 		"neovim/nvim-lspconfig",
 		opts = {
 			servers = {
+				-- === AÑADE ESTO PARA TYPESCRIPT ===
+				tsserver = {
+					capabilities = capabilities,
+					-- Opciones específicas para tsserver (generalmente funciona bien por defecto)
+					-- Si usas una versión específica de typescript, podrías necesitar:
+					-- init_options = {
+					--   hostInfo = "neovim",
+					-- },
+				},
+				-- ===================================
+
 				cssls = {
 					capabilities = capabilities,
 					settings = {
@@ -90,21 +135,9 @@ return {
 					},
 				},
 				jsonls = {
-					-- lazy-load schemastore when needed
-					on_new_config = function(new_config)
-						new_config.settings.json.schemas = new_config.settings.json.schemas or {}
-						vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
-					end,
-					settings = {
-						json = {
-							format = {
-								enable = true,
-							},
-							validate = { enable = true },
-						},
-					},
+					-- ... configuración de jsonls
 				},
 			},
 		},
 	},
-} -- vim: ts=2 sts=2 sw=2 et
+}
