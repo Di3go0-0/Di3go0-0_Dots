@@ -128,7 +128,7 @@ tooltip label {
 #wireplumber,
 #workspaces,
 #custom-backlight,
-#custom-browser,
+#custom-bluetooth #custom-browser,
 #custom-cava,
 #custom-cycle_wall,
 #custom-file_manager,
@@ -277,4 +277,25 @@ tooltip label {
 #custom-launcher {
   margin-left: 8px;
   color: #7dcfff;
+}
+
+/* Estilo base para el módulo de Bluetooth */
+#custom-bluetooth {
+  color: #ffffff; /* Color de texto predeterminado */
+}
+
+/* Estado: Apagado */
+#custom-bluetooth.off {
+  color: #ff6e6e; /* Rojo/Naranja claro */
+}
+
+/* Estado: Encendido, sin dispositivos conectados */
+#custom-bluetooth.on {
+  color: #7aa2f7; /* Azul claro */
+}
+
+/* Estado: Dispositivo conectado */
+#custom-bluetooth.connected {
+  color: #9ece6a; /* Verde/Cian claro */
+  font-weight: bold; /* Opcional: poner en negrita cuando está conectado */
 }
