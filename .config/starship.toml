@@ -43,9 +43,9 @@ text_light = "#2A2A37" # Dark gray, sumiInk4
 # Pink mustache icon for the prompt
 [character]
 #(fg:#A3BE8C) 
-success_symbol = "[󱗞](fg:#957FB8)" # Mustache in dark pink tone
+# 󱗞 ⚛  ❛❟❛ ☣︎  ❟❛❟ ☢ ✇
+success_symbol = "[Aᴋᴀᴛsᴜᴋɪ ☁](fg:#957FB8)" # Mustache in dark pink tone
 error_symbol = "[󱗞](fg:red)"       # Mustache in red if there is an error
-
 
 
 
