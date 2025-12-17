@@ -78,6 +78,14 @@ return {
 				{ name = "emmet_nvim" },
 			})
 
+			-- Configuración específica para archivos SQL
+			cmp.setup.filetype({'sql'}, {
+				sources = cmp.config.sources({
+					{ name = "vim-dadbod-completion" },
+					{ name = "buffer" },
+				}),
+			})
+
 			-- Configuración de íconos para cada tipo de fuente
 			opts.formatting = {
 				format = function(entry, vim_item)
