@@ -20,3 +20,5 @@ require("config.lazy")
 -- vim.o.cursorline = true
 vim.wo.wrap = false
 vim.g.have_nerd_font = true
+
+vim.g.db_ui_use_nerd_fonts = 1
