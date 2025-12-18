@@ -175,15 +175,24 @@ return {
 				provider = "copilot",
 				providers = {
 					copilot = {
-						model = "claude-sonnet-4",
+						-- model = "claude-sonnet-4",
+						-- model = "claude-haiku-4.5",
+						-- model = "grok-code-fast-1",
+						-- model = "gemini-2.5-pro",
+						model = "gemini-3-pro-preview",
 						-- model = "gpt-4o",
 					},
 				},
 				cursor_applying_provider = "copilot",
 				auto_suggestions_provider = "copilot",
 				behaviour = {
+					auto_suggestions = true,
 					enable_cursor_planning_mode = true,
 				},
+				-- suggestions = {
+				-- 	debounce = 60,
+				-- 	throttle = 60,
+				-- },
 				-- File selector configuration
 				--- @alias FileSelectorProvider "native" | "fzf" | "mini.pick" | "snacks" | "telescope" | string
 				file_selector = {
@@ -237,19 +246,5 @@ return {
 				},
 			},
 		},
-		require("avante").setup({
-			-- system_prompt as function ensures LLM always has latest MCP server state
-			-- This is evaluated for every message, even in existing chats
-			system_prompt = function()
-				local hub = require("mcphub").get_hub_instance()
-				return hub and hub:get_active_servers_prompt() or ""
-			end,
-			-- Using function prevents requiring mcphub before it's loaded
-			custom_tools = function()
-				return {
-					require("mcphub.extensions.avante").mcp_tool(),
-				}
-			end,
-		}),
 	},
 }
