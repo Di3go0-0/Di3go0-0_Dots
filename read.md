@@ -1,84 +1,196 @@
 
-# Dots | Hyprland & Terminal Setup
+![Font Preview](Resources/Font.png)
 
-## *A modular, automated workflow for efficiency*
+# Di3go0-0 | Personal Dots
 
----
+A clean, minimal and highly productive **Wayland-based Linux setup**, focused on performance, aesthetics, and developer ergonomics.
 
-## 🖥️ Desktop Environment
-
-This setup focuses on a high-performance Wayland experience:
-
-* **Window Manager:** [Hyprland](https://hyprland.org/) (Dynamic Tiling)
-* **Status Bar:** [Waybar](https://github.com/Alexays/Waybar) (Highly customizable)
-* **Application Launcher:** [Rofi (Wayland)](https://github.com/davatorium/rofi)
-* **Logout Menu:** [Wlogout](https://www.google.com/search?q=https://github.com/Artsy0/wlogout)
-
-## 🐚 Terminal Ecosystem
-
-My terminal workflow is designed for speed and modern syntax:
-
-* **Text Editor:** [Neovim](https://neovim.io/) (The heart of my coding)
-* **Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/) (GPU-accelerated)
-* **Shells:** [Nushell](https://www.nushell.sh/) & [Fish](https://fishshell.com/)
-* **Multiplexer:** [Zellij](https://zellij.dev/)
-* **Prompt:** [Starship](https://starship.rs/)
+This repository is **no longer an installation guide**. It is a **presentation** of my personal environment, tools, and workflow philosophy.
 
 ---
 
-## 📂 Repository Structure
+## Overview
+
+My setup is divided into two main layers:
+
+### Desktop Environment (Wayland)
+
+* **Hyprland** – Dynamic Wayland compositor
+* **Rofi** – Application launcher
+* **Waybar** – Status bar
+* **Wlogout** – Power menu
+
+### Development & Terminal Stack
+
+* **Neovim** – Code editor
+* **Kitty** – GPU-accelerated terminal
+* **Fish / Nushell** – Interactive shells
+* **Starship** – Prompt
+* **Zellij** – Terminal multiplexer
+
+This combination gives me a fast, keyboard-driven workflow with full control over visuals and behavior.
+
+---
+
+## Repository Structure
 
 ```text
 .
-├── init.sh                <-- Run this to start the setup
+├── init.sh
+├── PostingClient.md
+├── Readme.md
 ├── Resources
 │   ├── Font.png
-│   └── wallpapers/        <-- Hand-picked collection (Tokyo Night, Arcade, etc.)
-├── scripts/
-│   ├── grub.sh            # Theme & Boot config
-│   ├── nushell.sh         # Shell environment setup
-│   ├── packages.sh        # Dependency management
-│   ├── sddm-astronaut.sh  # Login manager theme
-│   └── symlink.sh         # Dotfiles linking via GNU Stow
+│   └── wallpapers
+├── scripts
+│   ├── grub.sh
+│   ├── imagen.sh
+│   ├── nushell.sh
+│   ├── packages.sh
+│   ├── sddm-astronaut-setup.sh
+│   ├── spotify.sh
+│   └── symlink.sh
 └── stow.md
-
 ```
 
----
+### Entry Point
 
-## 🚀 One-Step Installation
-
-The entire environment is automated. To deploy this configuration on a fresh system, simply execute the initialization script:
+To initialize the entire setup:
 
 ```bash
-chmod +x init.sh
 ./init.sh
-
 ```
 
-> [!TIP]
-> This script handles package installation, shell configuration, and UI styling automatically.
+The `init.sh` script orchestrates all other scripts and prepares the environment automatically.
 
 ---
 
-## क्यों (Why this setup?)
+## Why This Configuration
 
-* **Performance:** Utilizing Wayland and GPU-accelerated tools (Kitty, Hyprland) ensures a lag-free experience.
-* **Modernity:** Moving from traditional shells to **Nushell** allows for structured data handling in the terminal.
-* **Aesthetics:** A consistent theme across SDDM, Waybar, and Neovim creates a distraction-free environment.
-* **Automation:** Using `init.sh` and symlinking ensures that moving to a new machine takes minutes, not hours.
+### Hyprland
+
+* True Wayland compositor with smooth animations
+* Tiling + dynamic layouts
+* Extremely configurable
+* Excellent performance on modern GPUs
+
+Hyprland allows me to keep a **minimal UI** while still having powerful window management.
 
 ---
 
-## 🔡 Required Font
+### Rofi
 
-To display icons and symbols correctly in the terminal and Waybar, I use the **CaskaydiaCove Nerd Font Mono**.
+* Fast application launcher
+* Scriptable and themeable
+* Keyboard-first interaction
 
-**Download:** [CascadiaCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/CascadiaCode.zip)
+Rofi keeps me out of menus and inside the keyboard flow.
 
-1. Download the ZIP.
-2. Extract files to `~/.local/share/fonts/`.
-3. Update font cache: `fc-cache -fv`.
+---
+
+### Waybar
+
+* Modular status bar
+* Full Wayland support
+* Highly customizable via CSS and JSON
+
+Waybar gives visibility without clutter.
+
+---
+
+### Wlogout
+
+* Clean power menu for Wayland
+* Keyboard and mouse friendly
+
+Simple, visual, and consistent with the rest of the setup.
+
+---
+
+### Neovim
+
+* Modal editing
+* Lua-based configuration
+* Massive plugin ecosystem
+
+Neovim is the core of my development workflow.
+
+---
+
+### Kitty
+
+* GPU accelerated
+* Low latency
+* Great font rendering
+
+Kitty pairs perfectly with Neovim and Zellij.
+
+---
+
+### Fish & Nushell
+
+* **Fish**: user-friendly, great defaults, strong autocompletion
+* **Nushell**: structured data, modern shell philosophy
+
+I switch between them depending on the task.
+
+---
+
+### Starship
+
+* Fast
+* Cross-shell
+* Fully customizable
+
+My prompt shows only what matters:
+
+* Current directory
+* Git branch
+* Command duration
+* Time
+
+---
+
+### Zellij
+
+* Terminal multiplexer
+* Beginner-friendly
+* Strong session management
+
+Zellij lets me manage complex terminal workflows cleanly.
+
+---
+
+## Nerd Font
+
+I use **CaskaydiaCove Nerd Font Mono** for my Hyprland setup.
+
+**Download link:**
+
+[https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/CascadiaCode.zip](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/CascadiaCode.zip)
+
+This font provides excellent readability and full Nerd Font icon support.
+
+> ⚠️ This font choice may change in the future, but it represents the current setup.
+
+---
+
+## Philosophy
+
+* Minimal UI, maximum control
+* Keyboard-driven workflow
+* Fast startup and low overhead
+* Clear separation between system, UI, and development tools
+
+This setup is built to **stay out of the way** and let me focus on thinking and building.
+
+---
+
+## Notes
+
+* This repository reflects **my personal workflow**
+* It is opinionated by design
+* Not intended to be universal
 
 ---
 
@@ -87,5 +199,3 @@ To display icons and symbols correctly in the terminal and Waybar, I use the **C
 Special thanks to [Gentleman-Programming](https://github.com/Gentleman-Programming) and [Nikolov Lazar](https://github.com/nikolovlazar) for the inspiration.
 
 Feel free to fork this repo and adapt it to your own workflow!
-
-Would you like me to add more detail to any specific script description or include the specific keybindings for Hyprland?

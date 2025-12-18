@@ -266,12 +266,12 @@ tooltip label {
 
 /* Y si quieres estilos específicos para el estado crítico de la CPU: */
 #temperature-cpu.critical {
-  background-color: #ff0000;
+  color: #ff0000;
 }
 
 /* Y para el estado crítico de la GPU: */
 #temperature-gpu.critical {
-  background-color: #ff0000;
+  color: #ff0000;
 }
 
 #custom-launcher {
