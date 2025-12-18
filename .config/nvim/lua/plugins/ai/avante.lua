@@ -179,26 +179,37 @@ return {
 						-- model = "claude-haiku-4.5",
 						-- model = "grok-code-fast-1",
 						-- model = "gemini-2.5-pro",
-						model = "gemini-3-pro-preview",
+						-- model = "gemini-3-pro-preview",
 						-- model = "gpt-4o",
+						model = "gpt-4o-mini",
 					},
 				},
 				cursor_applying_provider = "copilot",
 				auto_suggestions_provider = "copilot",
 				behaviour = {
-					auto_suggestions = true,
-					enable_cursor_planning_mode = true,
+					--- @alias auto_suggestions true| false | boolean
+					auto_suggestions = false,
+					enable_cursor_planning_mode = false,
 				},
-				-- suggestions = {
-				-- 	debounce = 60,
-				-- 	throttle = 60,
-				-- },
+				suggestions = {
+					debounce = 10000,
+					throttle = 10000,
+				},
+				mappings = {
+					suggestion = {
+						accept = "<C-]>", -- Control + ] para ACEPTAR
+						dismiss = "<C-[>", -- Control + [ para RECHAZAR
+						next = "<M-]>", -- Alt + ] (Siguiente sugerencia)
+						prev = "<M-[>", -- Alt + [ (Anterior sugerencia)
+					},
+				},
 				-- File selector configuration
 				--- @alias FileSelectorProvider "native" | "fzf" | "mini.pick" | "snacks" | "telescope" | string
 				file_selector = {
 					provider = "snacks", -- Avoid native provider issues
 					provider_opts = {},
 				},
+
 				windows = {
 					---@type "right" | "left" | "top" | "bottom" | "smart"
 					position = "right", -- the position of the sidebar
