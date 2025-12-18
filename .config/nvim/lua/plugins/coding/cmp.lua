@@ -1,28 +1,28 @@
 return {
-	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
-		config = function()
-			require("copilot").setup({
-				-- IMPORTANTE: Habilitamos la sugerencia nativa para el texto largo
-				suggestion = {
-					enabled = true,
-					auto_trigger = true, -- Esto muestra el texto gris automáticamente
-					debounce = 75,
-					keymap = {
-						accept = "<C-l>", -- Presiona Alt + l para aceptar la sugerencia larga
-						accept_word = false,
-						accept_line = false,
-						next = "<C-k>",
-						prev = "<C-j>",
-						dismiss = "<C-h>",
-					},
-				},
-				panel = { enabled = false },
-			})
-		end,
-	},
+	-- {
+	-- 	"zbirenbaum/copilot.lua",
+	-- 	cmd = "Copilot",
+	-- 	event = "InsertEnter",
+	-- 	config = function()
+	-- 		require("copilot").setup({
+	-- 			-- IMPORTANTE: Habilitamos la sugerencia nativa para el texto largo
+	-- 			suggestion = {
+	-- 				enabled = true,
+	-- 				auto_trigger = true, -- Esto muestra el texto gris automáticamente
+	-- 				debounce = 75,
+	-- 				keymap = {
+	-- 					accept = "<C-l>", -- Presiona Alt + l para aceptar la sugerencia larga
+	-- 					accept_word = false,
+	-- 					accept_line = false,
+	-- 					next = "<C-k>",
+	-- 					prev = "<C-j>",
+	-- 					dismiss = "<C-h>",
+	-- 				},
+	-- 			},
+	-- 			panel = { enabled = false },
+	-- 		})
+	-- 	end,
+	-- },
 	{
 		"zbirenbaum/copilot-cmp",
 		dependencies = "copilot.lua",
@@ -39,7 +39,7 @@ return {
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-git",
 			"hrsh7th/cmp-cmdline",
-			"zbirenbaum/copilot-cmp",
+			-- "zbirenbaum/copilot-cmp",
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
 			"windwp/nvim-autopairs",
@@ -103,7 +103,7 @@ return {
 
 			-- Fuentes de autocompletado
 			opts.sources = cmp.config.sources({
-				{ name = "copilot", priority = 1000 }, -- Ahora sí funcionará
+				-- { name = "copilot", priority = 1000 }, -- Ahora sí funcionará
 				{ name = "nvim_lsp", priority = 750 },
 				{ name = "luasnip", priority = 500 },
 				{ name = "buffer", priority = 250 },
@@ -121,7 +121,7 @@ return {
 			opts.formatting = {
 				format = function(entry, vim_item)
 					local icons = {
-						copilot = "",
+						-- copilot = "",
 						nvim_lsp = "",
 						buffer = "﬘",
 						path = "",
