@@ -1,15 +1,22 @@
 return {
 	{
+		"zbirenbaum/copilot-cmp",
+		dependencies = "copilot.lua",
+		config = function()
+			require("copilot_cmp").setup()
+		end,
+	},
+
+	{
 		"hrsh7th/nvim-cmp",
-		dependences = {
+		-- CORRECCIÓN: 'dependencies' con 'i'
+		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
-			"cmp-cmp.lua",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-git",
 			"hrsh7th/cmp-cmdline",
-			-- "hrsh7th/cmp-copilot",
+			-- "zbirenbaum/copilot-cmp",
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
 			"windwp/nvim-autopairs",
@@ -70,16 +77,14 @@ return {
 
 			-- Fuentes de autocompletado
 			opts.sources = cmp.config.sources({
-				-- { name = "copilot", priority = 1000 },
+				-- { name = "copilot", priority = 1000 }, -- Ahora sí funcionará
 				{ name = "nvim_lsp", priority = 750 },
-				{ name = "buffer", priority = 500 },
-				{ name = "path", priority = 250 },
-				{ name = "luasnip", priority = 300 },
-				{ name = "emmet_nvim" },
+				{ name = "luasnip", priority = 500 },
+				{ name = "buffer", priority = 250 },
+				{ name = "path", priority = 100 },
 			})
-
 			-- Configuración específica para archivos SQL
-			cmp.setup.filetype({'sql'}, {
+			cmp.setup.filetype({ "sql" }, {
 				sources = cmp.config.sources({
 					{ name = "vim-dadbod-completion" },
 					{ name = "buffer" },
@@ -95,13 +100,12 @@ return {
 						buffer = "﬘",
 						path = "",
 						luasnip = "",
-						emmet_nvim = "",
 					}
-					vim_item.kind = string.format("%s %s", icons[entry.source.name], vim_item.kind)
+					local icon = icons[entry.source.name] or " "
+					vim_item.kind = string.format("%s %s", icon, vim_item.kind)
 					return vim_item
 				end,
 			}
-
 			-- Configuración de ventanas de autocompletado y documentación
 			opts.window = {
 				completion = {
