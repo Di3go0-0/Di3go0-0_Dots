@@ -3,5 +3,5 @@ return {
 	{ import = "plugins.ai.copilot-chat" },
 	{ import = "plugins.ai.copilot" },
 	-- { import = "plugins.ai.mcphub" },
-	{ import = "plugins.ai.opencode" },
+	-- { import = "plugins.ai.opencode" },
 }
