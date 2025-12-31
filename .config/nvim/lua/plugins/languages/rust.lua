@@ -22,7 +22,6 @@ return {
 	},
 	{
 		"mrcjkb/rustaceanvim",
-		version = vim.fn.has("nvim-0.10.0") == 0 and "^4" or false,
 		ft = { "rust" },
 		opts = {
 			server = {
@@ -44,27 +43,20 @@ return {
 								enable = true,
 							},
 						},
-						-- Always enable clippy lints
-						checkOnSave = {
-							command = "clippy",
-							extraArgs = { "--all", "--", "-W", "clippy::all" },
-						},
-						-- Enable diagnostics
+						-- Add clippy lints for Rust if using rust-analyzer
+						checkOnSave = diagnostics == "rust-analyzer",
+						-- Enable diagnostics if using rust-analyzer
 						diagnostics = {
-							enable = true,
+							enable = diagnostics == "rust-analyzer",
 						},
 						procMacro = {
 							enable = true,
-							ignored = {
-								["async-trait"] = { "async_trait" },
-								["napi-derive"] = { "napi" },
-								["async-recursion"] = { "async_recursion" },
-							},
 						},
 						files = {
-							excludeDirs = {
+							exclude = {
 								".direnv",
 								".git",
+								".jj",
 								".github",
 								".gitlab",
 								"bin",
@@ -73,25 +65,18 @@ return {
 								"venv",
 								".venv",
 							},
+							-- Avoid Roots Scanned hanging, see https://github.com/rust-lang/rust-analyzer/issues/12613#issuecomment-2096386344
+							watcher = "client",
 						},
 					},
 				},
 			},
 		},
 		config = function(_, opts)
-			-- Configurar la ruta específica de rust-analyzer
-			opts.server = vim.tbl_deep_extend("force", opts.server or {}, {
-				cmd = { "/home/diego/.cargo/bin/rust-analyzer" },
-			})
-
 			if LazyVim.has("mason.nvim") then
-				local package_path = require("mason-registry").get_package("codelldb"):get_install_path()
-				local codelldb = package_path .. "/extension/adapter/codelldb"
-				local library_path = package_path .. "/extension/lldb/lib/liblldb.dylib"
-				local uname = io.popen("uname"):read("*l")
-				if uname == "Linux" then
-					library_path = package_path .. "/extension/lldb/lib/liblldb.so"
-				end
+				local codelldb = vim.fn.exepath("codelldb")
+				local codelldb_lib_ext = io.popen("uname"):read("*l") == "Linux" and ".so" or ".dylib"
+				local library_path = vim.fn.expand("$MASON/opt/lldb/lib/liblldb" .. codelldb_lib_ext)
 				opts.dap = {
 					adapter = require("rustaceanvim.config").get_codelldb_adapter(codelldb, library_path),
 				}
@@ -110,7 +95,7 @@ return {
 		opts = {
 			servers = {
 				bacon_ls = {
-					enabled = false, -- Deshabilitamos bacon_ls ya que usamos rust-analyzer
+					enabled = diagnostics == "bacon-ls",
 				},
 				rust_analyzer = { enabled = false },
 			},
@@ -126,15 +111,6 @@ return {
 				vim.list_extend(opts.ensure_installed, { "bacon" })
 			end
 		end,
-	},
-	{
-		"nvim-neotest/neotest",
-		optional = true,
-		opts = {
-			adapters = {
-				["rustaceanvim.neotest"] = {},
-			},
-		},
 	},
 }
 

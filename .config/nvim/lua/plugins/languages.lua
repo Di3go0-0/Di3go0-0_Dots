@@ -3,5 +3,6 @@ return {
 	{ import = "plugins.languages.markdown" },
 	{ import = "plugins.languages.mason" },
 	{ import = "plugins.languages.python" },
+	{ import = "plugins.languages.rust" },
 	{ import = "plugins.languages.typescript" },
 }
