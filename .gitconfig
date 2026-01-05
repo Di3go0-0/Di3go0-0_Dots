@@ -1,0 +1,29 @@
+[user]
+    name = Di3go0-0
+    email = d.rincon@utp.edu.co
+    
+[core]
+    editor = nvim
+    autocrlf = input
+    
+[init]
+    defaultBranch = main
+    
+[pull]
+    rebase = true
+    
+[push]
+    autoSetupRemote = true
+    
+[alias]
+    st = status
+    co = checkout
+    br = branch
+    cm = commit
+    lg = log --oneline --graph --decorate --all
+    unstage = reset HEAD --
+    last = log -1 HEAD
+    amend = commit --amend
+    
+[url "git@github.com:"]
+    insteadOf = https://github.com/
