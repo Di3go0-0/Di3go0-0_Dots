@@ -23,8 +23,8 @@ echo "==> Ejecutando spicetify backup apply..."
 spicetify backup apply || true
 
 echo "==> Ajustando permisos en /opt/spotify..."
-sudo chmod a+wr -R /opt/spotify
-sudo chmod a+wr -R /opt/spotify/Apps
+sudo chown -R $USER:$USER /opt/spotify
+sudo chown -R $USER:$USER /opt/spotify/Apps
 
 echo "==> Aplicando spicetify..."
 spicetify apply
