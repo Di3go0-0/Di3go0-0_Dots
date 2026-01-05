@@ -19,7 +19,6 @@
 
     "modules-center": [
            "cava",
-           "cava",
            "hyprland/workspaces",
     ],
 

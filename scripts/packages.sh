@@ -61,13 +61,14 @@ install_packages() {
     github-cli \
     nushell \
     nvm \
-    startship \
+    starship \
     wlogout \
     cliphist \
     grimblast-git \
     hyprshade \
     bitwarden \
-    eww
+    eww \
+    nwg-look
 }
 
 # Main script execution
