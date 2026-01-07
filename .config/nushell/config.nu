@@ -69,7 +69,7 @@
 #    shape_variable: "#c58ea7"           # ia: pink
 #    shape_vardecl: "#c58ea7"            # ia: pink
 #    shape_raw_string: "#9e97d0"         # ca: purple
-# 
+#
 
 let dark_theme = {
     # --- base elements ---
@@ -990,7 +990,7 @@ $env.config = {
 }
 
 def fzfbat [] {
-  fzf --preview "bat --theme=gruvbox-dark --color=always {}" 
+  fzf --preview "bat --theme=gruvbox-dark --color=always {}"
 }
 
 def fzfnvim [] {
@@ -1028,9 +1028,4 @@ if (not (is-zellij-running)) and (not (which zellij | is-empty)) {
 
 # Inicializar Zellij
 initialize-zellij
-
-
-
-alias ls = ^ls --color=auto
-alias grep = ^grep --color=auto
 
