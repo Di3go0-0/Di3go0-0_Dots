@@ -15,10 +15,10 @@
 }
 
 /* Avoid 'annoying' backgroud */
-.blank-window {  
-  background: transparent;  
+.blank-window {
+  background: transparent;
 }
-  
+
 /* CONTROL CENTER ------------------------------------------------------------------------ */
 
 .control-center {
@@ -116,7 +116,7 @@ progressbar {
 .notification-group-close-all-button {
   background: transparent;
   color: @text;
-  margin: 4px; 
+  margin: 4px;
   border-radius: 6px;
   padding: 4px;
 }
@@ -124,7 +124,7 @@ progressbar {
 .notification-group-collapse-button:hover,
 .notification-group-close-all-button:hover {
   background: @hover;
-}  
+}
 
 /* WIDGETS --------------------------------------------------------------------------- */
 
@@ -220,7 +220,7 @@ progressbar {
   color: @text;
   border-radius: 20px;
 }
- 
+
 .widget-mpris button {
   color: alpha(@text, .6);
 }
@@ -232,12 +232,12 @@ progressbar {
 .widget-mpris-album-art {
   border-radius: 16px;
 }
- 
+
 .widget-mpris-title {
     font-weight: 700;
     font-size: 1rem;
 }
- 
+
 .widget-mpris-subtitle {
     font-weight: 500;
     font-size: 0.8rem;
@@ -255,4 +255,29 @@ picture.mpris-background {
   padding: 4px;
   margin: 6px;
   border-radius: 6px;
+}
+
+/* --- ELIMINAR ICONO ROTO DE 'NO NOTIFICATIONS' --- */
+.control-center .placeholder-image {
+  background-image: none;
+  display: none;
+  opacity: 0;
+}
+
+.control-center .placeholder-label {
+  font-family: "CaskaydiaCove Nerd Font 10";
+  font-size: 1.4rem;
+  opacity: 0.4;
+  margin: 40px 0; /* Da espacio para que se vea centrado */
+}
+
+/* --- LIMPIAR BOTONES DE MÚSICA (MPRIS) --- */
+/* Esto elimina los cuadros blancos en los botones anterior/siguiente */
+.widget-mpris > box > button > label {
+  font-family: "CaskaydiaCove Nerd Font 10";
+}
+
+.widget-mpris .image {
+  /* Si la imagen del álbum también sale rota, la ocultamos o ajustamos */
+  border-radius: 12px;
 }

@@ -2,10 +2,10 @@
   "$schema": "/etc/xdg/swaync/configSchema.json",
   "positionX": "right",
   "positionY": "top",
-	"cssPriority": "user",
+  "cssPriority": "user",
 
   "control-center-width": 380,
-  "control-center-height": 660, 
+  "control-center-height": 660,
   "control-center-margin-top": 2,
   "control-center-margin-bottom": 2,
   "control-center-margin-right": 1,
@@ -19,7 +19,7 @@
   "timeout": 4,
   "timeout-low": 2,
   "timeout-critical": 6,
-  
+
   "fit-to-screen": false,
   "keyboard-shortcuts": true,
   "image-visibility": "when-available",
@@ -27,19 +27,7 @@
   "hide-on-clear": false,
   "hide-on-action": false,
   "script-fail-notify": true,
-  "scripts": {
-    "example-script": {
-      "exec": "echo 'Do something...'",
-      "urgency": "Normal"
-    }
-  },
-  "notification-visibility": {
-    "example-name": {
-      "state": "muted",
-      "urgency": "Low",
-      "app-name": "Spotify"
-    }
-  },
+
   "widgets": [
     "label",
     "buttons-grid",
@@ -48,9 +36,10 @@
     "dnd",
     "notifications"
   ],
+
   "widget-config": {
     "title": {
-      "text": "Notifications",
+      "text": "Notificaciones",
       "clear-all-button": true,
       "button-text": " 󰎟 "
     },
@@ -65,33 +54,19 @@
       "image-size": 96,
       "image-radius": 12
     },
-    "volume": {
-      "label": "󰕾",
-        "show-per-app": true
+    "notifications": {
+      "unseen-header": true,
+      "unseen-header-text": "Nuevas",
+      "sort": "descending",
+      "inline-replies": true
     },
     "buttons-grid": {
       "actions": [
-        {
-          "label": " ",
-          "command": "amixer set Master toggle"
-        },
-        {
-          "label": "",
-          "command": "amixer set Capture toggle"
-        },
-        {
-          "label": " ",
-          "command": "nm-connection-editor"
-        },
-        {
-          "label": "󰂯",
-          "command": "blueman-manager"
-        },
-        {
-          "label": "󰏘",
-          "command": "nwg-look"
-        }
-        
+        { "label": " ", "command": "pavucontrol" },
+        { "label": "", "command": "$HOME/.config/hypr/scripts/volume.sh --toggle-mic" },
+        { "label": " ", "command": "nm-connection-editor" },
+        { "label": "󰂯", "command": "blueman-manager" },
+        { "label": "󰏘", "command": "nwg-look" }
       ]
     }
   }
