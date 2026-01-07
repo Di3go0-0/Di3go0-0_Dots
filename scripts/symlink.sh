@@ -68,12 +68,69 @@ fi
 # Additional resources (wallpapers, fonts, etc.)
 RESOURCES_DIR="$REPO_DIR/Resources"
 if [[ -d "$RESOURCES_DIR" ]]; then
-    echo -e "${BLUE}🎨 Linking additional resources...${NC}"
+    echo -e "${BLUE}🎨 Organizing additional resources...${NC}"
     
-    # Link wallpapers to Pictures
+    # Organized wallpaper structure
     if [[ -d "$RESOURCES_DIR/wallpapers" ]]; then
-        mkdir -p "$HOME/Pictures"
-        create_symlink "$RESOURCES_DIR/wallpapers" "$HOME/Pictures/wallpapers" "wallpapers"
+        mkdir -p "$HOME/Pictures/wallpapers"
+        
+        # Create organized wallpaper categories
+        mkdir -p "$HOME/Pictures/wallpapers/anime"
+        mkdir -p "$HOME/Pictures/wallpapers/nature"
+        mkdir -p "$HOME/Pictures/wallpapers/city"
+        mkdir -p "$HOME/Pictures/wallpapers/gaming"
+        mkdir -p "$HOME/Pictures/wallpapers/general"
+        
+        echo -e "${BLUE}📸 Organizing wallpapers by category...${NC}"
+        
+        # Categorize wallpapers
+        for wallpaper in "$RESOURCES_DIR/wallpapers"/*; do
+            if [[ -f "$wallpaper" ]]; then
+                filename=$(basename "$wallpaper")
+                
+                case "$filename" in
+                    *DD*|*IMG*)
+                        ln -sf "$wallpaper" "$HOME/Pictures/wallpapers/general/$filename"
+                        echo -e "${GREEN}  ✓ $filename → general${NC}"
+                        ;;
+                    *berserk*|*relaxedmario*|*switchswirl*)
+                        ln -sf "$wallpaper" "$HOME/Pictures/wallpapers/anime/$filename"
+                        echo -e "${GREEN}  ✓ $filename → anime${NC}"
+                        ;;
+                    *aurora*|*firewatch*|*nightcity*|*osaka*)
+                        ln -sf "$wallpaper" "$HOME/Pictures/wallpapers/nature/$filename"
+                        echo -e "${GREEN}  ✓ $filename → nature${NC}"
+                        ;;
+                    *arcade*|*escapevelocity*)
+                        ln -sf "$wallpaper" "$HOME/Pictures/wallpapers/gaming/$filename"
+                        echo -e "${GREEN}  ✓ $filename → gaming${NC}"
+                        ;;
+                    *)
+                        ln -sf "$wallpaper" "$HOME/Pictures/wallpapers/city/$filename"
+                        echo -e "${GREEN}  ✓ $filename → city${NC}"
+                        ;;
+                esac
+            fi
+        done
+        
+        # Create wallpaper index file
+        cat > "$HOME/Pictures/wallpapers/README.md" << 'EOF'
+# Wallpaper Collection
+
+## Categories
+- **anime/**: Anime and gaming related wallpapers
+- **nature/**: Natural landscapes and scenery
+- **city/**: Urban environments and cityscapes
+- **gaming/**: Gaming themed wallpapers
+- **general/**: Miscellaneous wallpapers
+
+## Usage
+Set your wallpaper using a tool like `swaybg` or configure in your Hyprland config:
+
+```bash
+swaybg -i ~/Pictures/wallpapers/nature/firewatch.jpg
+```
+EOF
     fi
     
     # Link to resources in home directory
