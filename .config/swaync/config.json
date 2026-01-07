@@ -64,7 +64,7 @@
       "actions": [
         { "label": " ", "command": "pavucontrol" },
         { "label": "", "command": "$HOME/.config/hypr/scripts/volume.sh --toggle-mic" },
-        { "label": " ", "command": "nm-connection-editor" },
+        { "label": " ", "command": "nmtui" },
         { "label": "󰂯", "command": "blueman-manager" },
         { "label": "󰏘", "command": "nwg-look" }
       ]
