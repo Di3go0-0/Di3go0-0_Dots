@@ -53,7 +53,8 @@ install_packages() {
     dbeaver \
     ranger \
     blueman \
-    blueman-manager
+    blueman-manager \
+    bat
 
   echo -e "${GREEN}Installing packages from AUR via yay...${NC}"
   yay -S --needed --noconfirm \

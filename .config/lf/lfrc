@@ -22,10 +22,64 @@ map w drag_files
 map D delete
 
 map ? ${{ glow -p ~/.config/lf/maps.md }}
+map l ${{
+    case "$f" in
+        *.ts|*.js)
+            nvim "$f"
+            ;;
+        *)
+            lf -remote "send $id open"
+            ;;
+    esac
+}}
 
 # ATENTO: Se cambió ^. por <c-.> para una mejor compatibilidad
 map zh set hidden! 
 
+
+map l ${{
+    case "$f" in
+        *.ts|*.js)
+            nvim "$f"
+            ;;
+        *)
+            lf -remote "send $id open"
+            ;;
+    esac
+}}
+
+cmd open ${{
+    case "$f" in
+        *.sh)
+            setsid -f kitty --hold sh "$f" >/dev/null 2>&1
+            exit 0
+            ;;
+    esac
+
+    mime=$(file --mime-type -bL "$f")
+
+    case "$mime" in
+        text/*|application/json|inode/x-empty|application/javascript|application/x-javascript) 
+            nvim "$f" 
+            ;;
+        
+        video/*)
+            setsid -f mpv "$f" >/dev/null 2>&1
+            ;;
+
+        audio/*)
+            setsid -f kitty mpv "$f" >/dev/null 2>&1
+            ;;
+            
+        application/zip|application/x-tar|application/gzip|application/x-bzip2|application/x-7z-compressed|application/vnd.rar|application/x-rar)
+            lf -remote "send $id extract_handler"
+            ;;
+
+        *) 
+            lf -remote "send $id echoerr ' No hay aplicación definida para: $mime'" 
+            ;;
+    esac
+}}
 
 # --- Funciones ---
 cmd drag_files ${{
@@ -77,35 +131,13 @@ cmd zip_menu ${{
     lf -remote "send $id select \"$output_file\""
 }}
 
-cmd open ${{
+map l ${{
     case "$f" in
-        *.sh)
-            setsid -f kitty --hold sh "$f" >/dev/null 2>&1
-            exit 0
+        *.ts|*.js)
+            nvim "$f"
             ;;
-    esac
-
-    mime=$(file --mime-type -bL "$f")
-
-    case "$mime" in
-        text/*|application/json|inode/x-empty) 
-            nvim "$f" 
-            ;;
-        
-        video/*)
-            setsid -f mpv "$f" >/dev/null 2>&1
-            ;;
-
-        audio/*)
-            setsid -f kitty mpv "$f" >/dev/null 2>&1
-            ;;
-            
-        application/zip|application/x-tar|application/gzip|application/x-bzip2|application/x-7z-compressed|application/vnd.rar|application/x-rar)
-            lf -remote "send $id extract_handler"
-            ;;
-
-        *) 
-            lf -remote "send $id echoerr ' No hay aplicación definida para: $mime'" 
+        *)
+            lf -remote "send $id open"
             ;;
     esac
 }}
