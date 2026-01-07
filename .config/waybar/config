@@ -5,16 +5,16 @@
     "margin-bottom": 0,
 
     "modules-left": [
-           "custom/launcher", 
+           "custom/launcher",
            "custom/updates",
 	         "custom/separator#line",
-           "clock", 
+           "clock",
 	         "custom/separator#line",
-           "temperature", 
-           "custom/temperature-gpu", 
+           "temperature",
+           "custom/temperature-gpu",
 	         "custom/separator#line",
-           "cpu", 
-           "memory", 
+           "cpu",
+           "memory",
     ],
 
     "modules-center": [
@@ -23,13 +23,13 @@
     ],
 
     "modules-right": [
-           "network", 
+           "network",
            "custom/separator#line",
            "pulseaudio#microphone",
-           "pulseaudio", 
+           "pulseaudio",
            "custom/bluetooth",
            "custom/separator#line",
-           "battery", 
+           "battery",
            "custom/separator#line",
            "custom/notification",
            "custom/separator#line",
@@ -51,7 +51,7 @@
     "format-icons": ""
 },
 "temperature": {
-    "thermal-zone": 4, 
+    "thermal-zone": 4,
     "critical-threshold": 80,
     "format-critical": "{temperatureC}°C ⚠️",
     "format": "{temperatureC}°C {icon}",
@@ -64,7 +64,7 @@
     "exec": "~/.config/waybar/scripts/bluetooth.status.sh",
     "exec-if": "which bluetoothctl",
     "interval": 5,
-    "on-click": "blueman-manager &", 
+    "on-click": "blueman-manager &",
     "tooltip": true
 },
 
@@ -112,7 +112,7 @@
           "portable": "",
           "car": "",
           "default": ["", ""]
-        },    
+        },
       },
 
     "pulseaudio#microphone": {
@@ -153,7 +153,7 @@
         "format-wifi": "<span color='#9ece6a'>󰖩 </span> {essid}",
         "format-ethernet": "<span color='#9ece6a'>󰈁</span> {ifname}",
         "format-disconnected": "<span color='#f7768e'>󰈂 </span> Disconnected",
-        "on-click": "nm-connection-editor",
+        "on-click": "kitty nmtui",
         "interval": 30
     },
 
