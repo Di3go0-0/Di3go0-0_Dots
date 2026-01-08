@@ -997,6 +997,45 @@ def fzfnvim [] {
   nvim (fzf --preview "bat --theme=gruvbox-dark --color=always {}")
 }
 
+# Función para formatear tamaño automáticamente
+def format-size [size: int] {
+  if $size < 1024 {
+    $"($size) B"
+  } else if $size < (1024 * 1024) {
+    $"($size / 1024 | math round --precision 2) kB"
+  } else if $size < (1024 * 1024 * 1024) {
+    $"($size / (1024 * 1024) | math round --precision 2) MB"
+  } else {
+    $"($size / (1024 * 1024 * 1024) | math round --precision 2) GB"
+  }
+}
+
+# Función mejorada para ls que calcula tamaño real y formatea unidades
+def ls-improved [path?: string] {
+  let target = if $path == null { "." } else { $path }
+  
+  ls -a $target | each {|item|
+    if $item.type == dir {
+      let size = (try { 
+        ^du -sb $item.name | str trim | split row "\t" | first | into int 
+      } catch { 
+        0 
+      })
+      $item | upsert size (format-size $size)
+    } else {
+      $item
+    }
+  }
+}
+
+# Alias que sobreescribe ls
+alias ls = ls-improved
+
+# Configuración para formato automático de unidades
+$env.config.filesize = {
+    unit: "metric" # usa unidades automáticas (B, kB, MB, GB, etc.)
+}
+
  source ~/.zoxide.nu
  source ~/.cache/carapace/init.nu
  source ~/.local/share/atuin/init.nu
