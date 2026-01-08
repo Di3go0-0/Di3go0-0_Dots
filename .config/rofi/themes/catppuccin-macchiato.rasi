@@ -9,17 +9,14 @@
     grey: #6e738d;
     teal: #8bd5ca;
 
-    main-bg:            rgba(0, 0, 0, 0.1);
-    main-fg:            #cad3f5;
-    main-br:            #6e738d;
-    main-ex:            #71f79fff;
-    select-bg:          #24273a;
-    select-fg:          #ed8796;
+    main-bg:            rgba(17, 17, 27, 0.45);
+    main-fg:            #cdd6f4ff;
+    main-br:            #cba6f7ff;
+    main-ex:            #f5e0dcff;
+    select-bg:          #b4befeff;
+    select-fg:          #11111bff;
     separatorcolor:     transparent;
     border-color:       transparent;
-
-    width: 600;
-    border-radius: 15px;
 }
 
 element-text, element-icon , mode-switcher {
@@ -97,7 +94,7 @@ button {
     padding: 10px;
     background-color: @bg-col-light;
     text-color: @grey;
-    vertical-align: 0.5; 
+    vertical-align: 0.5;
     horizontal-align: 0.5;
 }
 
