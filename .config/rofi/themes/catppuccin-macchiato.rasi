@@ -9,7 +9,7 @@
     grey: #6e738d;
     teal: #8bd5ca;
 
-    main-bg:            rgba(17, 17, 27, 0.45);
+    main-bg:            rgba(17, 17, 27, 0.5);
     main-fg:            #cdd6f4ff;
     main-br:            #cba6f7ff;
     main-ex:            #f5e0dcff;
