@@ -69,7 +69,8 @@
 #    shape_variable: "#c58ea7"           # ia: pink
 #    shape_vardecl: "#c58ea7"            # ia: pink
 #    shape_raw_string: "#9e97d0"         # ca: purple
-#
+# }
+
 
 let dark_theme = {
     # --- base elements ---
@@ -1013,13 +1014,13 @@ def format-size [size: int] {
 # Función mejorada para ls que calcula tamaño real y formatea unidades
 def ls-improved [path?: string] {
   let target = if $path == null { "." } else { $path }
-  
+
   ls -a $target | each {|item|
     if $item.type == dir {
-      let size = (try { 
-        ^du -sb $item.name | str trim | split row "\t" | first | into int 
-      } catch { 
-        0 
+      let size = (try {
+        ^du -sb $item.name | str trim | split row "\t" | first | into int
+      } catch {
+        0
       })
       $item | upsert size (format-size $size)
     } else {
