@@ -36,22 +36,22 @@ indent_size = 2
 indent_size = 2
 
 [*.lua]
-indent_size = 4
+indent_size = 2
 
 [*.rs]
-indent_size = 4
+indent_size = 2
 
 [*.go]
-indent_size = 4
+indent_size = 2
 
 [*.c]
-indent_size = 4
+indent_size = 2
 
 [*.cpp]
-indent_size = 4
+indent_size = 2
 
 [*.h]
-indent_size = 4
+indent_size = 2
 
 [*.hpp]
-indent_size = 4
+indent_size = 2
