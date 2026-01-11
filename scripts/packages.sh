@@ -54,7 +54,8 @@ install_packages() {
     ranger \
     blueman \
     blueman-manager \
-    bat
+    bat \
+    imagemagick
 
   echo -e "${GREEN}Installing packages from AUR via yay...${NC}"
   yay -S --needed --noconfirm \
