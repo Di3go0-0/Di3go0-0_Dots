@@ -36,3 +36,8 @@ fi
 if [ -f "$(dirname "$0")/scripts/sddm-astronaut-setup.sh" ]; then
   bash "$(dirname "$0")/scripts/sddm-astronaut-setup.sh"
 fi
+
+# Execute post-setup tasks
+if [ -f "$(dirname "$0")/scripts/post-setup.sh" ]; then
+  bash "$(dirname "$0")/scripts/post-setup.sh"
+fi
