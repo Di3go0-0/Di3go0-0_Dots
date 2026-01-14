@@ -137,6 +137,14 @@ EOF
     create_symlink "$RESOURCES_DIR" "$HOME/.config/Resources" "Resources"
 fi
 
+# Update icon cache for GTK applications
+echo -e "\n${BLUE}🔄 Updating GTK icon cache...${NC}"
+if [[ -d "$HOME/.local/share/icons" ]]; then
+    gtk-update-icon-cache -f -t "$HOME/.local/share/icons/" 2>/dev/null && echo -e "${GREEN}  ✓ Icon cache updated${NC}" || echo -e "${YELLOW}  ⚠ Icon cache update failed (may not be critical)${NC}"
+else
+    echo -e "${YELLOW}  ℹ No local icons directory found, skipping cache update${NC}"
+fi
+
 echo -e "\n${GREEN}🎉 Dotfiles linking completed!${NC}"
 echo -e "\n${BLUE}📋 Next steps:${NC}"
 echo -e "  1. Restart your terminal or source your shell config"
