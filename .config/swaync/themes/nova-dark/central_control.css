@@ -258,17 +258,25 @@ picture.mpris-background {
 }
 
 /* --- ELIMINAR ICONO ROTO DE 'NO NOTIFICATIONS' --- */
-.control-center .placeholder-image {
+.control-center .placeholder-image,
+.control-center .notification-row .notification-placeholder .placeholder-image,
+.notification-placeholder .placeholder-image,
+.placeholder-image {
   background-image: none;
-  display: none;
   opacity: 0;
+  min-width: 0;
+  min-height: 0;
 }
 
-.control-center .placeholder-label {
+.control-center .placeholder-label,
+.control-center .notification-row .notification-placeholder .placeholder-label,
+.notification-placeholder .placeholder-label,
+.placeholder-label {
   font-family: "CaskaydiaCove Nerd Font 10";
   font-size: 1.4rem;
   opacity: 0.4;
   margin: 40px 0; /* Da espacio para que se vea centrado */
+  color: @text;
 }
 
 /* --- LIMPIAR BOTONES DE MÚSICA (MPRIS) --- */
