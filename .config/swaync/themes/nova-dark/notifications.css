@@ -74,6 +74,21 @@
   margin: 10px 20px 10px 0px;
 }
 
+/* Asegurarse de que no aparezca ícono cuando no hay notificaciones */
+.notification-placeholder .placeholder-image {
+  background-image: none;
+  opacity: 0;
+  min-width: 0;
+  min-height: 0;
+}
+
+.notification-placeholder .placeholder-label {
+  font-family: "CaskaydiaCove Nerd Font 10";
+  font-size: 1.2rem;
+  opacity: 0.5;
+  color: @text;
+}
+
 .summary {
   font-weight: 800;
   font-size: 1rem;
