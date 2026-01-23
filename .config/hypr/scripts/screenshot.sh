@@ -16,19 +16,19 @@ save_shader() {
 
 save_shader # Saving the current shader
 
-if [ -z "$XDG_PICTURES_DIR" ]; then
-  XDG_PICTURES_DIR="$HOME/Pictures"
-fi
-
-scrDir=$(dirname "$(realpath "$0")")
-swpy_dir="${confDir}/swappy"
-save_dir="${2:-$XDG_PICTURES_DIR/Screenshots}"
+# Definición de rutas segura
+XDG_PICTURES_DIR="${XDG_PICTURES_DIR:-$HOME/Pictures}"
+swpy_dir="$HOME/.config/swappy"
+save_dir="$XDG_PICTURES_DIR/Screenshots"
 save_file=$(date +'%d%m%y_%Hh%Mm%Ss_screenshot.png')
 temp_screenshot="/tmp/screenshot.png"
 
-mkdir -p $save_dir
-mkdir -p $swpy_dir
-echo -e "[Default]\nsave_dir=$save_dir\nsave_filename_format=$save_file" >$swpy_dir/config
+# Crear directorios si no existen
+mkdir -p "$save_dir"
+mkdir -p "$swpy_dir"
+
+# Configurar Swappy para que guarde automáticamente en la ruta deseada
+echo -e "[Default]\nsave_dir=$save_dir\nsave_filename_format=$save_file" >"$swpy_dir/config"
 
 function print_error
 {
@@ -43,16 +43,11 @@ EOF
 }
 
 case $1 in
-p) # print all outputs
-  grimblast copysave screen $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
-s) # drag to manually snip an area / click on a window to print it
-  grimblast copysave area $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
-sf) # frozen screen, drag to manually snip an area / click on a window to print it
-  grimblast --freeze copysave area $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
-m) # print focused monitor
-  grimblast copysave output $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
-*) # invalid option
-  print_error ;;
+p) grimblast copysave screen $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
+s) grimblast copysave area $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
+sf) grimblast --freeze copysave area $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
+m) grimblast copysave output $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
+*) print_error ;;
 esac
 
 rm "$temp_screenshot"
