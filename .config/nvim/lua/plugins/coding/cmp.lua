@@ -1,15 +1,45 @@
 return {
+	-- {
+	-- 	"zbirenbaum/copilot.lua",
+	-- 	cmd = "Copilot",
+	-- 	event = "InsertEnter",
+	-- 	config = function()
+	-- 		require("copilot").setup({
+	-- 			-- IMPORTANTE: Habilitamos la sugerencia nativa para el texto largo
+	-- 			suggestion = {
+	-- 				enabled = true,
+	-- 				auto_trigger = true, -- Esto muestra el texto gris automáticamente
+	-- 				debounce = 75,
+	-- 				keymap = {
+	-- 					accept = "<C-l>", -- Presiona Alt + l para aceptar la sugerencia larga
+	-- 					accept_word = false,
+	-- 					accept_line = false,
+	-- 					next = "<C-k>",
+	-- 					prev = "<C-j>",
+	-- 					dismiss = "<C-h>",
+	-- 				},
+	-- 			},
+	-- 			panel = { enabled = false },
+	-- 		})
+	-- 	end,
+	-- },
+	{
+		"zbirenbaum/copilot-cmp",
+		dependencies = "copilot.lua",
+		config = function()
+			require("copilot_cmp").setup()
+		end,
+	},
 	{
 		"hrsh7th/nvim-cmp",
-		dependences = {
+		-- CORRECCIÓN: 'dependencies' con 'i'
+		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
-			"cmp-cmp.lua",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-git",
 			"hrsh7th/cmp-cmdline",
-			-- "hrsh7th/cmp-copilot",
+			-- "zbirenbaum/copilot-cmp",
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
 			"windwp/nvim-autopairs",
@@ -29,7 +59,10 @@ return {
 					},
 				})
 			end
-
+			--- @generic
+			opts.experimental = {
+				ghost_text = false, -- Lo desactivamos aquí porque ya lo maneja copilot.lua arriba
+			}
 			-- Activamos el autocompletado automático inicialmente
 			toggle_autocomplete(true)
 
@@ -70,12 +103,18 @@ return {
 
 			-- Fuentes de autocompletado
 			opts.sources = cmp.config.sources({
-				-- { name = "copilot", priority = 1000 },
+				-- { name = "copilot", priority = 1000 }, -- Ahora sí funcionará
 				{ name = "nvim_lsp", priority = 750 },
-				{ name = "buffer", priority = 500 },
-				{ name = "path", priority = 250 },
-				{ name = "luasnip", priority = 300 },
-				{ name = "emmet_nvim" },
+				{ name = "luasnip", priority = 500 },
+				{ name = "buffer", priority = 250 },
+				{ name = "path", priority = 100 },
+			})
+			-- Configuración específica para archivos SQL
+			cmp.setup.filetype({ "sql" }, {
+				sources = cmp.config.sources({
+					{ name = "vim-dadbod-completion" },
+					{ name = "buffer" },
+				}),
 			})
 
 			-- Configuración de íconos para cada tipo de fuente
@@ -87,13 +126,12 @@ return {
 						buffer = "﬘",
 						path = "",
 						luasnip = "",
-						emmet_nvim = "",
 					}
-					vim_item.kind = string.format("%s %s", icons[entry.source.name], vim_item.kind)
+					local icon = icons[entry.source.name] or " "
+					vim_item.kind = string.format("%s %s", icon, vim_item.kind)
 					return vim_item
 				end,
 			}
-
 			-- Configuración de ventanas de autocompletado y documentación
 			opts.window = {
 				completion = {

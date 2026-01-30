@@ -35,14 +35,14 @@ require("lazy").setup({
 		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
 		-- import any extra modules here
 		{ import = "lazyvim.plugins.extras.dap.core" },
-		{ import = "lazyvim.plugins.extras.editor.harpoon2" },
+		-- { import = "lazyvim.plugins.extras.editor.harpoon2" },
 		{ import = "lazyvim.plugins.extras.coding.mini-surround" },
 		{ import = "lazyvim.plugins.extras.util.mini-hipatterns" },
 		{ import = "lazyvim.plugins.extras.coding.nvim-cmp" }, -- Intall by :Lazyextras
 
 		-- AI plugins
-		{ import = "lazyvim.plugins.extras.ai.copilot" },
-		{ import = "lazyvim.plugins.extras.ai.copilot-chat" },
+		-- { import = "lazyvim.plugins.extras.ai.copilot" },
+		-- { import = "lazyvim.plugins.extras.ai.copilot-chat" },
 
 		-- import/override with your plugins
 		-- { "LazyVim/LazyVim", import = "lazyvim.plugins", version = false },
