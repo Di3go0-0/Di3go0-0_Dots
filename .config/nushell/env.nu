@@ -19,6 +19,10 @@
 
 $env.PATH = ($env.PATH | split row (char esep) | append '/usr/bin' | append '/usr/local/bin')
 
+# Iniciar ssh-agent si no está corriendo
+if (ps | where name == ssh-agent | is-empty) {
+    ssh-agent -c | lines | first 2 | parse "setenv {name} {value};" | transpose -r -d | load-env
+}
 
 export-env {
     $env.LD_LIBRARY_PATH = "/opt/oracle/instantclient_23_26"
