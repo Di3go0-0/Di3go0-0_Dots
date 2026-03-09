@@ -1,0 +1,6 @@
+[editor]
+auto_format = false
+
+detect_indentation = true
+
+preserve_line_endings = true
