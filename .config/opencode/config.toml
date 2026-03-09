@@ -1,0 +1,11 @@
+[editor]
+
+auto_format = false
+detect_indentation = true
+preserve_line_endings = true
+
+minimal_patch_mode = true
+
+[context]
+read_only_context = true
+prevent_ghost_edits = true
