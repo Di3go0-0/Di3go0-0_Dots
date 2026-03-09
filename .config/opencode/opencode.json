@@ -46,11 +46,15 @@
     }
   },
   "agent": {
-    "format_on_save": false,
-    "enforce_indentation": false,
-    "preserve_original_format": true,
-    "prevent_context_writing": true,
-    "minimal_patch_mode": true,
-    "system_prompt_extension": "CRITICAL: You are in a strict formatting environment. DO NOT change indentation, tabs, or line endings. If you are reading a file for context, DO NOT modify it. Only output minimal line-based patches for the requested logic changes."
+    "config": {
+      "format_on_save": false,
+      "enforce_indentation": false,
+      "preserve_original_format": true,
+      "prevent_context_writing": true,
+      "minimal_patch_mode": true
+    },
+    "instructions": {
+      "system_prompt_extension": "CRITICAL: Strict formatting environment. DO NOT change indentation, tabs, or line endings. Only modify specific logic lines."
+    }
   }
 }
