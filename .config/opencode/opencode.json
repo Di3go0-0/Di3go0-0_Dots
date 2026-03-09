@@ -1,0 +1,60 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": ["opencode-anthropic-auth@latest", "opencode-gemini-auth@latest"],
+  "autoupdate": true,
+  "permission": {
+    "bash": {
+      "*": "allow",
+      "git commit *": "ask",
+      "git push *": "ask",
+      "git push": "ask",
+      "git push --force *": "ask",
+      "git rebase *": "ask",
+      "git reset --hard *": "ask"
+    },
+    "read": {
+      "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "**/.env": "deny",
+      "**/.env.*": "deny",
+      "**/secrets/**": "deny",
+      "**/credentials.json": "deny"
+    }
+  },
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "enabled": true
+    },
+    "engram": {
+      "command": ["engram", "mcp"],
+      "enabled": true,
+      "type": "local"
+    },
+    "notion": {
+      "type": "remote",
+      "url": "https://mcp.notion.com/mcp",
+      "enabled": true,
+      "timeout": 5000
+    },
+    "jira": {
+      "type": "remote",
+      "url": "https://mcp.atlassian.com/v1/mcp",
+      "enabled": true
+    }
+  },
+  "agent": {
+    "config": {
+      "format_on_save": false,
+      "enforce_indentation": false,
+      "preserve_original_format": true,
+      "prevent_context_writing": true,
+      "minimal_patch_mode": true
+    },
+    "instructions": {
+      "system_prompt_extension": "CRITICAL: Strict formatting environment. DO NOT change indentation, tabs, or line endings. Only modify specific logic lines."
+    }
+  }
+}

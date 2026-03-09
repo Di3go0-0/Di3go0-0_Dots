@@ -14,20 +14,20 @@ end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 -- WSL copy paste with win32yank
--- if vim.fn.has("wsl") == 1 then
--- 	vim.g.clipboard = {
--- 		name = "win32yank",
--- 		copy = {
--- 			["+"] = "win32yank.exe -i --crlf",
--- 			["*"] = "win32yank.exe -i --crlf",
--- 		},
--- 		paste = {
--- 			["+"] = "win32yank.exe -o --lf",
--- 			["*"] = "win32yank.exe -o --lf",
--- 		},
--- 		cache_enabled = false,
--- 	}
--- end
+if vim.fn.has("wsl") == 1 then
+	vim.g.clipboard = {
+		name = "win32yank",
+		copy = {
+			["+"] = "win32yank.exe -i --crlf",
+			["*"] = "win32yank.exe -i --crlf",
+		},
+		paste = {
+			["+"] = "win32yank.exe -o --lf",
+			["*"] = "win32yank.exe -o --lf",
+		},
+		cache_enabled = false,
+	}
+end
 
 require("lazy").setup({
 	spec = {

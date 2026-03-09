@@ -1,81 +1,135 @@
--- Pull in the wezterm API
+-- ╔══════════════════════════════════════════════════════════════════════════════╗
+-- ║                          GENTLEMAN DOTS - WEZTERM                            ║
+-- ║                           Optimized for Neovim                               ║
+-- ╚══════════════════════════════════════════════════════════════════════════════╝
+
 local wezterm = require("wezterm")
+local config = {}
 
--- This table will hold the configuration.
-local config = {
-	force_reverse_video_cursor = true,
-	colors = {
-		foreground = "#dcd7ba",
-		background = "#181616",
+-- ┌──────────────────────────────────────────────────────────────────────────────┐
+-- │                                   FONT                                       │
+-- └──────────────────────────────────────────────────────────────────────────────┘
 
-		cursor_bg = "#c8c093",
-		cursor_fg = "#c8c093",
-		cursor_border = "#c8c093",
+config.font = wezterm.font("CaskaydiaCove NF")
+config.font_size = 14.0
 
-		selection_fg = "#c8c093",
-		selection_bg = "#2d4f67",
+-- ┌──────────────────────────────────────────────────────────────────────────────┐
+-- │                                  WINDOW                                      │
+-- └──────────────────────────────────────────────────────────────────────────────┘
 
-		scrollbar_thumb = "#16161d",
-		split = "#16161d",
+-- config.window_background_opacity = 0.95
+config.macos_window_background_blur = 20
+config.win32_system_backdrop = "Acrylic"
 
-		ansi = { "#090618", "#c34043", "#76946a", "#c0a36e", "#7e9cd8", "#957fb8", "#6a9589", "#c8c093" },
-		brights = { "#727169", "#e82424", "#98bb6c", "#e6c384", "#7fb4ca", "#938aa9", "#7aa89f", "#dcd7ba" },
-		indexed = { [16] = "#ffa066", [17] = "#ff5d62" },
+config.window_padding = {
+	top = 0,
+	right = 0,
+	left = 0,
+	bottom = 0,
+}
+
+config.enable_scroll_bar = false
+config.hide_tab_bar_if_only_one_tab = true
+
+-- ┌──────────────────────────────────────────────────────────────────────────────┐
+-- │                                  CURSOR                                      │
+-- └──────────────────────────────────────────────────────────────────────────────┘
+
+config.default_cursor_style = "SteadyBlock"
+config.cursor_blink_rate = 500
+config.cursor_blink_ease_in = "Constant"
+config.cursor_blink_ease_out = "Constant"
+
+-- ┌──────────────────────────────────────────────────────────────────────────────┐
+-- │                            NEOVIM OPTIMIZATIONS                              │
+-- └──────────────────────────────────────────────────────────────────────────────┘
+
+-- Terminal & Colors
+-- WSL doesn't have wezterm terminfo, so we use xterm-256color there
+-- See: https://github.com/Gentleman-Programming/Gentleman.Dots/issues/117
+if wezterm.target_triple:find("windows") then
+	config.term = "xterm-256color"
+else
+	config.term = "wezterm"
+end
+config.enable_csi_u_key_encoding = true
+
+-- Undercurl support (LSP diagnostics, spelling)
+config.underline_thickness = 2
+config.underline_position = -2
+
+-- Scrollback
+config.scrollback_lines = 10000
+
+-- Performance
+config.max_fps = 120
+
+-- Image support
+config.enable_kitty_graphics = true
+
+-- Input handling
+config.use_dead_keys = false
+config.send_composed_key_when_left_alt_is_pressed = false
+config.send_composed_key_when_right_alt_is_pressed = false
+
+-- ┌──────────────────────────────────────────────────────────────────────────────┐
+-- │                           GENTLEMAN THEME                                    │
+-- └──────────────────────────────────────────────────────────────────────────────┘
+
+config.colors = {
+	-- Base Colors
+	foreground = "#f3f6f9",
+	background = "#06080f",
+
+	-- Cursor
+	cursor_bg = "#e0c15a",
+	cursor_fg = "#06080f",
+	cursor_border = "#e0c15a",
+
+	-- Selection
+	selection_fg = "#f3f6f9",
+	selection_bg = "#263356",
+
+	-- Normal Colors
+	ansi = {
+		"#06080f", -- black
+		"#cb7c94", -- red
+		"#b7cc85", -- green
+		"#ffe066", -- yellow
+		"#7fb4ca", -- blue
+		"#ff8dd7", -- magenta
+		"#7aa89f", -- cyan
+		"#f3f6f9", -- white
+	},
+
+	-- Bright Colors
+	brights = {
+		"#8a8fa3", -- black
+		"#de8fa8", -- red
+		"#d1e8a9", -- green
+		"#fff7b1", -- yellow
+		"#a3d4d5", -- blue
+		"#ffaeea", -- magenta
+		"#7fb4ca", -- cyan
+		"#f3f6f9", -- white
 	},
 }
 
--- In newer versions of wezterm, use the config_builder which will
--- help provide clearer error messages
-if wezterm.config_builder then
-	config = wezterm.config_builder()
-end
+config.window_background_image = "C:\\Users\\Usuario UTP\\Pictures\\Resources\\DD20.png"
+-- config.window_background_image = "C:\\Users\\Usuario UTP\\Pictures\\Resources\\IMG0020.jpg"
 
--- This is where you actually apply your config choices
-config.window_decorations = "NONE"
-config.window_decorations = "RESIZE"
-config.window_padding = {
-	top = 8,
-	right = 8,
-	left = 8,
-	bottom = 8,
-}
-config.force_reverse_video_cursor = true
-config.colors = {}
-config.colors.foreground = "#dcd7ba"
-config.colors.background = "#181616"
-config.colors.cursor_bg = "#c8c093"
-config.colors.cursor_fg = "#c8c093"
-config.colors.cursor_border = "#c8c093"
-config.colors.selection_fg = "#c8c093"
-config.colors.selection_bg = "#2d4f67"
-config.colors.scrollbar_thumb = "#16161d"
-config.colors.split = "#16161d"
-config.colors.ansi = { "#090618", "#c34043", "#76946a", "#c0a36e", "#7e9cd8", "#957fb8", "#6a9589", "#c8c093" }
-config.colors.brights = { "#727169", "#e82424", "#98bb6c", "#e6c384", "#7fb4ca", "#938aa9", "#7aa89f", "#dcd7ba" }
-config.colors.indexed = { [16] = "#ffa066", [17] = "#ff5d62" }
---  change
--- config.window_background_opacity = 0.80
-config.font = wezterm.font("Iosevka Nerd Font Mono", { weight = "Regular" })
-config.prefer_egl = true
-config.font_size = 18.0
-config.window_decorations = "NONE"
-config.default_prog = { "fish" }
-config.hide_tab_bar_if_only_one_tab = true
-
-config.enable_wayland = true
-config.front_end = "OpenGL"
-local gpus = wezterm.gui.enumerate_gpus()
-if #gpus > 0 then
-	config.webgpu_preferred_adapter = gpus[1]
-else
-	wezterm.log_infor("No GPU found")
-end
-
-config.window_background_image = "/home/diego/Imágenes/Wallpapers/DD20.png"
 config.window_background_image_hsb = {
-	brightness = 1.0,
+	brightness = 0.5,
+	saturation = 0.9,
 }
+-- ┌──────────────────────────────────────────────────────────────────────────────┐
+-- │                            WINDOWS (WSL)                                     │
+-- └──────────────────────────────────────────────────────────────────────────────┘
 
-config.hide_tab_bar_if_only_one_tab = true
+-- Uncomment for Windows/WSL:
+-- config.default_domain = 'WSL:Ubuntu'
+-- config.front_end = "OpenGL"
+
+config.default_prog = { "wsl.exe" }
 
 return config
