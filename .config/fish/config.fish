@@ -9,6 +9,7 @@ if status is-interactive
     and not set -q ZELLIJ
     and not set -q ZELLIJ_SESSION_NAME
     zellij
+    atuin init fish | source
 end
 
 alias P="pj open"
