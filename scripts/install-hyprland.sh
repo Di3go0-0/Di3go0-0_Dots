@@ -63,8 +63,10 @@ sudo apt install -y \
     rofi \
     swaynotificationcenter \
     hyprlock \
+    hyprpaper \
     swappy \
     grim \
+    slurp \
     wl-clipboard \
     cliphist \
     brightnessctl \
@@ -73,6 +75,10 @@ sudo apt install -y \
     libgtk-layer-shell-1.0-0 \
     libnl-genl-3-dev \
     gettext \
+    kitty \
+    lf \
+    playerctl \
+    thunar \
     2>/dev/null || true
 
 # Check if hyprland is already installed

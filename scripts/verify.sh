@@ -44,7 +44,7 @@ info() {
 
 # Check if essential symlinks exist
 echo -e "${BLUE}📋 Checking essential symlinks...${NC}"
-essential_configs=("hypr" "waybar" "swaync" "kitty" "rofi" "fish" "nvim" "starship.toml")
+essential_configs=("hypr" "waybar" "swaync" "rofi" "nvim" "starship.toml")
 
 for config in "${essential_configs[@]}"; do
     if [[ -L "$HOME/.config/$config" ]]; then
@@ -76,7 +76,7 @@ fi
 
 # Check if essential applications are available
 echo -e "\n${BLUE}📦 Checking essential applications...${NC}"
-essential_apps=("hyprland" "waybar" "swaync" "kitty" "rofi" "fish" "nvim" "starship")
+essential_apps=("hyprland" "waybar" "swaync" "rofi" "nvim" "starship" "lf")
 
 for app in "${essential_apps[@]}"; do
     if command -v "$app" >/dev/null 2>&1; then
@@ -103,17 +103,17 @@ else
     warning "Wallpaper directory not found"
 fi
 
-# Check shell configuration
+# Check shell configuration (Nushell)
 echo -e "\n${BLUE}🐚 Checking shell configuration...${NC}"
-if [[ -L "$HOME/.config/fish/config.fish" ]]; then
-    success "Fish config linked"
-    if command -v fish >/dev/null 2>&1; then
-        success "Fish shell is available"
+if [[ -f "$HOME/.config/nushell/config.nu" ]]; then
+    success "Nushell config linked"
+    if command -v nu >/dev/null 2>&1; then
+        success "Nushell is available"
     else
-        warning "Fish shell not installed"
+        warning "Nushell not installed"
     fi
 else
-    error "Fish config not linked"
+    warning "Nushell config not found"
 fi
 
 # Check theme consistency
