@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Unified Dotfiles Setup Script
+# Unified Dotfiles Setup Script for Ubuntu
 # Complete installation and configuration for Di3go0-0's dotfiles
 set -e
 
@@ -29,26 +29,10 @@ command_exists() {
     command -v "$1" &> /dev/null
 }
 
-# Function to install yay if not present
-install_yay() {
-    if ! command_exists yay; then
-        print_status $YELLOW "Installing yay (AUR helper)..."
-        sudo pacman -S --needed --noconfirm git base-devel
-        git clone https://aur.archlinux.org/yay.git /tmp/yay
-        cd /tmp/yay
-        makepkg -si --noconfirm
-        cd -
-        rm -rf /tmp/yay
-        print_status $GREEN "✓ yay installed successfully"
-    else
-        print_status $GREEN "✓ yay already installed"
-    fi
-}
-
 # Function to update system
 update_system() {
     print_status $BLUE "🔄 Updating system packages..."
-    sudo pacman -Syu --noconfirm
+    sudo apt update && sudo apt upgrade -y
     print_status $GREEN "✓ System updated"
 }
 
@@ -171,7 +155,7 @@ show_next_steps() {
 # Main execution
 main() {
     clear
-    print_status $PURPLE "🚀 Di3go0-0's Dotfiles Setup"
+    print_status $PURPLE "🚀 Di3go0-0's Dotfiles Setup (Ubuntu)"
     print_status $BLUE "================================"
     
     # Check if running as root (shouldn't be)
@@ -191,7 +175,7 @@ main() {
     print_status $BLUE "🏠 Home directory: $HOME"
     
     # Ask for confirmation
-    echo -e "\n${YELLOW}This will install packages and set up your dotfiles.${NC}"
+    echo -e "\n${YELLOW}This will install packages and set up your dotfiles on Ubuntu.${NC}"
     read -p "Continue? (y/N): " -n 1 -r
     echo
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -200,7 +184,6 @@ main() {
     fi
     
     # Run setup steps
-    install_yay
     update_system
     install_packages
     setup_dotfiles

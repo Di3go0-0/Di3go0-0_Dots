@@ -246,10 +246,10 @@
 
     "custom/updates": {
         "format": "{}",
-        "exec": "checkupdates | wc -l",
-        "exec-if": "[[ $(checkupdates | wc -l) != 0 ]]",
+        "exec": "apt list --upgradable 2>/dev/null | grep -c upgradable || echo 0",
+        "exec-if": "[[ $(apt list --upgradable 2>/dev/null | grep -c upgradable) != 0 ]]",
         "interval": 15,
-        "on-click": "kitty -e sudo pacman -Syu && notify-send 'The system has been updated'"
+        "on-click": "kitty -e sudo apt update && sudo apt upgrade && notify-send 'The system has been updated'"
     },
 
   "custom/notification": {

@@ -2,7 +2,7 @@
 
 # Chequear si jq está instalado
 if ! command -v jq &>/dev/null; then
-  echo "ERROR: jq no está instalado. Instalalo con: sudo pacman -S jq"
+  echo "ERROR: jq no está instalado. Instalalo con: sudo apt install jq"
   exit 1
 fi
 
