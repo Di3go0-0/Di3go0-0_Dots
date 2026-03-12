@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Initialize dotfiles on Ubuntu
-# This script verifies dependencies and creates symlinks
+# Initialize dotfiles on Ubuntu with Hyprland
+# This script installs Hyprland and sets up all dependencies
 
 # Colors
 BLUE='\033[0;34m'
@@ -11,7 +11,20 @@ NC='\033[0m'
 
 echo -e "${BLUE}╔════════════════════════════════════════╗${NC}"
 echo -e "${BLUE}║     Ubuntu Dotfiles Setup              ║${NC}"
+echo -e "${BLUE}║     with Hyprland                       ║${NC}"
 echo -e "${BLUE}╚════════════════════════════════════════╝${NC}"
+
+# Ask for Hyprland installation
+echo -e "\n${YELLOW}Do you want to install Hyprland from source? (y/N)${NC}"
+read -p "This is recommended for Ubuntu: " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    # Install Hyprland
+    if [ -f "$(dirname "$0")/scripts/install-hyprland.sh" ]; then
+        echo -e "\n${BLUE}🔧 Installing Hyprland...${NC}"
+        bash "$(dirname "$0")/scripts/install-hyprland.sh"
+    fi
+fi
 
 # Execute packages script (verify dependencies)
 if [ -f "$(dirname "$0")/scripts/packages.sh" ]; then
@@ -56,3 +69,4 @@ if [ -f "$(dirname "$0")/scripts/verify.sh" ]; then
 fi
 
 echo -e "\n${GREEN}✅ Dotfiles setup completed!${NC}"
+echo -e "${YELLOW}To start Hyprland, log out and select it from the login screen.${NC}"
