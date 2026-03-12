@@ -49,6 +49,15 @@ create_symlink() {
 echo -e "${BLUE}📁 Creating ~/.config directory if needed...${NC}"
 mkdir -p "$HOME/.config"
 
+# Process root dotfiles
+echo -e "${BLUE}📋 Processing root dotfiles...${NC}"
+ROOT_FILES=(".bashrc" ".gitconfig" ".editorconfig" ".gitignore")
+for file in "${ROOT_FILES[@]}"; do
+    if [[ -f "$REPO_DIR/$file" ]]; then
+        create_symlink "$REPO_DIR/$file" "$HOME/$file" "$file"
+    fi
+done
+
 # Process all directories and files in .config
 if [[ -d "$CONFIG_DIR" ]]; then
     echo -e "${BLUE}📋 Processing all config files...${NC}"

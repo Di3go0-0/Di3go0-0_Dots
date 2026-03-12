@@ -2,32 +2,27 @@
 
 set -e
 
-echo "==> Importando clave PGP de Spotify..."
-gpg --recv-keys C85668DF69375001
+echo "==> Installing Spotify..."
+sudo apt install -y spotify-client
 
-echo "==> Instalando Spotify desde AUR..."
-yay -S --noconfirm spotify
+echo "==> Installing Spicetify CLI..."
+npm install -g spicetify-cli
 
-echo "==> Instalando Spicetify CLI..."
-yay -S --noconfirm spicetify-cli
-
-echo "==> Creando carpeta de configuración de Spotify..."
+echo "==> Creating Spotify config directory..."
 mkdir -p ~/.config/spotify
 
 if [ ! -f ~/.config/spotify/prefs ]; then
-  echo "==> Creando archivo prefs vacío..."
-  touch ~/.config/spotify/prefs
+    touch ~/.config/spotify/prefs
 fi
 
-echo "==> Ejecutando spicetify backup apply..."
+echo "==> Running spicetify backup apply..."
 spicetify backup apply || true
 
-echo "==> Ajustando permisos en /opt/spotify..."
-sudo chown -R $USER:$USER /opt/spotify
-sudo chown -R $USER:$USER /opt/spotify/Apps
+echo "==> Adjusting permissions..."
+sudo chown -R $USER:$USER /opt/spotify 2>/dev/null || true
+sudo chown -R $USER:$USER /opt/spotify/Apps 2>/dev/null || true
 
-echo "==> Aplicando spicetify..."
+echo "==> Applying spicetify..."
 spicetify apply
 
-echo "✅ Instalación de Spotify + Spicetify completada."
-echo "👉 Ahora puedes instalar temas (ej: Lucid) usando Marketplace o manualmente."
+echo "✅ Spotify + Spicetify installation completed."
