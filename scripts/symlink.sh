@@ -36,6 +36,19 @@ create_symlink() {
     local dest="$2"
     local desc="$3"
 
+    # Check if existing symlink points to a different location
+    if [[ -L "$dest" ]]; then
+        local current_target=$(readlink -f "$dest")
+        local new_target=$(readlink -f "$src")
+        if [[ "$current_target" != "$new_target" ]]; then
+            echo -e "${YELLOW}  ⚠ Removing old symlink: $dest${NC}"
+            rm -f "$dest"
+        else
+            echo -e "${YELLOW}  ✓ $desc already linked correctly${NC}"
+            return 0
+        fi
+    fi
+
     echo -e "${BLUE}Linking $desc...${NC}"
 
     mkdir -p "$(dirname "$dest")"
