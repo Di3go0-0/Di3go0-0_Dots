@@ -1043,6 +1043,8 @@ $env.config.filesize = {
  source ~/.cache/starship/init.nu
  source ~/.config/bash-env.nu
 
+# starship init nu | save -f ~/.cache/starship/init.nu
+# source ~/.cache/starship/init.nu
 
 
 # Definición de constantes

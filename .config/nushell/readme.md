@@ -10,8 +10,8 @@ Este documento describe cómo configurar un entorno de desarrollo moderno con [N
 ## 📦 Requisitos
 
 - Nushell `>= 0.89`
-- Ubuntu/Debian (u otra distro compatible)
-- npm (para carapace)
+- Arch Linux (u otra distro compatible)
+- Gestor de paquetes como `pacman` o `yay`
 
 ---
 
@@ -49,12 +49,10 @@ source ~/.config/bash-env.nu
 
 ## 🚀 Instalación paso a paso
 
-### 1. Instalar herramientas necesarias (Ubuntu)
+### 1. Instalar herramientas necesarias
 
 ```bash
-sudo apt install -y zoxide starship git
-npm install -g carapace
-curl --proto '=https' --tlsv1.2 -sSf https://atuin.sh/install.sh | bash
+sudo pacman -S nushell starship zoxide carapace atuin
 ```
 
 ---
