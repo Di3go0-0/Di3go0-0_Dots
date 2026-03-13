@@ -5,13 +5,12 @@ return {
 	-- 	event = "InsertEnter",
 	-- 	config = function()
 	-- 		require("copilot").setup({
-	-- 			-- IMPORTANTE: Habilitamos la sugerencia nativa para el texto largo
 	-- 			suggestion = {
 	-- 				enabled = true,
-	-- 				auto_trigger = true, -- Esto muestra el texto gris automáticamente
+	-- 				auto_trigger = true,
 	-- 				debounce = 75,
 	-- 				keymap = {
-	-- 					accept = "<C-l>", -- Presiona Alt + l para aceptar la sugerencia larga
+	-- 					accept = "<C-l>",
 	-- 					accept_word = false,
 	-- 					accept_line = false,
 	-- 					next = "<C-k>",
@@ -32,7 +31,6 @@ return {
 	},
 	{
 		"hrsh7th/nvim-cmp",
-		-- CORRECCIÓN: 'dependencies' con 'i'
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
