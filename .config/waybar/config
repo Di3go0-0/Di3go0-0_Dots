@@ -23,6 +23,7 @@
     ],
 
     "modules-right": [
+           "tray",
            "network",
            "custom/separator#line",
            "pulseaudio#microphone",
@@ -185,7 +186,7 @@
     },
 
     "clock": {
-        "format": "{:%H:%M}",
+        "format": "{:%d/%m | %H:%M}",
         "format-alt": "{:%A, %B %d, %Y (%R)}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
