@@ -17,5 +17,8 @@ return {
 				["."] = false,
 			},
 		}
+		vim.keymap.set("n", "<leader>at", ":Copilot toggle<CR>", { desc = "Toggle Copilot" })
+		vim.keymap.set("n", "<leader>aa", ":CopilotChat Accept<CR>", { desc = "Copilot Accept" })
+		vim.keymap.set("n", "<leader>an", ":CopilotChat<CR>", { desc = "Copilot Chat" })
 	end,
 }
