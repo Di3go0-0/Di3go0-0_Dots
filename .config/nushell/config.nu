@@ -1037,14 +1037,12 @@ $env.config.filesize = {
     unit: "metric" # usa unidades automáticas (B, kB, MB, GB, etc.)
 }
 
- source ~/.zoxide.nu
+ source ~/.config/nushell/zoxide.nu
  source ~/.cache/carapace/init.nu
  source ~/.local/share/atuin/init.nu
  source ~/.cache/starship/init.nu
  source ~/.config/bash-env.nu
 
-# starship init nu | save -f ~/.cache/starship/init.nu
-# source ~/.cache/starship/init.nu
 
 
 # Definición de constantes
@@ -1063,10 +1061,10 @@ def initialize-zellij [] {
     }
 }
 
-# Inicializar Zellij si no está corriendo
-if (not (is-zellij-running)) and (not (which zellij | is-empty)) {
-    initialize-zellij
-}
+# # Inicializar Zellij si no está corriendo
+# if (not (is-zellij-running)) and (not (which zellij | is-empty)) {
+#     initialize-zellij
+# }
 
 # Inicializar Zellij
 initialize-zellij
