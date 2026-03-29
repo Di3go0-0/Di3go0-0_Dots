@@ -6,4 +6,5 @@ return {
 	{ import = "plugins.editor.oil-nvim" },
 	{ import = "plugins.editor.overrides" },
 	{ import = "plugins.editor.precognition" },
+	{ import = "plugins.editor.restui" },
 }
