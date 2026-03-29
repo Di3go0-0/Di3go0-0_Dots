@@ -1,6 +1,7 @@
 -- Bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
+vim.o.shell = "/bin/bash"
 -- -- Ajusta el fondo del contexto de Treesitter con transparencia
 -- vim.api.nvim_set_hl(0, "TreesitterContext", {
 -- 	bg = "#000000", -- Elige un color de fondo que desees
