@@ -61,4 +61,8 @@ return {
 			},
 		},
 	},
+	config = function()
+		local keymap = vim.keymap
+		keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Toggle NeoTree" })
+	end,
 }
