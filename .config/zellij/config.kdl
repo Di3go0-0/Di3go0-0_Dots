@@ -1,13 +1,13 @@
 simplified_ui true
 
-env {
-    KITTY_ENABLE_GFX "1"
-}
+// env {
+//     KITTY_ENABLE_GFX "1"
+// }
 
 pane_options {
     true-color true
     undercurl true
-    kitty-graphics true
+    // kitty-graphics true
 }
 
 
