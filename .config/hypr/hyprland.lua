@@ -8,6 +8,14 @@
 -- Modules
 require("theme")
 require("animations")
+
+-- Fix multi-GPU cursor blit (Intel + NVIDIA)
+hl.config({
+    cursor = {
+        no_hardware_cursors = true,
+    },
+})
+
 require("monitors")
 require("keybindings")
 require("windowrules")
