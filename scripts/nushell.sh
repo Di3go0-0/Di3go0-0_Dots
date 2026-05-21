@@ -47,15 +47,16 @@ echo '  source ~/.cache/starship/init.nu'
 # Set Nushell as the default shell
 NU_PATH="$(which nu)"
 if [ -n "$NU_PATH" ]; then
+  # Ensure nu is in /etc/shells before chsh
+  if ! grep -qx "$NU_PATH" /etc/shells; then
+    echo "🔧 Adding $NU_PATH to /etc/shells..."
+    echo "$NU_PATH" | sudo tee -a /etc/shells >/dev/null
+  fi
   echo "🔄 Setting Nushell as your default shell ($NU_PATH)..."
   chsh -s "$NU_PATH"
   echo "✅ Default shell changed to Nushell."
 else
-  echo -e "${RED}❌ Nushell not found, cannot change shell.${NC}"
+  echo "❌ Nushell not found, cannot change shell."
 fi
-
-# Final zoxide configuration with nushell syntax
-echo "🔧 Finalizing zoxide configuration..."
-zoxide init nushell | save -f ~/.zoxide.nu
 
 echo "🎉 Installation and configuration complete!"

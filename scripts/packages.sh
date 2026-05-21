@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Arch Linux Installer Script
 # This script installs yay and several packages from official repos and AUR
 
@@ -45,6 +47,10 @@ install_packages() {
     npm \
     wl-clipboard \
     hyprlock \
+    hyprpaper \
+    hypridle \
+    kitty \
+    fish \
     jq \
     libnotify \
     swappy \
@@ -53,7 +59,6 @@ install_packages() {
     dbeaver \
     ranger \
     blueman \
-    blueman-manager \
     bat \
     imagemagick
 
@@ -67,6 +72,7 @@ install_packages() {
     wlogout \
     cliphist \
     grimblast-git \
+    hyprsunset \
     hyprshade \
     bitwarden \
     eww \

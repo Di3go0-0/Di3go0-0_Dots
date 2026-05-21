@@ -53,9 +53,20 @@ mkdir -p "$HOME/.config"
 if [[ -d "$CONFIG_DIR" ]]; then
     echo -e "${BLUE}📋 Processing all config files...${NC}"
     
+    # Items to skip (not actual config)
+    SKIP_ITEMS=("node_modules" "package.json" "package-lock.json")
+
     for item in "$CONFIG_DIR"/*; do
         if [[ -e "$item" ]]; then
             item_name=$(basename "$item")
+
+            # Skip non-config files
+            skip=false
+            for skip_item in "${SKIP_ITEMS[@]}"; do
+                [[ "$item_name" == "$skip_item" ]] && skip=true && break
+            done
+            [[ "$skip" == true ]] && continue
+
             dest_path="$HOME/.config/$item_name"
             create_symlink "$item" "$dest_path" "$item_name"
         fi

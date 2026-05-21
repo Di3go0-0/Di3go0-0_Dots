@@ -56,7 +56,7 @@ done
 
 # Check if scripts are executable
 echo -e "\n${BLUE}🔧 Checking scripts permissions...${NC}"
-if [[ -f "$HOME/.config/hypr/scripts" ]]; then
+if [[ -d "$HOME/.config/hypr/scripts" ]]; then
     scripts_count=$(find "$HOME/.config/hypr/scripts" -name "*.sh" -executable | wc -l)
     total_scripts=$(find "$HOME/.config/hypr/scripts" -name "*.sh" | wc -l)
     if [[ $scripts_count -eq $total_scripts ]]; then

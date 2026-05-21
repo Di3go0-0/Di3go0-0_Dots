@@ -154,7 +154,8 @@
         "format-wifi": "<span color='#9ece6a'>󰖩 </span> {essid}",
         "format-ethernet": "<span color='#9ece6a'>󰈁</span> {ifname}",
         "format-disconnected": "<span color='#f7768e'>󰈂 </span> Disconnected",
-        "on-click": "kitty nmtui",
+        "on-click": "kitty --title nmtui nmtui",
+        "on-click-right": "nm-connection-editor",
         "interval": 30
     },
 

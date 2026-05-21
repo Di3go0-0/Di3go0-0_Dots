@@ -216,6 +216,7 @@ local float_rules = {
     { class = "^(kitty)$",            title = "^(top)$" },
     { class = "^(kitty)$",            title = "^(btop)$" },
     { class = "^(kitty)$",            title = "^(htop)$" },
+    { class = "^(kitty)$",            title = "^(nmtui)$" },
     { class = "^(vlc)$" },
     { class = "^(kvantummanager)$" },
     { class = "^(qt5ct)$" },
