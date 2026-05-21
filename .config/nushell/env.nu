@@ -29,5 +29,8 @@ export-env {
     $env.ORACLE_HOME = "/opt/oracle/instantclient_23_26"
     $env.PATH = ($env.PATH | split row (char esep) | prepend "/opt/oracle/instantclient_23_26" | str join (char esep))
 	  $env.PATH = ($env.PATH | prepend ($env.HOME | path join ".cargo/bin"))
+	  $env.PATH = ($env.PATH | prepend ($env.HOME | path join ".bun/bin"))
+
+    $env.NVM_DIR = ($env.HOME | path join ".nvm")
 }
 

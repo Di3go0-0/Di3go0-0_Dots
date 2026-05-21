@@ -1016,6 +1016,7 @@ def ls-improved [path?: string] {
   let target = if $path == null { "." } else { $path }
 
   ls -a $target | each {|item|
+
     if $item.type == dir {
       let size = (try {
         ^du -sb $item.name | str trim | split row "\t" | first | into int
@@ -1037,7 +1038,9 @@ $env.config.filesize = {
     unit: "metric" # usa unidades automáticas (B, kB, MB, GB, etc.)
 }
 
+
  source ~/.zoxide.nu
+ # source /usr/share/nvm/init-nvm.nu
  source ~/.cache/carapace/init.nu
  source ~/.local/share/atuin/init.nu
  source ~/.cache/starship/init.nu
@@ -1064,6 +1067,27 @@ def initialize-zellij [] {
 # Inicializar Zellij si no está corriendo
 if (not (is-zellij-running)) and (not (which zellij | is-empty)) {
     initialize-zellij
+}
+
+# NVM
+
+def --env nvm [...args] {
+    let cmd = ($args | str join ' ')
+
+    let output = (bash -c $"source /usr/share/nvm/init-nvm.sh; nvm ($cmd) >&2; echo PATH=$PATH; echo NVM_BIN=$NVM_BIN; echo NVM_INC=$NVM_INC" | lines)
+
+    for line in $output {
+        let parts = ($line | split row "=" --number 2)
+        let key = ($parts | first)
+        let val = ($parts | last)
+        if $key == "PATH" {
+            $env.PATH = ($val | split row ":")
+        } else if $key == "NVM_BIN" {
+            $env.NVM_BIN = $val
+        } else if $key == "NVM_INC" {
+            $env.NVM_INC = $val
+        }
+    }
 }
 
 # Inicializar Zellij
