@@ -11,9 +11,9 @@ require("animations")
 
 -- Fix multi-GPU cursor blit (Intel + NVIDIA)
 hl.config({
-    cursor = {
-        no_hardware_cursors = true,
-    },
+	cursor = {
+		no_hardware_cursors = true,
+	},
 })
 
 require("monitors")
@@ -26,11 +26,14 @@ require("spotify")
 --------------------
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd("waybar & swaync & hypridle")
-    hl.exec_cmd("hyprsunset")
-    hl.exec_cmd("wl-paste --type text --watch cliphist store")
-    hl.exec_cmd("wl-paste --type image --watch cliphist store")
-    hl.exec_cmd("hyprpaper --config /home/diego/Di3go0-0_dots/.config/hypr/hyprpaper.conf")
+	hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+
+	hl.exec_cmd("waybar & swaync & hypridle & blueman-applet")
+	hl.exec_cmd("hyprsunset")
+	hl.exec_cmd("wl-paste --type text --watch cliphist store") -- ¡Aquí están!
+	hl.exec_cmd("wl-paste --type image --watch cliphist store")
+	hl.exec_cmd("hyprpaper --config /home/diego/Di3go0-0_Dots/.config/hypr/hyprpaper.conf")
+	hl.exec_cmd("libinput-gestures")
 end)
 
 -------------------------------
@@ -48,9 +51,9 @@ hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 -----------------
 
 hl.config({
-    xwayland = {
-        force_zero_scaling = true,
-    },
+	xwayland = {
+		force_zero_scaling = true,
+	},
 })
 
 ---------------
@@ -58,18 +61,19 @@ hl.config({
 ---------------
 
 hl.config({
-    input = {
-        follow_mouse = 1,
-        sensitivity = 0,
-        touchpad = {
-            natural_scroll = true,
-        },
-    },
+	input = {
+		follow_mouse = 1,
+		sensitivity = 0,
+		touchpad = {
+			natural_scroll = true,
+		},
+	},
 })
 
+
 hl.device({
-    name = "epic-mouse-v1",
-    sensitivity = -0.5,
+	name = "epic-mouse-v1",
+	sensitivity = -0.5,
 })
 
 ----------------
@@ -77,8 +81,8 @@ hl.device({
 ----------------
 
 hl.config({
-    misc = {
-        disable_hyprland_logo = true,
-        disable_splash_rendering = true,
-    },
+	misc = {
+		disable_hyprland_logo = true,
+		disable_splash_rendering = true,
+	},
 })
