@@ -1037,14 +1037,40 @@ alias ls = ls-improved
 $env.config.filesize = {
     unit: "metric" # usa unidades automáticas (B, kB, MB, GB, etc.)
 }
+# Native Zoxide Integration for Nushell
+def --env z [...args] {
+    let path = (if ($args | is-empty) {
+        ~
+    } else if $args == ["-"] {
+        "-"
+    } else {
+        ^zoxide query -- ...$args | str trim
+    })
+    if ($path | is-not-empty) {
+        cd $path
+    }
+}
 
+def --env zi [...args] {
+    let path = (^zoxide query -i -- ...$args | str trim)
+    if ($path | is-not-empty) {
+        cd $path
+    }
+}
 
- source ~/.zoxide.nu
+# Hook to record directory changes into zoxide's database
+$env.config.hooks.env_change.PWD = (
+    $env.config.hooks.env_change.PWD? | default [] | append {|_old, new|
+        try { ^zoxide add $new }
+    }
+)
+
+ # source ~/.zoxide.nu
  # source /usr/share/nvm/init-nvm.nu
  source ~/.cache/carapace/init.nu
  source ~/.local/share/atuin/init.nu
  source ~/.cache/starship/init.nu
- source ~/.config/bash-env.nu
+ #source ~/.config/bash-env.nu
 
 
 

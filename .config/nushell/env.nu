@@ -18,18 +18,19 @@
 # them for future reference.
 
 $env.PATH = ($env.PATH | split row (char esep) | append '/usr/bin' | append '/usr/local/bin')
-
+source ~/.zoxide.nu
 # Iniciar ssh-agent si no está corriendo
 if (ps | where name == ssh-agent | is-empty) {
     ssh-agent -c | lines | first 2 | parse "setenv {name} {value};" | transpose -r -d | load-env
 }
 
 export-env {
-    $env.LD_LIBRARY_PATH = "/opt/oracle/instantclient_23_26"
-    $env.ORACLE_HOME = "/opt/oracle/instantclient_23_26"
+		$env.NPM_TOKEN = (open ($env.HOME | path join ".azure_npm_token") | str trim | encode base64)
     $env.PATH = ($env.PATH | split row (char esep) | prepend "/opt/oracle/instantclient_23_26" | str join (char esep))
 	  $env.PATH = ($env.PATH | prepend ($env.HOME | path join ".cargo/bin"))
 	  $env.PATH = ($env.PATH | prepend ($env.HOME | path join ".bun/bin"))
+
+		$env.PATH = ($env.PATH | split row (char env_sep) | prepend '/home/diego/.npm-global/bin')
 
     $env.NVM_DIR = ($env.HOME | path join ".nvm")
 }
