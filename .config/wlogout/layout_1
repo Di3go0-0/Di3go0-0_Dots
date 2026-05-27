@@ -1,20 +1,20 @@
 {
     "label": "lock",
-    "action": "lockscreen.sh",
+    "action": "~/.config/hypr/scripts/hyprlock-random.sh",
     "text": "Lock",
     "keybind": "l"
 }
 
 {
     "label": "logout",
-    "action": "hyprctl dispatch exit 0",
+    "action": "hyprctl dispatch 'hl.dsp.exit()'",
     "text": "Logout",
     "keybind": "e"
 }
 
 {
     "label": "suspend",
-    "action": "lockscreen.sh & disown && systemctl suspend",
+    "action": "~/.config/hypr/scripts/hyprlock-random.sh & disown && systemctl suspend",
     "text": "Suspend",
     "keybind": "u"
 }
