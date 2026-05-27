@@ -60,15 +60,14 @@
 },
 
 "custom/bluetooth": {
-    "format": " ",
+    "format": "{}",
     "return-type": "json",
     "exec": "~/.config/waybar/scripts/bluetooth.status.sh",
     "exec-if": "which bluetoothctl",
-    "interval": 5,
+    "interval": 0,
     "on-click": "blueman-manager &",
     "tooltip": true
 },
-
 "cava": {
 		"framerate": 120,
         "autosens": 1,
@@ -120,8 +119,8 @@
         "format": "{format_source}",
         "format-source": " {volume}%",
         "format-source-muted": "",
-        "on-click": "$HOME/.config/hypr/scripts/volume.sh --toggle-mic",
-        "on-click-right": "pavucontrol -t 4",
+        "on-click": "pavucontrol -t 4",
+        "on-click-right": "$HOME/.config/hypr/scripts/volume.sh --toggle-mic",
         "on-scroll-up": "$HOME/.config/hypr/scripts/volume.sh --mic-inc",
         "on-scroll-down": "$HOME/.config/hypr/scripts/volume.sh --mic-dec",
         "tooltip-format": "{source_desc} | {source_volume}%",
@@ -154,7 +153,7 @@
         "format-wifi": "<span color='#9ece6a'>󰖩 </span> {essid}",
         "format-ethernet": "<span color='#9ece6a'>󰈁</span> {ifname}",
         "format-disconnected": "<span color='#f7768e'>󰈂 </span> Disconnected",
-        "on-click": "kitty --title nmtui nmtui",
+        "on-click": "kitty --title nmtuinmtui nmtui",
         "on-click-right": "nm-connection-editor",
         "interval": 30
     },
