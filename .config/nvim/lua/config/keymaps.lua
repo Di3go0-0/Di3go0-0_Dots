@@ -12,6 +12,12 @@ local function set_keymaps()
 	keymap.set("n", "<tab>", ":tabnext<Return>", opts) -- Next tab
 	keymap.set("n", "<s-tab>", ":tabprev<Return>", opts) -- Previous tab
 	keymap.set("n", "<leader><tab>d", ":tabclose<Return>", opts) -- Close current tab
+
+	keymap.set("n", "<leader>fp", function()
+		local path = vim.fn.expand("%:p")
+		vim.fn.setreg("+", path)
+		vim.notify(path)
+	end, { desc = "Copy file path to clipboard" })
 end
 
 set_keymaps()
