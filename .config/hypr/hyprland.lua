@@ -26,7 +26,8 @@ require("spotify")
 --------------------
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd("waybar & swaync & hypridle")
+    -- Daemons que no dependen de hyprctl
+    hl.exec_cmd("swaync & hypridle")
     -- [NIGHT-TOGGLE] hyprsunset no estaba instalado. hyprshade tampoco funciona en Lua config (usa hyprctl keyword).
     -- hl.exec_cmd("hyprsunset")
     -- hl.exec_cmd("hyprshade on blue-light-filter")  -- NO funciona en 0.55
@@ -38,9 +39,11 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("awww-daemon")
     hl.exec_cmd("sleep 0.4 && (awww restore || awww img " ..
         "'/home/diego/Di3go0-0_dots/Resources/wallpapers/Japoneses/osaka.jpg')")
-    -- [WALLUST] Aplicar el último theme guardado (o DD01 si no hay)
+    -- [WALLUST] Theme PRIMERO (genera colors-wallust.css que waybar necesita).
+    -- Luego waybar, esperando a que hyprctl responda (evita carga "vacía").
     hl.exec_cmd("bash $HOME/.config/hypr/scripts/theme-select.sh apply " ..
-        "\"$(cat $HOME/.cache/current-theme 2>/dev/null || echo DD01)\"")
+        "\"$(cat $HOME/.cache/current-theme 2>/dev/null || echo DD01)\" && " ..
+        "(until hyprctl monitors >/dev/null 2>&1; do sleep 0.1; done; waybar) &")
 end)
 
 -------------------------------
