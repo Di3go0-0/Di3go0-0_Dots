@@ -35,6 +35,6 @@ element {
 }
 
 element-icon {
-    size:   40px;
+    size:   32px;
     expand: false;
 }

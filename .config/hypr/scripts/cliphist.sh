@@ -85,6 +85,48 @@ cliphist_with_thumbs() {
     done
 }
 
+# [GLASS] Helper para favorites: maneja imagenes (binarias) via temp file + mime detection.
+# Sin esto, base64 -d en variable bash trunca en null byte y rofi recibe basura -> cuelgue.
+# Emite por stdout: 1 entrada por favorito con icono si es imagen, ID secuencial, label limpio.
+# Stderr: para cada favorito, "is_image:base64line" — usado por el caller para resolver índice.
+favorites_with_thumbs() {
+    local cache="$HOME/.cache/cliphist-fav-thumbs"
+    mkdir -p "$cache"
+    [[ -f "$favoritesFile" && -s "$favoritesFile" ]] || return
+
+    local i=0 fav_b64 tmp mime hash thumb size_b kib fmt text
+    while IFS= read -r fav_b64; do
+        i=$((i+1))
+        tmp=$(mktemp /tmp/cliphist-fav-XXXX)
+        printf '%s' "$fav_b64" | base64 --decode > "$tmp" 2>/dev/null
+
+        mime=$(file --mime-type -b "$tmp" 2>/dev/null)
+
+        if [[ "$mime" == image/* ]]; then
+            hash=$(printf '%s' "$fav_b64" | sha1sum | cut -d' ' -f1)
+            thumb="$cache/$hash.png"
+            [[ -f "$thumb" ]] || magick "$tmp" -thumbnail 96x96 "$thumb" 2>/dev/null
+            size_b=$(stat -c%s "$tmp" 2>/dev/null)
+            kib=$((size_b / 1024))
+            fmt=$(echo "$mime" | cut -d/ -f2 | tr '[:lower:]' '[:upper:]')
+            if [[ -f "$thumb" ]]; then
+                printf '%4d\t%s  ·  %s KiB\0icon\x1f%s\n' "$i" "$fmt" "$kib" "$thumb"
+            else
+                printf '%4d\t[Image %s · %s KiB]\n' "$i" "$fmt" "$kib"
+            fi
+        elif [[ "$mime" == application/octet-stream ]] || [[ "$mime" == application/* ]]; then
+            # Binary corrupto (probablemente imagen mal agregada por null-truncation)
+            size_b=$(stat -c%s "$tmp" 2>/dev/null)
+            kib=$((size_b / 1024))
+            printf '%4d\t[Binary corrupto · %s KiB — borrar desde Manage > Delete]\n' "$i" "$kib"
+        else
+            text=$(tr '\n' ' ' < "$tmp" | head -c 200)
+            printf '%4d\t%s\n' "$i" "$text"
+        fi
+        rm -f "$tmp"
+    done < "$favoritesFile"
+}
+
 # Show main menu if no arguments are passed
 if [ $# -eq 0 ]; then
     main_action=$(echo -e "History\nDelete\nView Favorites\nManage Favorites\nClear History" | rofi -dmenu -theme-str "entry { placeholder: \"Choose action\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
@@ -109,26 +151,14 @@ case "${main_action}" in
     ;;
 "View Favorites")
     if [ -f "$favoritesFile" ] && [ -s "$favoritesFile" ]; then
-        # Read each Base64 encoded favorite as a separate line
-        mapfile -t favorites < "$favoritesFile"
-
-        # Prepare a list of decoded single-line representations for rofi
-        decoded_lines=()
-        for favorite in "${favorites[@]}"; do
-            decoded_favorite=$(echo "$favorite" | base64 --decode)
-            # Replace newlines with spaces for rofi display
-            single_line_favorite=$(echo "$decoded_favorite" | tr '\n' ' ')
-            decoded_lines+=("$single_line_favorite")
-        done
-
-        selected_favorite=$(printf "%s\n" "${decoded_lines[@]}" | rofi -dmenu -theme-str "entry { placeholder: \"View Favorites\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
+        # [GLASS] Usa favorites_with_thumbs (maneja imágenes via mime + thumbnail).
+        selected_favorite=$(favorites_with_thumbs | rofi -dmenu -show-icons -theme-str "entry { placeholder: \"View Favorites\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
         if [ -n "$selected_favorite" ]; then
-            # Find the index of the selected favorite
-            index=$(printf "%s\n" "${decoded_lines[@]}" | grep -nxF "$selected_favorite" | cut -d: -f1)
-            # Use the index to get the Base64 encoded favorite
-            if [ -n "$index" ]; then
+            # [GLASS] El ID está en el primer "campo" tab-separated (formato "  N\tlabel")
+            index=$(printf '%s' "$selected_favorite" | awk -F'\t' '{print $1}' | tr -d ' ')
+            mapfile -t favorites < "$favoritesFile"
+            if [[ -n "$index" && "$index" =~ ^[0-9]+$ && "$index" -ge 1 && "$index" -le "${#favorites[@]}" ]]; then
                 selected_encoded_favorite="${favorites[$((index - 1))]}"
-                # Decode and copy the full multi-line content to clipboard
                 echo "$selected_encoded_favorite" | base64 --decode | wl-copy
                 notify-send "Copied to clipboard."
             else
@@ -147,9 +177,12 @@ case "${main_action}" in
         # Show clipboard history to add to favorites
         item=$(cliphist_with_thumbs | rofi -dmenu -show-icons -theme-str "entry { placeholder: \"Add to Favorites...\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
         if [ -n "$item" ]; then
-            # Decode the item from clipboard history
-            full_item=$(echo "$item" | cliphist decode)
-            encoded_item=$(echo "$full_item" | base64 -w 0)
+            # [GLASS] Decode + encode via temp file (NO via variable bash, que trunca
+            # en null bytes y corrompe imágenes — bug que dejó favoritos basura).
+            tmp_fav=$(mktemp /tmp/cliphist-add-XXXX)
+            echo "$item" | cliphist decode > "$tmp_fav"
+            encoded_item=$(base64 -w 0 "$tmp_fav")
+            rm -f "$tmp_fav"
 
             # Check if the item is already in the favorites file
             if grep -Fxq "$encoded_item" "$favoritesFile"; then
@@ -164,21 +197,12 @@ case "${main_action}" in
     "Delete from Favorites")
         if [ -f "$favoritesFile" ] && [ -s "$favoritesFile" ]; then
             # Read each Base64 encoded favorite as a separate line
-            mapfile -t favorites < "$favoritesFile"
-
-            # Prepare a list of decoded single-line representations for rofi
-            decoded_lines=()
-            for favorite in "${favorites[@]}"; do
-                decoded_favorite=$(echo "$favorite" | base64 --decode)
-                # Replace newlines with spaces for rofi display
-                single_line_favorite=$(echo "$decoded_favorite" | tr '\n' ' ')
-                decoded_lines+=("$single_line_favorite")
-            done
-
-            selected_favorite=$(printf "%s\n" "${decoded_lines[@]}" | rofi -dmenu -theme-str "entry { placeholder: \"Remove from Favorites...\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
+            # [GLASS] Usa favorites_with_thumbs (maneja imágenes via mime + thumbnail).
+            selected_favorite=$(favorites_with_thumbs | rofi -dmenu -show-icons -theme-str "entry { placeholder: \"Remove from Favorites...\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
             if [ -n "$selected_favorite" ]; then
-                index=$(printf "%s\n" "${decoded_lines[@]}" | grep -nxF "$selected_favorite" | cut -d: -f1)
-                if [ -n "$index" ]; then
+                index=$(printf '%s' "$selected_favorite" | awk -F'\t' '{print $1}' | tr -d ' ')
+                mapfile -t favorites < "$favoritesFile"
+                if [[ -n "$index" && "$index" =~ ^[0-9]+$ && "$index" -ge 1 && "$index" -le "${#favorites[@]}" ]]; then
                     selected_encoded_favorite="${favorites[$((index - 1))]}"
 
                     # Handle case where only one item is present
