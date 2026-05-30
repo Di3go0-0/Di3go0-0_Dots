@@ -164,7 +164,7 @@ hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd(scriptpath .. "logoutlaunch.s
 -- [WALLPAPER-SELECT] SHIFT+W antes hacía killall hyprpaper. Ahora ambos abren el selector.
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("bash $HOME/.config/hypr/scripts/wallpaper-select.sh"))
 hl.bind(mainMod .. " + ALT + W", hl.dsp.exec_cmd("bash $HOME/.config/hypr/scripts/wallpaper-select.sh"))
-hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd(scriptpath .. "lock.sh"))
 hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("kitty -e sudo pacman -Syu"))
 
 -- [NIGHT-TOGGLE] Toggle blue-light-filter (script propio; hyprshade no funciona en Lua config)
