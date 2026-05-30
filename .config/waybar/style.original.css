@@ -1,7 +1,3 @@
-/* [WALLUST] Colors dinámicos generados por wallust (DD01/pink/blue/auto).
-   Importa @accent, @fg, @bg, etc. para usarlos como var en este file. */
-@import url("colors-wallust.css");
-
 * {
   font-family: "CaskaydiaCove Nerd Font ";
   min-height: 0;
@@ -89,7 +85,7 @@ tooltip label {
 }
 
 #workspaces button.focused {
-  color: @accent;
+  color: #b4befe;
 }
 
 #workspaces button.urgent {
