@@ -1,0 +1,14 @@
+/* Generado por wallust — colors definidos como GTK custom colors.
+   style.css los importa al inicio: @import url("colors-wallust.css"); */
+
+@define-color bg       {{background}};
+@define-color bg-dark  {{color0}};
+@define-color bg-alt   {{color8}};
+@define-color fg       {{foreground}};
+@define-color fg-dim   {{color7}};
+@define-color fg-mute  {{color8}};
+@define-color accent   {{color5}};
+@define-color accent-2 {{color4}};
+@define-color urgent   {{color1}};
+@define-color active   {{color2}};
+@define-color warning  {{color3}};

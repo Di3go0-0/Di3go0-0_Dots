@@ -1,0 +1,20 @@
+# wallust config — usado como templating engine para 3 themes presets
+# (DD01, pink, blue) + modo auto (wallpaper). Ver theme-select.sh.
+
+# Usado solo para modo "Auto from wallpaper"
+backend     = "fastresize"
+color_space = "labmixed"
+palette     = "harddark16"
+
+[templates]
+# rofi palette (colores que glass.rasi importa)
+rofi-palette = { template = 'rofi-palette.rasi', target = '~/.config/rofi/themes/palette.rasi' }
+
+# waybar colors (style.css los importa via @import)
+waybar-colors = { template = 'waybar-colors.css', target = '~/.config/waybar/colors-wallust.css' }
+
+# kitty colors (kitty.conf los include)
+kitty-colors = { template = 'kitty-colors.conf', target = '~/Di3go0-0_dots/.config/kitty/colors-wallust.conf' }
+
+# hypr borders (theme.lua los dofile)
+hypr-colors = { template = 'hypr-colors.lua', target = '~/.config/hypr/colors-wallust.lua' }
