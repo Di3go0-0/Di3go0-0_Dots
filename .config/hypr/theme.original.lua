@@ -92,9 +92,3 @@ hl.config({
         preserve_split = true,
     },
 })
-
--- [WALLUST] Bordes dinámicos (DD01/pink/blue/auto). Override de general.col arriba.
-local ok, err = pcall(dofile, os.getenv("HOME") .. "/.config/hypr/colors-wallust.lua")
-if not ok then
-    print("[wallust] colors-wallust.lua no encontrado o falló: " .. tostring(err))
-end

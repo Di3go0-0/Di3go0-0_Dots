@@ -27,10 +27,20 @@ require("spotify")
 
 hl.on("hyprland.start", function()
     hl.exec_cmd("waybar & swaync & hypridle")
-    hl.exec_cmd("hyprsunset")
+    -- [NIGHT-TOGGLE] hyprsunset no estaba instalado. hyprshade tampoco funciona en Lua config (usa hyprctl keyword).
+    -- hl.exec_cmd("hyprsunset")
+    -- hl.exec_cmd("hyprshade on blue-light-filter")  -- NO funciona en 0.55
+    hl.exec_cmd("bash $HOME/.config/hypr/scripts/night-toggle.sh on")
     hl.exec_cmd("wl-paste --type text --watch cliphist store")
     hl.exec_cmd("wl-paste --type image --watch cliphist store")
-    hl.exec_cmd("hyprpaper --config /home/diego/Di3go0-0_dots/.config/hypr/hyprpaper.conf")
+    -- [WALLPAPER-SELECT] motor awww (paquete swww). Reemplaza hyprpaper.
+    -- hl.exec_cmd("hyprpaper --config /home/diego/Di3go0-0_dots/.config/hypr/hyprpaper.conf")
+    hl.exec_cmd("awww-daemon")
+    hl.exec_cmd("sleep 0.4 && (awww restore || awww img " ..
+        "'/home/diego/Di3go0-0_dots/Resources/wallpapers/Japoneses/osaka.jpg')")
+    -- [WALLUST] Aplicar el último theme guardado (o DD01 si no hay)
+    hl.exec_cmd("bash $HOME/.config/hypr/scripts/theme-select.sh apply " ..
+        "\"$(cat $HOME/.cache/current-theme 2>/dev/null || echo DD01)\"")
 end)
 
 -------------------------------
@@ -82,3 +92,11 @@ hl.config({
         disable_splash_rendering = true,
     },
 })
+
+--------------------
+---- LAYER RULES ---
+--------------------
+
+-- [GLASS] Blur de fondo para rofi (glassmorphism). Sin esto el alpha translúcido
+-- solo deja ver el escritorio crudo, no la versión blureada.
+hl.layer_rule({ match = "rofi", blur = true, ignore_alpha = true })
