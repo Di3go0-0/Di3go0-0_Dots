@@ -30,5 +30,21 @@ else
     echo -e "${YELLOW}  ℹ fc-cache not found, skipping font cache update${NC}"
 fi
 
+# Bootstrap wallust theme (genera palette.rasi, colors-wallust.css/.conf/.lua que
+# glass.rasi / style.css / kitty.conf / theme.lua referencian via @import / include).
+# Sin este paso, en fresh install fallan por archivos faltantes.
+echo -e "${BLUE}🎨 Bootstrapping wallust theme (DD01)...${NC}"
+if command -v wallust >/dev/null 2>&1; then
+    if wallust cs DD01 >/dev/null 2>&1; then
+        echo -e "${GREEN}  ✓ Theme DD01 aplicado (rofi/waybar/kitty/hypr colors generados)${NC}"
+        mkdir -p "$HOME/.cache"
+        echo "DD01" > "$HOME/.cache/current-theme"
+    else
+        echo -e "${YELLOW}  ⚠ wallust cs DD01 falló (¿faltan colorschemes en ~/.config/wallust/?)${NC}"
+    fi
+else
+    echo -e "${YELLOW}  ℹ wallust no instalado, skipping theme bootstrap${NC}"
+fi
+
 echo -e "\n${GREEN}✅ Post-setup completed!${NC}"
 echo -e "${YELLOW}💡 Note: You may need to restart your session for all changes to take effect.${NC}"

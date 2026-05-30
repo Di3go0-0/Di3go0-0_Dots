@@ -1,19 +1,18 @@
 #!/bin/bash
 
-# Arch Linux Installer Script
-# This script installs yay and several packages from official repos and AUR
+# Arch Linux installer for Di3go0-0's dotfiles.
+# Instala yay + paquetes oficiales + AUR alineados con la config actual.
 
-set -e # Exit on any error
+set -e
 
-# Colors for output
+# Colors
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
 echo -e "${YELLOW}Starting installation script...${NC}"
 
-# Function to install yay
 install_yay() {
   echo -e "${GREEN}Installing yay (AUR helper)...${NC}"
   if ! command -v yay &>/dev/null; then
@@ -23,64 +22,98 @@ install_yay() {
     makepkg -si --noconfirm
     cd -
     rm -rf /tmp/yay
-    echo -e "${GREEN}yay installed successfully.${NC}"
+    echo -e "${GREEN}yay installed.${NC}"
   else
-    echo -e "${YELLOW}yay is already installed.${NC}"
+    echo -e "${YELLOW}yay already installed.${NC}"
   fi
 }
 
-# Function to install packages via pacman or yay
 install_packages() {
   echo -e "${GREEN}Updating system...${NC}"
   sudo pacman -Syu --noconfirm
 
   echo -e "${GREEN}Installing packages from official repos...${NC}"
   sudo pacman -S --needed --noconfirm \
-    neovim \
-    zellij \
-    rofi \
-    waybar \
-    wofi \
-    swaync \
-    brightnessctl \
-    nodejs \
-    npm \
-    wl-clipboard \
+    `# --- Hyprland core ---` \
+    hyprland \
     hyprlock \
-    hyprpaper \
     hypridle \
+    awww \
+    `# --- shells & terminal ---` \
     kitty \
     fish \
+    zellij \
+    starship \
+    `# --- editor & dev ---` \
+    neovim \
+    nodejs \
+    npm \
+    `# --- UI bar / launcher / notifs ---` \
+    waybar \
+    rofi \
+    swaync \
+    wlogout \
+    `# --- screenshot & clipboard ---` \
+    grim \
+    slurp \
+    swappy \
+    wl-clipboard \
+    `# --- audio ---` \
+    pipewire \
+    pipewire-alsa \
+    pipewire-pulse \
+    pipewire-jack \
+    wireplumber \
+    pamixer \
+    playerctl \
+    `# --- network & bluetooth ---` \
+    networkmanager \
+    network-manager-applet \
+    blueman \
+    `# --- file managers ---` \
+    nautilus \
+    dolphin \
+    ranger \
+    `# --- system / auth ---` \
+    polkit-kde-agent \
+    brightnessctl \
+    xdg-user-dirs \
+    `# --- libs / tooling ---` \
     jq \
     libnotify \
-    swappy \
-    xdg-user-dirs \
     gettext \
-    dbeaver \
-    ranger \
-    blueman \
     bat \
-    imagemagick
+    imagemagick \
+    `# --- fonts ---` \
+    ttf-cascadia-code-nerd \
+    `# --- apps ---` \
+    dbeaver
 
   echo -e "${GREEN}Installing packages from AUR via yay...${NC}"
   yay -S --needed --noconfirm \
-    lazygit \
-    github-cli \
+    `# --- Hyprland extras ---` \
+    hyprpicker \
+    hyprshade \
+    grimblast-git \
+    `# --- shells / dev ---` \
     nushell \
     nvm \
-    starship \
-    wlogout \
+    lazygit \
+    github-cli \
+    `# --- theming ---` \
+    wallust \
+    nwg-look \
+    `# --- clipboard & misc ---` \
     cliphist \
-    grimblast-git \
-    hyprsunset \
-    hyprshade \
     bitwarden \
-    eww \
-    nwg-look
+    `# --- browser ---` \
+    google-chrome
 }
 
-# Main script execution
+# Main
 install_yay
 install_packages
 
 echo -e "${GREEN}All packages installed successfully!${NC}"
+echo -e "${YELLOW}Note: hyprpaper, hyprsunset, wofi y eww fueron removidos del script${NC}"
+echo -e "${YELLOW}(reemplazados por awww + hyprshade + rofi).${NC}"
