@@ -1,7 +1,9 @@
 [user]
-	name =  Di3go0-0 
-	email = d.rincon@utp.edu.co 
+	name =  Juan Diego Rincon Franco
+	email = juan.rincon@linktic.com
 [pull]
 	rebase = true
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[core]
+	pager = cat

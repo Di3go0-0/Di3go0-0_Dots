@@ -20,11 +20,19 @@ hl.monitor({
 -- 	position = "1536x0",
 -- 	scale = 1,
 -- }
+
+-- local hdmi_config = {
+-- 	output = "HDMI-A-1",
+-- 	-- output = "HDMI-A-1",
+-- 	mode = "1920x1080@100",
+-- 	position = "1536x0",
+-- 	scale = 1,
+-- }
+
 local hdmi_config = {
-	-- output = "HDMI-A-1",
-	output = "HDMI-A-1",
-	mode = "1920x1080@100",
-	position = "1536x0",
+	output = "DP-3", -- Corregido: Tu sistema lo lee como DP-3
+	mode = "1920x1080@180", -- Optimizado: ¡Aprovecha los 180Hz de tu Samsung!
+	position = "1536x0", -- Correcto: 1920 / 1.25 de escala
 	scale = 1,
 }
 
