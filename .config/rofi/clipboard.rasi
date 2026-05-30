@@ -1,111 +1,40 @@
-
-// Config //
+// [GLASS] cliphist menu. Theme base + tweaks compactos.
+// Tamaño dinámico: no impone 12 filas vacías cuando solo hay 5 items.
 configuration {
-    modi:                        "drun";
-    show-icons:                  false;
+    modi:        "drun";
+    show-icons:  false;
 }
-@theme "~/.config/rofi/themes/catppuccin-macchiato.rasi"
 
-// Main //
+@theme "~/.config/rofi/themes/glass.rasi"
+
+/* ---- overrides para cliphist ---- */
 window {
-    width:                       23em;
-    height:                      30em;
-    transparency:                "real";
-    fullscreen:                  false;
-    enabled:                     true;
-    cursor:                      "default";
-    spacing:                     0em;
-    padding:                     0em;
-    border-color:                @main-br;
-    background-color:            @main-bg;
+    width:    28em;
+    /* height omitido → encoge al contenido. cliphist.sh sobrescribe location. */
 }
+
 mainbox {
-    enabled:                     true;
-    spacing:                     0em;
-    padding:                     0.5em;
-    orientation:                 vertical;
-    children:                    [ "wallbox" , "listbox" ];
-    background-color:            transparent;
-}
-wallbox {
-    spacing:                     0em;
-    padding:                     0em;
-    expand:                      false;
-    orientation:                 horizontal;
-    background-color:            transparent;
-    children:                    [ "wallframe" , "inputbar" ];
-}
-wallframe {
-    width:                       5em;
-    spacing:                     0em;
-    padding:                     0em;
-    expand:                      false;
-    background-color:            @main-bg;
+    children: [ inputbar, listview ];
 }
 
-
-// Inputs //
-inputbar {
-    enabled:                     true;
-    padding:                     0em;
-    children:                    [ "entry" ];
-    background-color:            @main-bg;
-    expand:                      true;
-}
-entry {
-    enabled:                     true;
-    padding:                     1.8em;
-    text-color:                  @main-fg;
-    background-color:            transparent;
-}
-
-
-// Lists //
-listbox {
-    spacing:                     0em;
-    padding:                     0em;
-    orientation:                 vertical;
-    children:                    [ "dummy" , "listview" , "dummy" ];
-    background-color:            transparent;
-}
 listview {
-    enabled:                     true;
-    padding:                     0.5em;
-    columns:                     1;
-    lines:                       11; 
-    cycle:                       true;
-    fixed-height:                true;
-    fixed-columns:               false;
-    expand:                      false;
-    cursor:                      "default";
-    background-color:            transparent;
-    text-color:                  @main-fg;
-}
-dummy {
-    spacing:                     0em;
-    padding:                     0em;
-    background-color:            transparent;
+    columns:         1;
+    lines:           10;
+    spacing:         3px;
+    fixed-num-lines: false;
+    fixed-height:    false;
+    cycle:           true;
+    scrollbar:       true;
 }
 
-
-// Elements //
+/* Altura uniforme por fila (limitación de rofi) → mantener icon razonable
+   para no inflar las filas de texto plano. 40px = preview visible + filas compactas. */
 element {
-    enabled:                     true;
-    padding:                     0.5em;
-    cursor:                      pointer;
-    background-color:            transparent;
-    text-color:                  @main-fg;
-}
-element selected.normal {
-    background-color:            @select-bg;
-    text-color:                  @select-fg;
-}
-element-text {
-    vertical-align:              0.0;
-    horizontal-align:            0.0;
-    cursor:                      inherit;
-    background-color:            transparent;
-    text-color:                  inherit;
+    padding: 4px 10px;
+    spacing: 10px;
 }
 
-
+element-icon {
+    size:   40px;
+    expand: false;
+}

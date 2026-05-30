@@ -1,0 +1,20 @@
+/* Generado por wallust — palette del theme actual. Importado por glass.rasi.
+   Usa hex 8-digit (#RRGGBBAA) en vez de rgba(R,G,B,A) porque wallust no expone RGB. */
+
+* {
+    bg-base:    #1E1E2E8C;   /* 55% alpha */
+    bg-panel:   #585B7073;       /* 45% */
+    bg-elev:    #585B70A6;       /* 65% */
+
+    fg:         #CDD6F4;
+    fg-dim:     #CDD6F4;
+    fg-mute:    #585B70;
+
+    accent:     #CBA6F7;
+    accent-bg:  #CBA6F72E;       /* 18% */
+    accent-bd:  #CBA6F78C;       /* 55% */
+
+    border:     #CBA6F740;       /* 25% */
+    urgent:     #F38BA8;
+    active:     #A6E3A1;
+}

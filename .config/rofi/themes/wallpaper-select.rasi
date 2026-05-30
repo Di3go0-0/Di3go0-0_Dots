@@ -1,0 +1,42 @@
+/* [GLASS] wallpaper-select.rasi — selector visual con 3 tabs (Recent/Folders/All).
+ * Importa base glass + tweaks de grid de miniaturas. */
+
+@import "glass.rasi"
+
+window {
+    width:    70%;
+}
+
+mainbox {
+    children: [ mode-switcher, inputbar, listview ];
+}
+
+/* Grid de miniaturas con flow horizontal (row-major) */
+listview {
+    columns:         5;
+    lines:           2;
+    flow:            horizontal;
+    fixed-num-lines: false;
+    fixed-height:    false;
+    spacing:         10px;
+    scrollbar:       true;
+    cycle:           false;
+}
+
+/* Cards verticales: icon arriba, label abajo */
+element {
+    orientation: vertical;
+    children:    [ element-icon, element-text ];
+    padding:     8px;
+    spacing:     6px;
+}
+
+element-icon {
+    size:             130px;
+    horizontal-align: 0.5;
+}
+
+element-text {
+    horizontal-align: 0.5;
+    padding:          4px 0 0 0;
+}

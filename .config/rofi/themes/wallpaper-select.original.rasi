@@ -1,0 +1,111 @@
+/* Theme rofi para wallpaper-select.sh — grid compacto + tabs */
+
+* {
+    bg:         #0f121c;
+    bg-alt:     #1f2536;
+    bg-tab:     #161b29;
+    fg:         #cdd6f4;
+    fg-dim:     #a6adc8;
+    accent:     #89b4fa;
+    accent-sel: #3a4a7a;
+    border:     #4a5b8a;
+
+    background-color: transparent;
+    text-color:       @fg;
+}
+
+/* Ancho relativo al monitor donde se abre (rofi resuelve % por monitor activo).
+   70% queda cómodo en eDP-2 (1440 efectivo) y HDMI (1920). Altura dinámica. */
+window {
+    width:            70%;
+    background-color: @bg;
+    border:           2px;
+    border-color:     @border;
+    border-radius:    16px;
+    padding:          16px;
+}
+
+mainbox {
+    children: [ mode-switcher, inputbar, listview ];
+    spacing:  10px;
+}
+
+mode-switcher {
+    background-color: @bg-tab;
+    padding:          4px;
+    border-radius:    10px;
+    spacing:          4px;
+}
+
+button {
+    background-color: transparent;
+    text-color:       @fg-dim;
+    padding:          7px 18px;
+    border-radius:    8px;
+    horizontal-align: 0.5;
+    cursor:           pointer;
+}
+
+button selected {
+    background-color: @accent-sel;
+    text-color:       @fg;
+    border:           1px;
+    border-color:     @accent;
+}
+
+inputbar {
+    background-color: @bg-alt;
+    padding:          8px 14px;
+    border-radius:    10px;
+    children:         [ entry ];
+}
+
+entry {
+    text-color:        @fg;
+    placeholder:       "Search...";
+    placeholder-color: @fg-dim;
+}
+
+/* fixed-num-lines: false → la lista solo ocupa las filas necesarias.
+   flow: horizontal → llena fila por fila (row-major), no col-major.
+   Sin esto, con 10 items en 5 cols × 3 rows se ven gaps en la última col. */
+listview {
+    columns:         5;
+    lines:           2;
+    flow:            horizontal;
+    fixed-num-lines: false;
+    fixed-height:    false;
+    spacing:         10px;
+    scrollbar:       true;
+    cycle:           false;
+}
+
+/* Tamaño constante por card — independiente de cuántas haya. */
+element {
+    orientation:   vertical;
+    children:      [ element-icon, element-text ];
+    padding:       8px;
+    border-radius: 10px;
+    spacing:       6px;
+}
+
+element selected {
+    background-color: @accent-sel;
+    border:           2px;
+    border-color:     @accent;
+}
+
+element-icon {
+    size:             130px;
+    horizontal-align: 0.5;
+}
+
+element-text {
+    horizontal-align: 0.5;
+    padding:          4px 0 0 0;
+    text-color:       @fg-dim;
+}
+
+element selected element-text {
+    text-color: @fg;
+}

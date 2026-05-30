@@ -1,0 +1,151 @@
+/* glass.rasi — base theme glassmorphism unificado para todos los menús rofi.
+ * Cada menú lo importa con @import "glass.rasi" y solo añade su layout. */
+
+* {
+    /* Paleta: Catppuccin Mocha + mauve accent */
+    bg-base:    rgba(15, 17, 26, 0.55);     /* fondo translúcido (Hyprland blur lo difumina) */
+    bg-panel:   rgba(30, 33, 50, 0.45);     /* inputbar / mode-switcher */
+    bg-elev:    rgba(45, 50, 75, 0.40);     /* hover sutil */
+
+    fg:         #cdd6f4;                     /* texto principal */
+    fg-dim:     #a6adc8;                     /* texto secundario */
+    fg-mute:    #6c7086;                     /* texto desactivado */
+
+    accent:     #cba6f7;                     /* mauve único */
+    accent-bg:  rgba(203, 166, 247, 0.18);   /* fondo selection */
+    accent-bd:  rgba(203, 166, 247, 0.55);   /* borde selection */
+
+    border:     rgba(203, 166, 247, 0.25);   /* borde ventana, halo tenue */
+    urgent:     #f38ba8;
+    active:     #a6e3a1;
+
+    background-color: transparent;
+    text-color:       @fg;
+    font:             "CaskaydiaCove Nerd Font 11";
+}
+
+/* ---- contenedores ---- */
+window {
+    background-color: @bg-base;
+    border:           1px;
+    border-color:     @border;
+    border-radius:    18px;
+    padding:          14px;
+}
+
+mainbox {
+    background-color: transparent;
+    spacing:          10px;
+}
+
+/* ---- mode-switcher (tabs) ---- */
+mode-switcher {
+    background-color: @bg-panel;
+    padding:          4px;
+    border-radius:    12px;
+    spacing:          4px;
+}
+
+button {
+    background-color: transparent;
+    text-color:       @fg-dim;
+    padding:          7px 18px;
+    border-radius:    10px;
+    horizontal-align: 0.5;
+    cursor:           pointer;
+}
+
+button selected {
+    background-color: @accent-bg;
+    text-color:       @accent;
+    border:           1px;
+    border-color:     @accent-bd;
+}
+
+/* ---- inputbar / search ---- */
+inputbar {
+    background-color: @bg-panel;
+    padding:          9px 14px;
+    border-radius:    12px;
+    spacing:          8px;
+    children:         [ prompt, entry ];
+}
+
+prompt {
+    text-color: @accent;
+    padding:    0 6px 0 0;
+}
+
+entry {
+    text-color:        @fg;
+    placeholder:       "Search...";
+    placeholder-color: @fg-mute;
+    cursor:            text;
+}
+
+/* ---- listview + elements (selection pill) ---- */
+listview {
+    background-color: transparent;
+    spacing:          6px;
+    scrollbar:        false;
+    cycle:            false;
+    fixed-height:     false;
+}
+
+element {
+    background-color: transparent;
+    text-color:       @fg-dim;
+    padding:          9px 12px;
+    border-radius:    12px;
+    spacing:          10px;
+    cursor:           pointer;
+}
+
+element normal active {
+    text-color: @active;
+}
+
+element normal urgent {
+    text-color: @urgent;
+}
+
+element selected {
+    background-color: @accent-bg;
+    text-color:       @fg;
+    border:           1px;
+    border-color:     @accent-bd;
+}
+
+element-icon {
+    background-color: transparent;
+    size:             1.2em;
+    vertical-align:   0.5;
+}
+
+element-text {
+    background-color: transparent;
+    text-color:       inherit;
+    vertical-align:   0.5;
+    horizontal-align: 0;
+}
+
+/* ---- scrollbar (cuando se habilita en algún menú) ---- */
+scrollbar {
+    width:            4px;
+    handle-color:     @accent-bd;
+    handle-width:     4px;
+    border-radius:    4px;
+    background-color: transparent;
+}
+
+/* ---- message (errores, prompts secundarios) ---- */
+message {
+    background-color: @bg-panel;
+    border-radius:    12px;
+    padding:          8px 12px;
+}
+
+textbox {
+    background-color: transparent;
+    text-color:       @fg-dim;
+}

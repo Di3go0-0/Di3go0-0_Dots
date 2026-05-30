@@ -1,0 +1,24 @@
+/* [GLASS] wallpaper-scope.rasi — prompt compacto "All / Current monitor".
+ * Importa base glass + tweaks mínimos. */
+
+@import "glass.rasi"
+
+window {
+    width: 360px;
+}
+
+mainbox {
+    children: [ inputbar, listview ];
+}
+
+listview {
+    columns:         1;
+    lines:           5;
+    spacing:         4px;
+    fixed-num-lines: false;
+    fixed-height:    false;
+}
+
+element {
+    padding: 11px 14px;
+}
