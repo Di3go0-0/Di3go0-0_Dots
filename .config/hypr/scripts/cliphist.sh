@@ -40,6 +40,51 @@ fi
 
 r_override="window{location:${x_pos} ${y_pos};anchor:${x_pos} ${y_pos};x-offset:${x_off}px;y-offset:${y_off}px;border:${hypr_width}px;border-radius:${wind_border}px;} wallbox{border-radius:${elem_border}px;} element{border-radius:${elem_border}px;}"
 
+# [GLASS] Pipe que añade thumbnails + label limpio a entries de imagen.
+# Genera thumbs en ~/.cache/cliphist-thumbs/ (cacheados por id).
+# Reemplaza "[[ binary data X KiB png WxH ]]" por "PNG · 579×451 · 191 KiB".
+cliphist_with_thumbs() {
+    local cache="$HOME/.cache/cliphist-thumbs"
+    mkdir -p "$cache"
+
+    # Limpieza: borrar thumbs cuyo id ya no esté en cliphist
+    local valid_ids
+    valid_ids=$(cliphist list | cut -f1)
+    for thumb in "$cache"/*.png; do
+        [[ -f "$thumb" ]] || continue
+        local tid="${thumb##*/}"; tid="${tid%.png}"
+        grep -qx "$tid" <<< "$valid_ids" || rm -f "$thumb"
+    done
+
+    cliphist list | while IFS=$'\t' read -r id preview; do
+        # Detectar entries de imagen: "[[ binary data SIZE UNIT FMT WxH ]]"
+        if [[ "$preview" =~ \[\[\ binary\ data\ ([0-9.]+)\ (B|KiB|MiB|GiB)\ (png|jpg|jpeg|webp|gif|bmp)(\ ([0-9]+)x([0-9]+))?\ \]\] ]]; then
+            local size="${BASH_REMATCH[1]} ${BASH_REMATCH[2]}"
+            local fmt="${BASH_REMATCH[3]^^}"   # uppercase
+            local w="${BASH_REMATCH[5]}"
+            local h="${BASH_REMATCH[6]}"
+
+            local label
+            if [[ -n "$w" ]]; then
+                label="$fmt  ·  ${w}×${h}  ·  $size"
+            else
+                label="$fmt  ·  $size"
+            fi
+
+            local thumb="$cache/$id.png"
+            if [[ ! -f "$thumb" ]]; then
+                cliphist decode "$id" | magick - -thumbnail 96x96 "$thumb" 2>/dev/null || {
+                    printf '%s\t%s\n' "$id" "$preview"
+                    continue
+                }
+            fi
+            printf '%s\t%s\0icon\x1f%s\n' "$id" "$label" "$thumb"
+        else
+            printf '%s\t%s\n' "$id" "$preview"
+        fi
+    done
+}
+
 # Show main menu if no arguments are passed
 if [ $# -eq 0 ]; then
     main_action=$(echo -e "History\nDelete\nView Favorites\nManage Favorites\nClear History" | rofi -dmenu -theme-str "entry { placeholder: \"Choose action\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
@@ -49,14 +94,14 @@ fi
 
 case "${main_action}" in
 "History")
-    selected_item=$(cliphist list | rofi -dmenu -theme-str "entry { placeholder: \"History...\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
+    selected_item=$(cliphist_with_thumbs | rofi -dmenu -show-icons -theme-str "entry { placeholder: \"History...\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
     if [ -n "$selected_item" ]; then
         echo "$selected_item" | cliphist decode | wl-copy
         notify-send "Copied to clipboard."
     fi
     ;;
 "Delete")
-    selected_item=$(cliphist list | rofi -dmenu -theme-str "entry { placeholder: \"Delete...\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
+    selected_item=$(cliphist_with_thumbs | rofi -dmenu -show-icons -theme-str "entry { placeholder: \"Delete...\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
     if [ -n "$selected_item" ]; then
         echo "$selected_item" | cliphist delete
         notify-send "Deleted."
@@ -100,7 +145,7 @@ case "${main_action}" in
     case "${manage_action}" in
     "Add to Favorites")
         # Show clipboard history to add to favorites
-        item=$(cliphist list | rofi -dmenu -theme-str "entry { placeholder: \"Add to Favorites...\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
+        item=$(cliphist_with_thumbs | rofi -dmenu -show-icons -theme-str "entry { placeholder: \"Add to Favorites...\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
         if [ -n "$item" ]; then
             # Decode the item from clipboard history
             full_item=$(echo "$item" | cliphist decode)
