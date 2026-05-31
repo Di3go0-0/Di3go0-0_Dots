@@ -39,6 +39,7 @@ install_packages() {
     hyprlock \
     hypridle \
     awww \
+    xdg-desktop-portal-hyprland \
     `# --- shells & terminal ---` \
     kitty \
     fish \
@@ -65,6 +66,7 @@ install_packages() {
     pipewire-jack \
     wireplumber \
     pamixer \
+    pavucontrol \
     playerctl \
     `# --- network & bluetooth ---` \
     networkmanager \
@@ -84,6 +86,7 @@ install_packages() {
     gettext \
     bat \
     imagemagick \
+    pacman-contrib \
     `# --- fonts ---` \
     ttf-cascadia-code-nerd
 
