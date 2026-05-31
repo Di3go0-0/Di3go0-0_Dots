@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# Unified Dotfiles Setup Script
-# Complete installation and configuration for Di3go0-0's dotfiles
+# Base Dotfiles Setup Script (arch-hypr branch)
+# Installs only what is needed for the dots to run on any Arch + Hyprland box.
+# PC-specific configuration (default shell, monitors, themes) is NOT applied here.
 set -e
 
 # Colors for output
@@ -50,16 +51,22 @@ verify_installation() {
 
 # Function to show next steps
 show_next_steps() {
-    print_status "$CYAN" "Next Steps:"
-    echo -e "  1. ${YELLOW}Restart your terminal${NC} or reboot"
-    echo -e "  2. ${YELLOW}Launch Hyprland${NC} - config is in ~/.config/hypr/hyprland.lua"
-    echo -e "  3. ${YELLOW}Customize${NC} by editing Lua modules in ~/.config/hypr/"
+    print_status "$CYAN" "Base install done. Optional steps (run only what you want):"
+    echo -e "  1. ${YELLOW}Edit monitors${NC}:        ~/.config/hypr/monitors.lua  (current values are PC-specific)"
+    echo -e "  2. ${YELLOW}Nushell plugins${NC}:      bash scripts/nushell.sh"
+    echo -e "  3. ${YELLOW}Fish plugins${NC}:         bash scripts/fish.sh"
+    echo -e "  4. ${YELLOW}Default shell${NC}:        chsh -s \$(which fish)   # or nu, bash..."
+    echo -e "  5. ${YELLOW}Themes / extras${NC}:"
+    echo -e "       - GRUB theme:           bash scripts/grub.sh"
+    echo -e "       - Spotify + Spicetify:  bash scripts/spotify.sh"
+    echo -e "       - SDDM theme:           bash scripts/sddm-astronaut-setup.sh"
+    echo -e "  6. ${YELLOW}Reboot${NC} and launch Hyprland"
 
     if [[ -d "$HOME/.dotfiles_backup" ]]; then
         echo -e "\n${YELLOW}Backed up files: ~/.dotfiles_backup${NC}"
     fi
 
-    echo -e "\n${GREEN}Done!${NC}"
+    echo -e "\n${GREEN}Done.${NC}"
 }
 
 # Main execution
@@ -84,7 +91,8 @@ main() {
     print_status "$BLUE" "Home directory: $HOME"
 
     # Ask for confirmation
-    echo -e "\n${YELLOW}This will install packages and set up your dotfiles.${NC}"
+    echo -e "\n${YELLOW}This will install BASE packages and symlink your dots.${NC}"
+    echo -e "${YELLOW}Default shell, monitors and themes are NOT touched.${NC}"
     read -p "Continue? (y/N): " -n 1 -r
     echo
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -92,8 +100,8 @@ main() {
         exit 0
     fi
 
-    # 1. Install packages (includes yay install + system update)
-    run_script "packages.sh" "Installing packages..."
+    # 1. Install base packages (includes yay install + system update)
+    run_script "packages.sh" "Installing base packages..."
 
     # 2. Backup critical files before overwriting
     run_script "backup-critical.sh" "Backing up critical files..."
@@ -101,25 +109,13 @@ main() {
     # 3. Create symlinks
     run_script "symlink.sh" "Setting up dotfiles symlinks..."
 
-    # 4. Nushell setup
-    run_script "nushell.sh" "Setting up Nushell..."
-
-    # 5. GRUB theme
-    run_script "grub.sh" "Setting up GRUB theme..."
-
-    # 6. Spotify + Spicetify
-    run_script "spotify.sh" "Setting up Spotify + Spicetify..."
-
-    # 7. SDDM theme
-    run_script "sddm-astronaut-setup.sh" "Setting up SDDM theme..."
-
-    # 8. Post-setup tasks (font cache, icon cache)
+    # 4. Post-setup tasks (font cache, icon cache, wallust bootstrap)
     run_script "post-setup.sh" "Running post-setup tasks..."
 
-    # 9. Verify
+    # 5. Verify
     verify_installation
 
-    # 10. Next steps
+    # 6. Next steps (manual scripts the user runs themselves)
     show_next_steps
 }
 

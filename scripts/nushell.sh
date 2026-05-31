@@ -38,25 +38,15 @@ mkdir -p ~/.cache/starship
 starship init nu >~/.cache/starship/init.nu
 
 echo "✅ Nushell integrations ready: zoxide, carapace, atuin, starship."
+echo ""
 echo "Remember to edit your ~/.config/nushell/config.nu and make sure it contains:"
 echo '  source ~/.zoxide.nu'
 echo '  source ~/.cache/carapace/init.nu'
 echo '  source ~/.local/share/atuin/init.nu'
 echo '  source ~/.cache/starship/init.nu'
-
-# Set Nushell as the default shell
-NU_PATH="$(which nu)"
-if [ -n "$NU_PATH" ]; then
-  # Ensure nu is in /etc/shells before chsh
-  if ! grep -qx "$NU_PATH" /etc/shells; then
-    echo "🔧 Adding $NU_PATH to /etc/shells..."
-    echo "$NU_PATH" | sudo tee -a /etc/shells >/dev/null
-  fi
-  echo "🔄 Setting Nushell as your default shell ($NU_PATH)..."
-  chsh -s "$NU_PATH"
-  echo "✅ Default shell changed to Nushell."
-else
-  echo "❌ Nushell not found, cannot change shell."
-fi
-
-echo "🎉 Installation and configuration complete!"
+echo ""
+echo "To set Nushell as your default shell (optional, do it yourself):"
+echo "  echo \"\$(which nu)\" | sudo tee -a /etc/shells"
+echo "  chsh -s \"\$(which nu)\""
+echo ""
+echo "🎉 Nushell setup complete!"

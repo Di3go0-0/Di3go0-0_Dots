@@ -85,9 +85,7 @@ install_packages() {
     bat \
     imagemagick \
     `# --- fonts ---` \
-    ttf-cascadia-code-nerd \
-    `# --- apps ---` \
-    dbeaver
+    ttf-cascadia-code-nerd
 
   echo -e "${GREEN}Installing packages from AUR via yay...${NC}"
   yay -S --needed --noconfirm \
@@ -104,16 +102,13 @@ install_packages() {
     wallust \
     nwg-look \
     `# --- clipboard & misc ---` \
-    cliphist \
-    bitwarden \
-    `# --- browser ---` \
-    google-chrome
+    cliphist
 }
 
 # Main
 install_yay
 install_packages
 
-echo -e "${GREEN}All packages installed successfully!${NC}"
-echo -e "${YELLOW}Note: hyprpaper, hyprsunset, wofi y eww fueron removidos del script${NC}"
-echo -e "${YELLOW}(reemplazados por awww + hyprshade + rofi).${NC}"
+echo -e "${GREEN}All base packages installed successfully!${NC}"
+echo -e "${YELLOW}Apps personales (bitwarden, chrome, dbeaver, spotify) NO incluidas.${NC}"
+echo -e "${YELLOW}Instalalas manualmente segun necesidad.${NC}"
