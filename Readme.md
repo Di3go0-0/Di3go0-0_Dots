@@ -1,11 +1,11 @@
 
 ![Font Preview](Resources/Font.png)
 
-# Di3go0-0 | Personal Dots
+# Di3go0-0 | Personal Dots — `arch-hypr` branch
 
 A clean, minimal and highly productive **Wayland-based Linux setup**, focused on performance, aesthetics, and developer ergonomics.
 
-This repository is **no longer an installation guide**. It is a **presentation** of my personal environment, tools, and workflow philosophy.
+> **This branch (`arch-hypr`) is the portable base.** It carries the same configs as my daily setup but the installer is intentionally generic: it sets up the dependencies and symlinks needed for the dots to run, and stops there. Anything PC-specific (default shell, monitor layout, themes) is left to the user.
 
 ---
 
@@ -32,36 +32,68 @@ This combination gives me a fast, keyboard-driven workflow with full control ove
 
 ---
 
+## Install
+
+Tested on Arch Linux. Run from inside the cloned repo:
+
+```bash
+./init.sh        # or: ./setup.sh
+```
+
+### What the base installer does
+
+1. **`packages.sh`** — installs `yay` + the base package set: Hyprland stack, kitty, fish, nushell, nvim, waybar, rofi, swaync, wlogout, audio (pipewire), fonts, etc. **Personal apps (chrome, bitwarden, dbeaver, spotify) are NOT installed.**
+2. **`backup-critical.sh`** — backs up SSH keys, GPG, browser prefs, AWS/kube/docker creds, etc. before any symlink.
+3. **`symlink.sh`** — symlinks every folder under `.config/` of this repo into `~/.config/`, plus the wallpapers under `~/Pictures/wallpapers/`.
+4. **`post-setup.sh`** — refreshes font/icon caches and bootstraps the wallust theme.
+
+### What it does NOT do
+
+- ❌ Change your default shell (no `chsh`).
+- ❌ Touch monitor configuration. Edit `~/.config/hypr/monitors.lua` for your hardware.
+- ❌ Install themes (GRUB/SDDM/Spicetify) automatically.
+
+### Optional manual scripts
+
+Run only what you want after the base install:
+
+```bash
+bash scripts/nushell.sh                # nushell plugins (zoxide, carapace, atuin, starship)
+bash scripts/fish.sh                   # fisher + fish plugins (fzf.fish, nvm.fish, plugin-pj)
+bash scripts/grub.sh                   # GRUB theme
+bash scripts/spotify.sh                # Spotify + Spicetify
+bash scripts/sddm-astronaut-setup.sh   # SDDM theme
+
+# default shell — pick yours:
+chsh -s "$(which fish)"
+# or: chsh -s "$(which nu)"
+```
+
+---
+
 ## Repository Structure
 
 ```text
 .
-├── init.sh
-├── PostingClient.md
+├── init.sh                 # entry point → runs setup.sh
+├── setup.sh                # base installer (packages + symlinks + post-setup)
 ├── Readme.md
-├── Resources
+├── Resources/
 │   ├── Font.png
-│   └── wallpapers
-├── scripts
-│   ├── grub.sh
-│   ├── imagen.sh
-│   ├── nushell.sh
-│   ├── packages.sh
-│   ├── sddm-astronaut-setup.sh
-│   ├── spotify.sh
-│   └── symlink.sh
-└── stow.md
+│   └── wallpapers/
+├── scripts/
+│   ├── packages.sh         # base packages (no personal apps)
+│   ├── backup-critical.sh  # backs up ssh/gpg/aws/etc before symlinking
+│   ├── symlink.sh          # ~/.config/* → repo/.config/*
+│   ├── post-setup.sh       # font/icon cache, wallust bootstrap
+│   ├── verify.sh           # sanity check after install
+│   ├── nushell.sh          # manual: nushell plugins (no chsh)
+│   ├── fish.sh             # manual: fisher + fish plugins (no chsh)
+│   ├── grub.sh             # manual: GRUB theme
+│   ├── spotify.sh          # manual: Spicetify
+│   └── sddm-astronaut-setup.sh  # manual: SDDM theme
+└── .config/                # symlinked into ~/.config/
 ```
-
-### Entry Point
-
-To initialize the entire setup:
-
-```bash
-./init.sh
-```
-
-The `init.sh` script orchestrates all other scripts and prepares the environment automatically.
 
 ---
 
@@ -191,6 +223,7 @@ This setup is built to **stay out of the way** and let me focus on thinking and 
 * This repository reflects **my personal workflow**
 * It is opinionated by design
 * Not intended to be universal
+* **Branch strategy:** `arch-hypr` is the portable base — meant to bootstrap any Arch + Hyprland box. Other branches (`hyprland`, `main`, ...) hold my per-PC tweaks. Only commit PC-agnostic changes to `arch-hypr`.
 
 ---
 
