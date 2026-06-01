@@ -8,3 +8,10 @@ foo.*
 data
 oldPluginss/
 history.txt
+*.original.lua
+*.original.conf
+*.original.rasi
+*.original.css
+legacy-conf/
+hyprlock.original/
+node_modules/
