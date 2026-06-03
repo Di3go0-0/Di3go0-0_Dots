@@ -106,6 +106,9 @@ extract() {
     fi
 }
 
+# Bash completion
+[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+
 # Load local bashrc if exists
 if [ -f "$HOME/.bashrc.local" ]; then
     source "$HOME/.bashrc.local"
