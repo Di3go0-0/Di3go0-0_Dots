@@ -1,0 +1,148 @@
+# ── mgr ──────────────────────────────────────────────────────────────────
+[[mgr.prepend_keymap]]
+on   = "<Esc>"
+run  = "escape"
+desc = "Exit visual / clear selection / cancel"
+
+[[mgr.prepend_keymap]]
+on   = "q"
+run  = "quit"
+desc = "Quit yazi"
+
+[[mgr.prepend_keymap]]
+on   = "Q"
+run  = 'quit --no-cwd-file'
+desc = "Quit without writing cwd"
+
+# editor — siempre nvim, ignora $EDITOR
+[[mgr.prepend_keymap]]
+on   = "e"
+run  = 'shell --block -- nvim "$@"'
+desc = "Edit selection in nvim"
+
+# nvim en una nueva ventana de kitty (no bloquea yazi)
+[[mgr.prepend_keymap]]
+on   = "E"
+run  = 'shell --orphan -- kitty -e nvim "$@"'
+desc = "Open selection in nvim (new kitty window)"
+
+# Claude Code CLI en el directorio actual (nueva kitty)
+[[mgr.prepend_keymap]]
+on   = "C"
+run  = 'shell --orphan -- kitty --directory "$PWD" -e claude'
+desc = "Launch claude in cwd (new kitty window)"
+
+# Lazygit en el dir actual (plugin Lil-Dank/lazygit)
+[[mgr.prepend_keymap]]
+on   = "<C-g>"
+run  = "plugin lazygit"
+desc = "Open lazygit in cwd"
+
+# Bookmarks (plugin dedukun/bookmarks)
+[[mgr.prepend_keymap]]
+on   = "m"
+run  = "plugin bookmarks --args=save"
+desc = "Save bookmark"
+
+[[mgr.prepend_keymap]]
+on   = "'"
+run  = "plugin bookmarks --args=jump"
+desc = "Jump to bookmark"
+
+[[mgr.prepend_keymap]]
+on   = [ "b", "d" ]
+run  = "plugin bookmarks --args=delete"
+desc = "Delete bookmark"
+
+[[mgr.prepend_keymap]]
+on   = [ "b", "D" ]
+run  = "plugin bookmarks --args=delete_all"
+desc = "Delete all bookmarks"
+
+# open in terminal at cwd
+[[mgr.prepend_keymap]]
+on   = [ "t", "t" ]
+run  = 'shell --orphan -- kitty --directory "$PWD"'
+desc = "Spawn kitty here"
+
+# zoxide jump
+[[mgr.prepend_keymap]]
+on   = "z"
+run  = "plugin zoxide"
+desc = "Jump via zoxide"
+
+# fzf jump
+[[mgr.prepend_keymap]]
+on   = "Z"
+run  = "plugin fzf"
+desc = "Jump via fzf"
+
+# create file/dir (LF compat)
+[[mgr.prepend_keymap]]
+on   = "a"
+run  = 'create'
+desc = "Create file/dir"
+
+# toggle hidden (LF: zh)
+[[mgr.prepend_keymap]]
+on   = "."
+run  = "hidden toggle"
+desc = "Toggle hidden files"
+
+# search
+[[mgr.prepend_keymap]]
+on   = "/"
+run  = 'find --smart'
+desc = "Find next"
+
+[[mgr.prepend_keymap]]
+on   = "?"
+run  = 'find --previous --smart'
+desc = "Find previous"
+
+[[mgr.prepend_keymap]]
+on   = "s"
+run  = 'search fd'
+desc = "Search via fd"
+
+[[mgr.prepend_keymap]]
+on   = "S"
+run  = 'search rg'
+desc = "Search content via rg"
+
+# go to common dirs
+[[mgr.prepend_keymap]]
+on   = [ "g", "d" ]
+run  = "cd ~/Downloads"
+desc = "Cd to ~/Downloads"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "D" ]
+run  = "cd ~/Documents"
+desc = "Cd to ~/Documents"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "c" ]
+run  = "cd ~/.config"
+desc = "Cd to ~/.config"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "p" ]
+run  = "cd ~/Pictures"
+desc = "Cd to ~/Pictures"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "w" ]
+run  = "cd ~/Pictures/wallpapers"
+desc = "Cd to wallpapers"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "r" ]
+run  = "cd ~/Di3go0-0_dots"
+desc = "Cd to dots repo"
+
+# ── input ───────────────────────────────────────────────────────────────
+[[input.prepend_keymap]]
+on   = "<Esc>"
+run  = "close"
+desc = "Cancel input"
