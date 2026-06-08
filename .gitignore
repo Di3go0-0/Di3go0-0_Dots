@@ -15,3 +15,12 @@ history.txt
 legacy-conf/
 hyprlock.original/
 node_modules/
+
+# Clipse runtime state (history puede contener datos sensibles del clipboard)
+.config/clipse/clipboard_history.json
+.config/clipse/clipse.log
+.config/clipse/tmp_files/
+
+# Yazi runtime state
+.config/yazi/state/
+
