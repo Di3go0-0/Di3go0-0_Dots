@@ -76,6 +76,11 @@ install_packages() {
     nautilus \
     dolphin \
     ranger \
+    yazi \
+    fd \
+    ffmpegthumbnailer \
+    resvg \
+    ouch \
     `# --- system / auth ---` \
     polkit-kde-agent \
     brightnessctl \
@@ -105,7 +110,8 @@ install_packages() {
     wallust \
     nwg-look \
     `# --- clipboard & misc ---` \
-    cliphist
+    cliphist \
+    clipse
 }
 
 # Main
