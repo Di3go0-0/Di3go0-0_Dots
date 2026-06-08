@@ -1,0 +1,17 @@
+[Default]
+# Paths (also overridden per-run by screenshot.sh via flags)
+save_dir=$HOME/Pictures/Screenshots
+save_filename_format=swappy-%Y%m%d-%H%M%S.png
+
+# Geometry
+show_panel=false
+line_size=5
+text_size=20
+text_font=CaskaydiaCove Nerd Font
+
+# Default paint tool: brush | text | rectangle | ellipse | arrow | blur
+paint_mode=brush
+
+# Pixel size for the blur tool (bigger = blurrier)
+early_exit=false
+fill_shape=false
