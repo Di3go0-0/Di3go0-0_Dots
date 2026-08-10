@@ -25,9 +25,15 @@ ueberzug_scale  = 1
 ueberzug_offset = [0, 0, 0, 0]
 
 [opener]
+# Default editor — siempre nvim (bloquea yazi hasta salir)
 edit = [
-  { run = '$EDITOR "$@"', desc = "Edit (nvim)", block = true, for = "unix" },
+  { run = 'nvim "$@"', desc = "Edit in nvim", block = true, for = "unix" },
 ]
+# nvim en una ventana nueva de kitty (no bloquea yazi)
+edit_window = [
+  { run = 'kitty -e nvim "$@"', desc = "nvim (new kitty)", orphan = true, for = "unix" },
+]
+# xdg-open queda como fallback opcional ("o" -> elegir opener)
 open = [
   { run = 'xdg-open "$@"', desc = "Open with xdg", orphan = true, for = "linux" },
 ]
@@ -41,14 +47,20 @@ play = [
   { run = 'mpv --force-window "$@"', orphan = true, desc = "Play with mpv", for = "unix" },
 ]
 
+# Enter abre TODO con nvim por default.
+# Para imagen/video/audio dejo "play"/"open" como segundas opciones accesibles
+# vía `o` (yazi muestra menú cuando hay más de un opener).
 [open]
 rules = [
-  { mime = "inode/directory",             use = [ "edit", "open", "reveal" ] },
+  { mime = "inode/directory",             use = [ "edit" ] },
   { mime = "text/*",                      use = [ "edit", "reveal" ] },
-  { mime = "image/*",                     use = [ "open", "reveal" ] },
-  { mime = "video/*",                     use = [ "play", "open", "reveal" ] },
-  { mime = "audio/*",                     use = [ "play", "open", "reveal" ] },
   { mime = "application/json",            use = [ "edit", "reveal" ] },
+  { mime = "application/xml",             use = [ "edit", "reveal" ] },
+  { mime = "application/javascript",      use = [ "edit", "reveal" ] },
+  { mime = "application/x-shellscript",   use = [ "edit", "reveal" ] },
+  { mime = "image/*",                     use = [ "edit", "open", "reveal" ] },
+  { mime = "video/*",                     use = [ "edit", "play", "open" ] },
+  { mime = "audio/*",                     use = [ "edit", "play", "open" ] },
   { mime = "application/x-bittorrent",    use = [ "play" ] },
   { mime = "application/zip",             use = [ "extract", "reveal" ] },
   { mime = "application/gzip",            use = [ "extract", "reveal" ] },
@@ -57,7 +69,7 @@ rules = [
   { mime = "application/x-rar",           use = [ "extract", "reveal" ] },
   { mime = "application/xz",              use = [ "extract", "reveal" ] },
   { mime = "application/x-zstd",          use = [ "extract", "reveal" ] },
-  { mime = "*",                           use = [ "open", "reveal" ] },
+  { mime = "*",                           use = [ "edit", "open", "reveal" ] },
 ]
 
 [tasks]

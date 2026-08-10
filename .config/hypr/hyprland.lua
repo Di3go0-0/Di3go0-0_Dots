@@ -32,8 +32,10 @@ hl.on("hyprland.start", function()
     -- hl.exec_cmd("hyprsunset")
     -- hl.exec_cmd("hyprshade on blue-light-filter")  -- NO funciona en 0.55
     hl.exec_cmd("bash $HOME/.config/hypr/scripts/night-toggle.sh on")
-    hl.exec_cmd("wl-paste --type text --watch cliphist store")
-    hl.exec_cmd("wl-paste --type image --watch cliphist store")
+    -- [CLIPHIST] desactivado — reemplazado por clipse (TUI con previews reales)
+    -- hl.exec_cmd("wl-paste --type text --watch cliphist store")
+    -- hl.exec_cmd("wl-paste --type image --watch cliphist store")
+    hl.exec_cmd("clipse -listen")
     -- [WALLPAPER-SELECT] motor awww (paquete swww). Reemplaza hyprpaper.
     -- hl.exec_cmd("hyprpaper --config /home/diego/Di3go0-0_dots/.config/hypr/hyprpaper.conf")
     hl.exec_cmd("awww-daemon")

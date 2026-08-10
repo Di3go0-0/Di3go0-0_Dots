@@ -23,5 +23,6 @@ gui:
     defaultFgColor:
       - "#ffffff"
 git:
-  pagers:
+  diffRenderers:
     - colorOption: "always"
+      type: rawGit

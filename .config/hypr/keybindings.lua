@@ -10,14 +10,15 @@
 ---------------------
 
 local terminal = "kitty"
-local lf = "lf"
+local yazi = "yazi"
 local DB = "~/.cargo/bin/dbtui"
 local fileManager = "nautilus"
 local menu = "rofi -show drun"
 local window = "rofi -show window"
 local explorer = "dolphin"
 local scriptpath = os.getenv("HOME") .. "/Di3go0-0_dots/.config/hypr/scripts/"
-local browser = "google-chrome-stable"
+-- local browser = "google-chrome-stable"
+local browser = "firefox"
 local termFM = "ranger"
 
 local mainMod = "SUPER"
@@ -27,7 +28,7 @@ local mainMod = "SUPER"
 -----------------------
 
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
-hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(terminal .. " -e " .. lf))
+hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(terminal .. " -e " .. yazi))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(terminal .. " -e " .. DB))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
@@ -51,9 +52,14 @@ hl.bind("ALT + space", hl.dsp.window.fullscreen())
 ---- SCREENSHOTS    ----
 ------------------------
 
-hl.bind("PRINT", hl.dsp.exec_cmd(scriptpath .. "screenshot.sh p"))
-hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd('grim -g "$(slurp)" - | wl-copy'))
-hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(scriptpath .. "screenshot.sh sf"))
+-- Annotate flow (grim -> swappy)
+hl.bind("PRINT", hl.dsp.exec_cmd(scriptpath .. "screenshot.sh p"))                -- full screen
+hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd(scriptpath .. "screenshot.sh s"))         -- area
+hl.bind("CTRL + PRINT", hl.dsp.exec_cmd(scriptpath .. "screenshot.sh m"))          -- focused monitor
+hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(scriptpath .. "screenshot.sh sf"))      -- area frozen
+-- Clipboard-only flow (no swappy)
+hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd(scriptpath .. "screenshot.sh cs"))   -- area   -> clipboard
+hl.bind("ALT + PRINT", hl.dsp.exec_cmd(scriptpath .. "screenshot.sh cp"))           -- screen -> clipboard
 
 ------------------------
 ---- FOCUS          ----
@@ -157,8 +163,8 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 ---- CUSTOM SCRIPTS     ----
 ----------------------------
 
-hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("pkill -x rofi || " .. scriptpath .. "cliphist.sh c"))
-hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd("pkill -x rofi || " .. scriptpath .. "cliphist.sh"))
+-- [CLIPSE] TUI clipboard con previews reales, pin, fuzzy filter
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("kitty --class clipse -e clipse"))
 hl.bind(mainMod .. " + TAB", hl.dsp.exec_cmd(scriptpath .. "waybar-restart.sh"))
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd(scriptpath .. "logoutlaunch.sh"))
 -- [WALLPAPER-SELECT] SHIFT+W antes hacía killall hyprpaper. Ahora ambos abren el selector.
@@ -173,6 +179,10 @@ hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd(scriptpath .. "night-toggle.s
 
 -- [WALLUST] Theme selector (DD01/Pink/Blue/Auto from wallpaper)
 hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd(scriptpath .. "theme-select.sh"))
+
+-- [AUDIO-TO-WINDOW] Mueve audio de la app enfocada al sink de su monitor
+-- (audifonos USB/BT siempre tienen prioridad; ver ~/.local/bin/audio-to-window)
+hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("~/.local/bin/audio-to-window"))
 
 ----------------------------
 ---- MOUSE BINDS        ----

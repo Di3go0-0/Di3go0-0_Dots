@@ -249,6 +249,16 @@ for i, rule in ipairs(float_rules) do
 	})
 end
 
+-- Clipse (floating TUI clipboard)
+hl.window_rule({
+	name = "clipse-float",
+	match = { class = "^(clipse)$" },
+	float = true,
+	size = { 650, 420 },
+	center = true,
+	opacity = "0.72 0.72 1",
+})
+
 -- Common modals
 hl.window_rule({
 	name = "float-open-file",

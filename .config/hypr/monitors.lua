@@ -10,18 +10,22 @@ hl.monitor({
 })
 
 -- Monitor AOC (Derecha) - 100Hz
-local hdmi_config = {
+hl.monitor({
 	output = "HDMI-A-1",
 	mode = "1920x1080@100",
 	position = "1440x0",
 	scale = 1,
-}
+})
 
-hl.monitor(hdmi_config)
+hl.monitor({
+	output = "DP-2",
+	mode = "1920x1080@60",
+	position = "1760x1080",
+	scale = 1.5,
+})
 
--- Re-aplicar config al reconectar monitor (fix mouse limitado)
-hl.on("monitor.added", function(name)
-	if name == "HDMI-A-1" then
-		hl.monitor(hdmi_config)
-	end
-end)
+-- Workspaces por defecto por monitor
+-- Si el monitor existe, el WS arranca ahi. Si no, fallback al primer monitor disponible.
+hl.workspace_rule({ workspace = "1", monitor = "eDP-2",    default = true })
+hl.workspace_rule({ workspace = "2", monitor = "HDMI-A-1", default = true })
+hl.workspace_rule({ workspace = "3", monitor = "DP-2",     default = true })

@@ -1,5 +1,13 @@
 #!/usr/bin/env sh
 
+# Hyprland screenshot pipeline:
+#   grimblast captures -> hyprshade restored -> swappy opens for annotation
+#   -> on save, swappy writes directly to ~/Pictures/Screenshots/<date>.png
+#
+# Swappy config lives in ~/.config/swappy/config and is NOT overwritten here;
+# the save path is forced per-run via --output-file so the persistent config
+# (fonts, line sizes, paint mode) stays intact.
+
 # Restores the shader after screenshot has been taken
 restore_shader() {
   if [ -n "$shader" ]; then
@@ -14,44 +22,59 @@ save_shader() {
   trap restore_shader EXIT
 }
 
-save_shader # Saving the current shader
+save_shader
 
-# Definición de rutas segura
 XDG_PICTURES_DIR="${XDG_PICTURES_DIR:-$HOME/Pictures}"
-swpy_dir="$HOME/.config/swappy"
 save_dir="$XDG_PICTURES_DIR/Screenshots"
-save_file=$(date +'%d%m%y_%Hh%Mm%Ss_screenshot.png')
+save_file=$(date +'%Y%m%d-%Hh%Mm%Ss').png
+save_path="$save_dir/$save_file"
 temp_screenshot="/tmp/screenshot.png"
 
-# Crear directorios si no existen
 mkdir -p "$save_dir"
-mkdir -p "$swpy_dir"
 
-# Configurar Swappy para que guarde automáticamente en la ruta deseada
-echo -e "[Default]\nsave_dir=$save_dir\nsave_filename_format=$save_file" >"$swpy_dir/config"
+annotate() {
+  # $1 = source PNG, opens swappy and forces output path
+  swappy -f "$1" --output-file "$save_path"
+  rm -f -- "$1"
+  if [ -f "$save_path" ]; then
+    # also stash final image to clipboard
+    wl-copy --type image/png <"$save_path" 2>/dev/null
+    notify-send -a "screenshot" -i "$save_path" \
+      "Screenshot saved" "$save_file"
+  fi
+}
 
-function print_error
-{
-  cat <<"EOF"
-    ./screenshot.sh <action>
+copy_only() {
+  # No annotation flow — just grab & copy
+  case $1 in
+    area)    grimblast copy area ;;
+    screen)  grimblast copy screen ;;
+    output)  grimblast copy output ;;
+  esac
+  notify-send -a "screenshot" "Copied to clipboard" "$1"
+}
+
+print_error() {
+  cat <<'EOF'
+    screenshot.sh <action>
     ...valid actions are...
-        p  : print all screens
-        s  : snip current screen
-        sf : snip current screen (frozen)
-        m  : print focused monitor
+        p   : full screen  -> annotate
+        s   : area         -> annotate
+        sf  : area frozen  -> annotate
+        m   : focused monitor -> annotate
+        cp  : full screen   -> clipboard only
+        cs  : area          -> clipboard only
+        cm  : focused mon   -> clipboard only
 EOF
 }
 
 case $1 in
-p) grimblast copysave screen $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
-s) grimblast copysave area $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
-sf) grimblast --freeze copysave area $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
-m) grimblast copysave output $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
-*) print_error ;;
+  p)  grimblast copysave screen "$temp_screenshot" && restore_shader && annotate "$temp_screenshot" ;;
+  s)  grimblast copysave area   "$temp_screenshot" && restore_shader && annotate "$temp_screenshot" ;;
+  sf) grimblast --freeze copysave area "$temp_screenshot" && restore_shader && annotate "$temp_screenshot" ;;
+  m)  grimblast copysave output "$temp_screenshot" && restore_shader && annotate "$temp_screenshot" ;;
+  cp) copy_only screen ;;
+  cs) copy_only area ;;
+  cm) copy_only output ;;
+  *)  print_error ;;
 esac
-
-rm "$temp_screenshot"
-
-if [ -f "${save_dir}/${save_file}" ]; then
-  notify-send -a "t1" -i "${save_dir}/${save_file}" "saved in ${save_dir}"
-fi
